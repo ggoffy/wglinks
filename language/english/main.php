@@ -21,20 +21,20 @@
  * @version        $Id: 1.0 main.php 13070 Wed 2016-03-23 10:31:46Z XOOPS Development Team $
  */
 // ---------------- Main ----------------
-define('_MA_WGLINKS_INDEX', "Home");
-define('_MA_WGLINKS_TITLE', "wgLinks");
-define('_MA_WGLINKS_DESC', "This module provides a list of defined links");
-define('_MA_WGLINKS_INDEX_DESC', "");
+define('_MA_WGLINKS_INDEX', 'Home');
+define('_MA_WGLINKS_TITLE', 'wgLinks');
+define('_MA_WGLINKS_DESC', 'This module provides a list of defined links');
+define('_MA_WGLINKS_INDEX_DESC', '');
 define('_MA_WGLINKS_SHOW_MORE', 'Show more');
 // ---------------- Contents ----------------
 // Link
-define('_MA_WGLINKS_LINK', "Link");
-define('_MA_WGLINKS_LINKS', "Links");
+define('_MA_WGLINKS_LINK', 'Link');
+define('_MA_WGLINKS_LINKS', 'Links');
 define('_MA_WGLINKS_LINK_URL', 'Website');
 define('_MA_WGLINKS_LINK_CONTACT', 'Contact');
 define('_MA_WGLINKS_LINK_EMAIL', 'Email');
 define('_MA_WGLINKS_LINK_PHONE', 'Phone');
 define('_MA_WGLINKS_LINK_ADDRESS', 'Address');
 // Admin link
-define('_MA_WGLINKS_ADMIN', "Admin");
+define('_MA_WGLINKS_ADMIN', 'Admin');
 // ---------------- End ----------------

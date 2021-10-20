@@ -29,7 +29,7 @@ function b_wglinks_links_show($options)
     $GLOBALS['xoopsTpl']->assign('wglinks_upload_url', WGLINKS_UPLOAD_URL);
     $GLOBALS['xoopsTpl']->assign('wglinks_url', WGLINKS_URL);
     $GLOBALS['xoTheme']->addStylesheet(XOOPS_URL . '/modules/wglinks/assets/css/style.css');
-    $block       = array();
+    $block       = [];
     $typeBlock   = $options[0];
     $sortby      = $options[1];
     $limit       = $options[2];

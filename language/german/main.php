@@ -22,20 +22,20 @@
  */
 
 // ---------------- Main ----------------
-define('_MA_WGLINKS_INDEX', "Übersicht");
-define('_MA_WGLINKS_TITLE', "wgLinks");
-define('_MA_WGLINKS_DESC', "Dieses Modul stellt eine Liste von Links bereit");
-define('_MA_WGLINKS_INDEX_DESC', "");
+define('_MA_WGLINKS_INDEX', 'Übersicht');
+define('_MA_WGLINKS_TITLE', 'wgLinks');
+define('_MA_WGLINKS_DESC', 'Dieses Modul stellt eine Liste von Links bereit');
+define('_MA_WGLINKS_INDEX_DESC', '');
 define('_MA_WGLINKS_SHOW_MORE', 'Weitere anzeigen');
 // ---------------- Contents ----------------
 // Link
-define('_MA_WGLINKS_LINK', "Link");
-define('_MA_WGLINKS_LINKS', "Links");
+define('_MA_WGLINKS_LINK', 'Link');
+define('_MA_WGLINKS_LINKS', 'Links');
 define('_MA_WGLINKS_LINK_URL', 'Webseite');
 define('_MA_WGLINKS_LINK_CONTACT', 'Kontakt');
 define('_MA_WGLINKS_LINK_EMAIL', 'e-Mail');
 define('_MA_WGLINKS_LINK_PHONE', 'Telefon');
 define('_MA_WGLINKS_LINK_ADDRESS', 'Adresse');
 // Admin link
-define('_MA_WGLINKS_ADMIN', "Admininistration");
+define('_MA_WGLINKS_ADMIN', 'Admininistration');
 // ---------------- End ----------------

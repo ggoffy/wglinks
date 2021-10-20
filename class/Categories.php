@@ -23,7 +23,7 @@ namespace XoopsModules\Wglinks;
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 categories.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
  */
-defined('XOOPS_ROOT_PATH') || die('Restricted access');
+\defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * Class Object WglinksCategories
@@ -43,13 +43,13 @@ class Categories extends \XoopsObject
 	public function __construct()
 	{
 		$this->wglinks = \XoopsModules\Wglinks\Helper::getInstance();
-		$this->initVar('cat_id', XOBJ_DTYPE_INT);
-		$this->initVar('cat_name', XOBJ_DTYPE_TXTBOX);
-		$this->initVar('cat_desc', XOBJ_DTYPE_TXTBOX);
-		$this->initVar('cat_weight', XOBJ_DTYPE_INT);
-		$this->initVar('cat_logo', XOBJ_DTYPE_TXTBOX);
-		$this->initVar('cat_submitter', XOBJ_DTYPE_INT);
-		$this->initVar('cat_date_created', XOBJ_DTYPE_INT);
+		$this->initVar('cat_id', \XOBJ_DTYPE_INT);
+		$this->initVar('cat_name', \XOBJ_DTYPE_TXTBOX);
+		$this->initVar('cat_desc', \XOBJ_DTYPE_TXTBOX);
+		$this->initVar('cat_weight', \XOBJ_DTYPE_INT);
+		$this->initVar('cat_logo', \XOBJ_DTYPE_TXTBOX);
+		$this->initVar('cat_submitter', \XOBJ_DTYPE_INT);
+		$this->initVar('cat_date_created', \XOBJ_DTYPE_INT);
 	}
 
 	/**
@@ -78,7 +78,7 @@ class Categories extends \XoopsObject
      * Get form
      *
      * @param mixed $action
-     * @return XoopsThemeForm
+     * @return \XoopsThemeForm
      */
 	public function getFormCategories($action = false)
 	{
@@ -86,9 +86,9 @@ class Categories extends \XoopsObject
 			$action = $_SERVER['REQUEST_URI'];
 		}
 		// Title
-		$title = $this->isNew() ? sprintf(_AM_WGLINKS_CAT_ADD) : sprintf(_AM_WGLINKS_CAT_EDIT);
+		$title = $this->isNew() ? \sprintf(_AM_WGLINKS_CAT_ADD) : \sprintf(_AM_WGLINKS_CAT_EDIT);
 		// Get Theme Form
-		xoops_load('XoopsFormLoader');
+		\xoops_load('XoopsFormLoader');
 		$form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
 		$form->setExtra('enctype="multipart/form-data"');
         // Form Text LinkName
@@ -129,7 +129,7 @@ class Categories extends \XoopsObject
 		$ret['weight'] = $this->getVar('cat_weight');
 		$ret['logo'] = $this->getVar('cat_logo');
 		$ret['submitter'] = \XoopsUser::getUnameFromId($this->getVar('cat_submitter'));
-		$ret['date_created'] = formatTimeStamp($this->getVar('cat_date_created'), 's');
+		$ret['date_created'] = formatTimestamp($this->getVar('cat_date_created'), 's');
 		return $ret;
 	}
 
@@ -140,9 +140,9 @@ class Categories extends \XoopsObject
 	 */
 	public function toArrayCategories()
 	{
-		$ret = array();
+		$ret = [];
 		$vars = $this->getVars();
-		foreach(array_keys($vars) as $var) {
+		foreach(\array_keys($vars) as $var) {
 			$ret[$var] = $this->getVar('{$var}');
 		}
 		return $ret;

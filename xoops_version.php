@@ -45,7 +45,7 @@ $modversion['manual_file'] = XOOPS_URL . '/modules/wglinks/docs/install.txt';
 $modversion['min_php'] = '5.3';
 $modversion['min_xoops'] = '2.5.7';
 $modversion['min_admin'] = '1.1';
-$modversion['min_db'] = array('mysql' => '5.0.7', 'mysqli' => '5.0.7');
+$modversion['min_db'] = ['mysql' => '5.0.7', 'mysqli' => '5.0.7'];
 $modversion['image'] = 'assets/images/wglinks_logo.png';
 $modversion['dirname'] = $moduleDirName;
 $modversion['dirmoduleadmin'] = 'Frameworks/moduleclasses/moduleadmin';
@@ -71,21 +71,21 @@ $modversion['onUpdate'] = 'include/update.php';
 $modversion['onUninstall'] = 'include/onuninstall.php';
 // ------------------- Templates ------------------- //
 // Admin
-$modversion['templates'][] = array('file' => 'wglinks_admin_about.tpl', 'description' => '', 'type' => 'admin');
-$modversion['templates'][] = array('file' => 'wglinks_admin_header.tpl', 'description' => '', 'type' => 'admin');
-$modversion['templates'][] = array('file' => 'wglinks_admin_index.tpl', 'description' => '', 'type' => 'admin');
-$modversion['templates'][] = array('file' => 'wglinks_admin_categories.tpl', 'description' => '', 'type' => 'admin');
-$modversion['templates'][] = array('file' => 'wglinks_admin_links.tpl', 'description' => '', 'type' => 'admin');
-$modversion['templates'][] = array('file' => 'wglinks_admin_footer.tpl', 'description' => '', 'type' => 'admin');
+$modversion['templates'][] = ['file' => 'wglinks_admin_about.tpl', 'description' => '', 'type' => 'admin'];
+$modversion['templates'][] = ['file' => 'wglinks_admin_header.tpl', 'description' => '', 'type' => 'admin'];
+$modversion['templates'][] = ['file' => 'wglinks_admin_index.tpl', 'description' => '', 'type' => 'admin'];
+$modversion['templates'][] = ['file' => 'wglinks_admin_categories.tpl', 'description' => '', 'type' => 'admin'];
+$modversion['templates'][] = ['file' => 'wglinks_admin_links.tpl', 'description' => '', 'type' => 'admin'];
+$modversion['templates'][] = ['file' => 'wglinks_admin_footer.tpl', 'description' => '', 'type' => 'admin'];
 // User
-$modversion['templates'][] = array('file' => 'wglinks_header.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wglinks_index.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wglinks_links_default.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wglinks_links_cards.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wglinks_block_links_default.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wglinks_block_links_cards.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wglinks_breadcrumbs.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wglinks_footer.tpl', 'description' => '');
+$modversion['templates'][] = ['file' => 'wglinks_header.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wglinks_index.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wglinks_links_default.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wglinks_links_cards.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wglinks_block_links_default.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wglinks_block_links_cards.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wglinks_breadcrumbs.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wglinks_footer.tpl', 'description' => ''];
 // ------------------- Mysql ------------------- //
 $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
 // Tables
@@ -132,8 +132,8 @@ $modversion['config'][] = [
     'description' => '_MI_WGLINKS_MIMETYPES_DESC',
     'formtype'    => 'select_multi',
     'valuetype'   => 'array',
-    'default'     => array('image/gif', 'image/jpg', 'image/jpeg', 'image/png'),
-    'options'     => array('bmp' => 'image/bmp','gif' => 'image/gif','pjpeg' => 'image/pjpeg', 'jpeg' => 'image/jpeg','jpg' => 'image/jpg','jpe' => 'image/jpe', 'png' => 'image/png')
+    'default'     => ['image/gif', 'image/jpg', 'image/jpeg', 'image/png'],
+    'options'     => ['bmp' => 'image/bmp', 'gif' => 'image/gif', 'pjpeg' => 'image/pjpeg', 'jpeg' => 'image/jpeg', 'jpg' => 'image/jpg', 'jpe' => 'image/jpe', 'png' => 'image/png']
 ];
 // Uploads : maxsize of image
 $currdirname = isset($GLOBALS['xoopsModule']) && is_object($GLOBALS['xoopsModule']) ? $GLOBALS['xoopsModule']->getVar('dirname') : 'system';
@@ -321,7 +321,7 @@ $modversion['config'][] = [
     'formtype'    => 'select',
     'valuetype'   => 'text',
     'default'     => 'default',
-    'options'    => array('default' => 'default', '2 cards' => '2cards', '3 cards' => '3cards', '4 cards' => '4cards'),
+    'options'    => ['default' => 'default', '2 cards' => '2cards', '3 cards' => '3cards', '4 cards' => '4cards'],
 ];
 // title style
 $modversion['config'][] = [
@@ -331,7 +331,7 @@ $modversion['config'][] = [
     'formtype'    => 'select',
     'valuetype'   => 'text',
     'default'     => 'text',
-    'options'    => array(_MI_WGLINKS_TITLESTYLE_TEXT => 'text', _MI_WGLINKS_TITLESTYLE_GLYPH => 'glyphicons'),
+    'options'    => [_MI_WGLINKS_TITLESTYLE_TEXT => 'text', _MI_WGLINKS_TITLESTYLE_GLYPH => 'glyphicons'],
 ];
 /**
  * Make Sample button visible?

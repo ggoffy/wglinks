@@ -86,7 +86,7 @@ unset($links);
 unset($count);
 // Breadcrumbs
 if ($helper->getConfig('show_breadcrumbs')) {
-    $xoBreadcrumbs[] = array('title' => _MA_WGLINKS_INDEX);
+    $xoBreadcrumbs[] = ['title' => _MA_WGLINKS_INDEX];
     $GLOBALS['xoopsTpl']->assign('show_breadcrumbs', true);
 }
 

@@ -20,7 +20,7 @@
  * @author         XOOPS on Wedega - Email:<info@email.com> - Website:<http://xoops.org>
  * @version        $Id: 1.0 header.php 13070 Wed 2016-03-23 10:31:46Z XOOPS Development Team $
  */
-include dirname(dirname(__DIR__)) .'/mainfile.php';
+include dirname(__DIR__, 2) . '/mainfile.php';
 include __DIR__ .'/include/common.php';
 $dirname  = basename(__DIR__);
 
@@ -28,10 +28,10 @@ $dirname  = basename(__DIR__);
 $helper = \XoopsModules\Wglinks\Helper::getInstance();
 $linksHandler = $helper->getHandler('links');
 // Breadcrumbs
-$xoBreadcrumbs = array();
+$xoBreadcrumbs = [];
 if ($helper->getConfig('show_breadcrumbs') && $helper->getConfig('show_bcrumb_mname')) {
     if ( isset($GLOBALS['xoopsModule']) && is_object($GLOBALS['xoopsModule'])) { // necessary to check, otherwise uploader runs into errors
-        $xoBreadcrumbs[] = array('title' => $GLOBALS['xoopsModule']->getVar('name'), 'link' => WGLINKS_URL . '/');
+        $xoBreadcrumbs[] = ['title' => $GLOBALS['xoopsModule']->getVar('name'), 'link' => WGLINKS_URL . '/'];
     }
 }
 // Permission

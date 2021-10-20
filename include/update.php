@@ -58,21 +58,21 @@ function xoops_module_update_wglinks(&$module, $prev_version = null)
  *
  * @return bool
  */
-function update_wglinks_v10(&$module)
+function update_wglinks_v10($module)
 {
     global $xoopsDB;
     $result = $xoopsDB->query(
-        "SELECT t1.tpl_id FROM " . $xoopsDB->prefix('tplfile') . " t1, " . $xoopsDB->prefix('tplfile')
-        . " t2 WHERE t1.tpl_refid = t2.tpl_refid AND t1.tpl_module = t2.tpl_module AND t1.tpl_tplset=t2.tpl_tplset AND t1.tpl_file = t2.tpl_file AND t1.tpl_type = t2.tpl_type AND t1.tpl_id > t2.tpl_id"
+        'SELECT t1.tpl_id FROM ' . $xoopsDB->prefix('tplfile') . ' t1, ' . $xoopsDB->prefix('tplfile')
+        . ' t2 WHERE t1.tpl_refid = t2.tpl_refid AND t1.tpl_module = t2.tpl_module AND t1.tpl_tplset=t2.tpl_tplset AND t1.tpl_file = t2.tpl_file AND t1.tpl_type = t2.tpl_type AND t1.tpl_id > t2.tpl_id'
     );
-    $tplids = array();
+    $tplids = [];
     while (list($tplid) = $xoopsDB->fetchRow($result)) {
         $tplids[] = $tplid;
     }
     if (count($tplids) > 0) {
         $tplfile_handler = xoops_getHandler('tplfile');
         $duplicate_files = $tplfile_handler->getObjects(
-            new \Criteria('tpl_id', "(" . implode(',', $tplids) . ")", "IN")
+            new \Criteria('tpl_id', '(' . implode(',', $tplids) . ')', 'IN')
         );
 
         if (count($duplicate_files) > 0) {
@@ -81,13 +81,13 @@ function update_wglinks_v10(&$module)
             }
         }
     }
-    $sql = "SHOW INDEX FROM " . $xoopsDB->prefix('tplfile') . " WHERE KEY_NAME = 'tpl_refid_module_set_file_type'";
+    $sql = 'SHOW INDEX FROM ' . $xoopsDB->prefix('tplfile') . " WHERE KEY_NAME = 'tpl_refid_module_set_file_type'";
     if (!$result = $xoopsDB->queryF($sql)) {
         xoops_error($xoopsDB->error() . '<br />' . $sql);
 
         return false;
     }
-    $ret = array();
+    $ret = [];
     while ($myrow = $xoopsDB->fetchArray($result)) {
         $ret[] = $myrow;
     }
@@ -98,8 +98,8 @@ function update_wglinks_v10(&$module)
 
         return true;
     }
-    $sql = "ALTER TABLE " . $xoopsDB->prefix('tplfile')
-        . " ADD UNIQUE tpl_refid_module_set_file_type ( tpl_refid, tpl_module, tpl_tplset, tpl_file, tpl_type )";
+    $sql = 'ALTER TABLE ' . $xoopsDB->prefix('tplfile')
+           . ' ADD UNIQUE tpl_refid_module_set_file_type ( tpl_refid, tpl_module, tpl_tplset, tpl_file, tpl_type )';
     if (!$result = $xoopsDB->queryF($sql)) {
         xoops_error($xoopsDB->error() . '<br />' . $sql);
         $module->setErrors(
@@ -113,7 +113,7 @@ function update_wglinks_v10(&$module)
 }
 // irmtfan bug fix: solve templates duplicate issue
 
-function update_wglinks_v105 (&$module) {
+function update_wglinks_v105 ($module) {
     global $xoopsDB;    
     
     // Making of images folder
@@ -123,14 +123,18 @@ function update_wglinks_v105 (&$module) {
     $images = XOOPS_UPLOAD_PATH.'/wglinks/images';
     $links = XOOPS_UPLOAD_PATH.'/wglinks/images/links/large';
     if(!is_dir($links)) {
-        mkdir($links, 0777);
+        if (!mkdir($links, 0777) && !is_dir($links)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $links));
+        }
         chmod($links, 0777);
     }
     copy($indexFile, $links.'/index.html');
     copy($blankFile, $links.'/blank.gif');
     $links = XOOPS_UPLOAD_PATH.'/wglinks/images/links/thumbs';
     if(!is_dir($links)) {
-        mkdir($links, 0777);
+        if (!mkdir($links, 0777) && !is_dir($links)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $links));
+        }
         chmod($links, 0777);
     }
     copy($indexFile, $links.'/index.html');
@@ -138,7 +142,7 @@ function update_wglinks_v105 (&$module) {
     
     // update table links
     $field = 'link_detail';
-    $sql = "ALTER TABLE " . $xoopsDB->prefix('wglinks_links') . " ADD `$field` text NULL AFTER `link_tooltip`";
+    $sql = 'ALTER TABLE ' . $xoopsDB->prefix('wglinks_links') . " ADD `$field` text NULL AFTER `link_tooltip`";
     if (!$result = $xoopsDB->queryF($sql)) {
         xoops_error($xoopsDB->error() . '<br />' . $sql);
         $module->setErrors(
@@ -147,7 +151,7 @@ function update_wglinks_v105 (&$module) {
         return false;
     }
     $field = 'link_address';
-    $sql = "ALTER TABLE " . $xoopsDB->prefix('wglinks_links') . " ADD `$field` varchar(255) NULL DEFAULT '' AFTER `link_tooltip`";
+    $sql = 'ALTER TABLE ' . $xoopsDB->prefix('wglinks_links') . " ADD `$field` varchar(255) NULL DEFAULT '' AFTER `link_tooltip`";
     if (!$result = $xoopsDB->queryF($sql)) {
         xoops_error($xoopsDB->error() . '<br />' . $sql);
         $module->setErrors(
@@ -156,7 +160,7 @@ function update_wglinks_v105 (&$module) {
         return false;
     }
     $field = 'link_phone';
-    $sql = "ALTER TABLE " . $xoopsDB->prefix('wglinks_links') . " ADD `$field` varchar(255) NULL DEFAULT '' AFTER `link_tooltip`";
+    $sql = 'ALTER TABLE ' . $xoopsDB->prefix('wglinks_links') . " ADD `$field` varchar(255) NULL DEFAULT '' AFTER `link_tooltip`";
     if (!$result = $xoopsDB->queryF($sql)) {
         xoops_error($xoopsDB->error() . '<br />' . $sql);
         $module->setErrors(
@@ -165,7 +169,7 @@ function update_wglinks_v105 (&$module) {
         return false;
     }
     $field = 'link_email';
-    $sql = "ALTER TABLE " . $xoopsDB->prefix('wglinks_links') . " ADD `$field` text NULL AFTER `link_tooltip`";
+    $sql = 'ALTER TABLE ' . $xoopsDB->prefix('wglinks_links') . " ADD `$field` text NULL AFTER `link_tooltip`";
     if (!$result = $xoopsDB->queryF($sql)) {
         xoops_error($xoopsDB->error() . '<br />' . $sql);
         $module->setErrors(
@@ -174,7 +178,7 @@ function update_wglinks_v105 (&$module) {
         return false;
     }
     $field = 'link_contact';
-    $sql = "ALTER TABLE " . $xoopsDB->prefix('wglinks_links') . " ADD `$field` varchar(255) NULL DEFAULT '' AFTER `link_tooltip`";
+    $sql = 'ALTER TABLE ' . $xoopsDB->prefix('wglinks_links') . " ADD `$field` varchar(255) NULL DEFAULT '' AFTER `link_tooltip`";
     if (!$result = $xoopsDB->queryF($sql)) {
         xoops_error($xoopsDB->error() . '<br />' . $sql);
         $module->setErrors(
@@ -185,7 +189,7 @@ function update_wglinks_v105 (&$module) {
     return true;
 }
 
-function update_wglinks_v103 (&$module) {
+function update_wglinks_v103 ($module) {
     global $xoopsDB;
     // create dir for categories
     
@@ -194,21 +198,27 @@ function update_wglinks_v103 (&$module) {
     // Making of uploads/wglinks folder
     $wglinks = XOOPS_UPLOAD_PATH.'/wglinks';
     if(!is_dir($wglinks)) {
-        mkdir($wglinks, 0777);
+        if (!mkdir($wglinks, 0777) && !is_dir($wglinks)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $wglinks));
+        }
         chmod($wglinks, 0777);
     }
     copy($indexFile, $wglinks.'/index.html');
     // Making of cats uploads folder
     $categories = $wglinks.'/categories';
     if(!is_dir($categories)) {
-        mkdir($categories, 0777);
+        if (!mkdir($categories, 0777) && !is_dir($categories)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $categories));
+        }
         chmod($categories, 0777);
     }
     copy($indexFile, $categories.'/index.html');
     // Making of images folder
     $images = $wglinks.'/images';
     if(!is_dir($images)) {
-        mkdir($images, 0777);
+        if (!mkdir($images, 0777) && !is_dir($images)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $images));
+        }
         chmod($images, 0777);
     }
     copy($indexFile, $images.'/index.html');
@@ -216,14 +226,16 @@ function update_wglinks_v103 (&$module) {
     // Making of images/links folder
     $categories = $images.'/categories';
     if(!is_dir($categories)) {
-        mkdir($categories, 0777);
+        if (!mkdir($categories, 0777) && !is_dir($categories)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $categories));
+        }
         chmod($categories, 0777);
     }
     copy($indexFile, $categories.'/index.html');
     copy($blankFile, $categories.'/blank.gif');
     
     // update table links
-    $sql = "ALTER TABLE " . $xoopsDB->prefix('wglinks_links') . " ADD `link_state` INT(10) NOT NULL DEFAULT '0' AFTER `link_logo`";
+    $sql = 'ALTER TABLE ' . $xoopsDB->prefix('wglinks_links') . " ADD `link_state` INT(10) NOT NULL DEFAULT '0' AFTER `link_logo`";
     if (!$result = $xoopsDB->queryF($sql)) {
         xoops_error($xoopsDB->error() . '<br />' . $sql);
         $module->setErrors(
@@ -233,7 +245,7 @@ function update_wglinks_v103 (&$module) {
     }
     
     // update table links
-    $sql = "ALTER TABLE " . $xoopsDB->prefix('wglinks_links') . " ADD `link_catid` INT(10) NOT NULL DEFAULT '0' AFTER `link_id`";
+    $sql = 'ALTER TABLE ' . $xoopsDB->prefix('wglinks_links') . " ADD `link_catid` INT(10) NOT NULL DEFAULT '0' AFTER `link_id`";
     if (!$result = $xoopsDB->queryF($sql)) {
         xoops_error($xoopsDB->error() . '<br />' . $sql);
         $module->setErrors(
@@ -243,7 +255,7 @@ function update_wglinks_v103 (&$module) {
     }
     
     // create table
-    $sql = "CREATE TABLE " . $xoopsDB->prefix('wglinks_categories') . " (
+    $sql = 'CREATE TABLE ' . $xoopsDB->prefix('wglinks_categories') . " (
               `cat_id` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
               `cat_name` VARCHAR(100) NOT NULL DEFAULT '',
               `cat_desc` TEXT NULL,

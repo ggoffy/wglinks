@@ -28,7 +28,7 @@
  * @param int $max_width
  * @param int $max_height
  * @param $imageMimetype
- * @return string|boolean
+ * @return string|bool
  */
 
 function ResizeImage($sourcefile, $endfile, $max_width, $max_height, $imageMimetype){

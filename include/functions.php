@@ -84,7 +84,7 @@ function wglinks_RewriteUrl($module, $array, $type = 'content')
     if ($lenght_id != 0) {
         $id = $array['content_id'];
         while (strlen($id) < $lenght_id) {
-            $id = "0" . $id;
+            $id = '0' . $id;
         }
     } else {
         $id = $array['content_id'];
@@ -165,7 +165,7 @@ function wglinks_RewriteUrl($module, $array, $type = 'content')
  * @param $url
  * @param string $type
  * @param string $module
- * @return null|string|string[] $url
+ * @return string $url
  */
 function wglinks_Filter($url, $type = '', $module = 'wglinks') {
 
@@ -174,11 +174,11 @@ function wglinks_Filter($url, $type = '', $module = 'wglinks') {
     $regular_expression = $wglinks->getConfig('regular_expression');
 
     $url = strip_tags($url);
-    $url = preg_replace("`\[.*\]`U", "", $url);
+    $url = preg_replace('`\[.*\]`U', '', $url);
     $url = preg_replace('`&(amp;)?#?[a-z0-9]+;`i', '-', $url);
     $url = htmlentities($url, ENT_COMPAT, 'utf-8');
-    $url = preg_replace("`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i", "\1", $url);
-    $url = preg_replace(array($regular_expression, "`[-]+`"), "-", $url);
-    $url = ($url == "") ? $type : strtolower(trim($url, '-'));
+    $url = preg_replace('`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i', "\1", $url);
+    $url = preg_replace([$regular_expression, '`[-]+`'], '-', $url);
+    $url = ($url == '') ? $type : strtolower(trim($url, '-'));
     return $url;
 }

@@ -23,7 +23,7 @@ namespace XoopsModules\Wglinks;
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 links.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
  */
-defined('XOOPS_ROOT_PATH') || die('Restricted access');
+\defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * Class Object Handler WglinksCategories
@@ -62,7 +62,7 @@ class LinksHandler extends \XoopsPersistableObjectHandler
      *
      * @param int $i field id
      * @param null $fields
-     * @return mixed reference to the {@link Get} object
+     * @return \XoopsObject|null reference to the {@link Get} object
      */
 	public function get($i = null, $fields = null)
 	{
@@ -73,7 +73,7 @@ class LinksHandler extends \XoopsPersistableObjectHandler
 	 * get inserted id
 	 *
 	 * @param null
-	 * @return integer reference to the {@link Get} object
+	 * @return int reference to the {@link Get} object
 	 */
 	public function getInsertId()
 	{

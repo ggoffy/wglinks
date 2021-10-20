@@ -34,10 +34,8 @@ function xoops_module_uninstall_wglinks(\XoopsModule $module)
 
     $moduleDirName      = basename(dirname(__DIR__));
     $moduleDirNameUpper = mb_strtoupper($moduleDirName);
-    /** @var Wglinks\Helper $helper */
     $helper = Wglinks\Helper::getInstance();
 
-    /** @var Wglinks\Utility $utility */
     $utility = new Wglinks\Utility();
 
     $success = true;

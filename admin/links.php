@@ -104,13 +104,13 @@ switch($op) {
         $linksObj->setVar('link_email', $_POST['link_email']);
         $linksObj->setVar('link_phone', $_POST['link_phone']);
         $linksObj->setVar('link_address', $_POST['link_address']);
-		$linksObj->setVar('link_weight', isset($_POST['link_weight']) ? $_POST['link_weight'] : 0);
+		$linksObj->setVar('link_weight', $_POST['link_weight'] ?? 0);
 		// Set Var link_logo
         $fileName = $_FILES['attachedfile']['name'];
         if (strlen($fileName) > 0) {
             $imageMimetype = $_FILES['attachedfile']['type'];
             include_once XOOPS_ROOT_PATH .'/class/uploader.php';
-            $uploader = new \XoopsMediaUploader(WGLINKS_UPLOAD_IMAGE_PATH . "/links/large/", $helper->getConfig('mimetypes'), $helper->getConfig('maxsize'), null, null);
+            $uploader = new \XoopsMediaUploader(WGLINKS_UPLOAD_IMAGE_PATH . '/links/large/', $helper->getConfig('mimetypes'), $helper->getConfig('maxsize'), null, null);
             if($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
                 $extension = preg_replace('/^.+\.([^.]+)$/sU', '', $fileName);
                 $imgName = str_replace(' ', '', $_POST['link_name']) . '.' . $extension;
@@ -137,8 +137,8 @@ switch($op) {
 		} else {
 				$linksObj->setVar('link_logo', $_POST['link_logo']);
 		}
-        $linksObj->setVar('link_state', isset($_POST['link_state']) ? $_POST['link_state'] : 0);
-		$linksObj->setVar('link_submitter', isset($_POST['link_submitter']) ? $_POST['link_submitter'] : 0);
+        $linksObj->setVar('link_state', $_POST['link_state'] ?? 0);
+		$linksObj->setVar('link_submitter', $_POST['link_submitter'] ?? 0);
 		$linksObj->setVar('link_date_created', strtotime($_POST['link_date_created']));
 		// Insert Data
 		if($linksHandler->insert($linksObj)) {
@@ -171,10 +171,10 @@ switch($op) {
 			if($linksHandler->delete($linksObj)) {
 				redirect_header('links.php', 3, _AM_WGLINKS_FORM_DELETE_OK);
 			} else {
-				$GLOBALS['xoopsTpl']->assign(error, $linksObj->getHtmlErrors());
+				$GLOBALS['xoopsTpl']->assign('error', $linksObj->getHtmlErrors());
 			}
 		} else {
-			xoops_confirm(array('ok' => 1, 'link_id' => $linkId, 'op' => 'delete'), $_SERVER['REQUEST_URI'], sprintf(_AM_WGLINKS_FORM_SURE_DELETE, $linksObj->getVar('link_name')));
+			xoops_confirm(['ok' => 1, 'link_id' => $linkId, 'op' => 'delete'], $_SERVER['REQUEST_URI'], sprintf(_AM_WGLINKS_FORM_SURE_DELETE, $linksObj->getVar('link_name')));
 		}
 
 	break;
