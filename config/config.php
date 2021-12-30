@@ -27,12 +27,12 @@
 $moduleDirName  = \basename(\dirname(__DIR__));
 $moduleDirNameUpper  = \mb_strtoupper($moduleDirName);
 return (object)[
-    'name'           => mb_strtoupper($moduleDirName) . ' Module Configurator',
+    'name'           => \mb_strtoupper($moduleDirName) . ' Module Configurator',
     'paths'          => [
         'dirname'    => $moduleDirName,
-        'admin'      => XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/admin',
-        'modPath'    => XOOPS_ROOT_PATH . '/modules/' . $moduleDirName,
-        'modUrl'     => XOOPS_URL . '/modules/' . $moduleDirName,
+        'admin'      => \XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/admin',
+        'modPath'    => \XOOPS_ROOT_PATH . '/modules/' . $moduleDirName,
+        'modUrl'     => \XOOPS_URL . '/modules/' . $moduleDirName,
         'uploadPath' => XOOPS_UPLOAD_PATH . '/' . $moduleDirName,
         'uploadUrl'  => XOOPS_UPLOAD_URL . '/' . $moduleDirName,
     ],
@@ -52,7 +52,7 @@ return (object)[
 
     'copyTestFolders' => [
         [
-            XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/testdata/uploads',
+            \XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/testdata/uploads',
             XOOPS_UPLOAD_PATH . '/' . $moduleDirName,
         ],
     ],

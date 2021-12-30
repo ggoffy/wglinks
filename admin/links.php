@@ -32,24 +32,24 @@ $linkId = Request::getInt('link_id');
 switch($op) {
     case 'list':
     default:
-        $GLOBALS['xoTheme']->addScript(WGLINKS_URL . '/assets/js/jquery.js');
-        $GLOBALS['xoTheme']->addScript(WGLINKS_URL . '/assets/js/jquery-ui.js');
-        $GLOBALS['xoTheme']->addScript(WGLINKS_URL . '/assets/js/sortable-links.js');
-        $start = Request::getInt('start', 0);
+        $GLOBALS['xoTheme']->addScript(\WGLINKS_URL . '/assets/js/jquery.js');
+        $GLOBALS['xoTheme']->addScript(\WGLINKS_URL . '/assets/js/jquery-ui.js');
+        $GLOBALS['xoTheme']->addScript(\WGLINKS_URL . '/assets/js/sortable-links.js');
+        $start = Request::getInt('start');
         $limit = Request::getInt('limit', $helper->getConfig('adminpager'));
         $templateMain = 'wglinks_admin_links.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('links.php'));
-        $adminObject->addItemButton(_AM_WGLINKS_ADD_LINK, 'links.php?op=new', 'add');
+        $adminObject->addItemButton(\_AM_WGLINKS_ADD_LINK, 'links.php?op=new');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
         $linksCount = $linksHandler->getCountLinks();
         $linksAll = $linksHandler->getAllLinks($start, $limit);
         $GLOBALS['xoopsTpl']->assign('links_count', $linksCount);
-        $GLOBALS['xoopsTpl']->assign('wglinks_url', WGLINKS_URL);
-        $GLOBALS['xoopsTpl']->assign('wglinks_upload_url', WGLINKS_UPLOAD_URL);
+        $GLOBALS['xoopsTpl']->assign('wglinks_url', \WGLINKS_URL);
+        $GLOBALS['xoopsTpl']->assign('wglinks_upload_url', \WGLINKS_UPLOAD_URL);
         // Table view links
         if($linksCount > 0) {
             $cat_id_prev = 0;
-            foreach(array_keys($linksAll) as $i) {
+            foreach(\array_keys($linksAll) as $i) {
                 $link = $linksAll[$i]->getValuesLinks();
                 if ($cat_id_prev == $link['catid']) {
                     $link['new_cat'] = 0;
@@ -64,19 +64,19 @@ switch($op) {
             $GLOBALS['xoopsTpl']->assign('limit', $limit);
             // Display Navigation
             if($linksCount > $limit) {
-                include_once XOOPS_ROOT_PATH .'/class/pagenav.php';
+                include_once \XOOPS_ROOT_PATH .'/class/pagenav.php';
                 $pagenav = new \XoopsPageNav($linksCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
-                $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
+                $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav());
             }
         } else {
-            $GLOBALS['xoopsTpl']->assign('error', _AM_WGLINKS_THEREARENT_LINKS);
+            $GLOBALS['xoopsTpl']->assign('error', \_AM_WGLINKS_THEREARENT_LINKS);
         }
 
     break;
     case 'new':
         $templateMain = 'wglinks_admin_links.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('links.php'));
-        $adminObject->addItemButton(_AM_WGLINKS_LINKS_LIST, 'links.php', 'list');
+        $adminObject->addItemButton(\_AM_WGLINKS_LINKS_LIST, 'links.php', 'list');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
         // Get Form
         $linksObj = $linksHandler->create();
@@ -87,7 +87,7 @@ switch($op) {
     case 'save':
         // Security Check
         if(!$GLOBALS['xoopsSecurity']->check()) {
-            redirect_header('links.php', 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
+            \redirect_header('links.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
         }
         if(isset($linkId)) {
             $linksObj = $linksHandler->get($linkId);
@@ -107,31 +107,31 @@ switch($op) {
         $linksObj->setVar('link_weight', $_POST['link_weight'] ?? 0);
         // Set Var link_logo
         $fileName = $_FILES['attachedfile']['name'];
-        if (strlen($fileName) > 0) {
+        if (\strlen($fileName) > 0) {
             $imageMimetype = $_FILES['attachedfile']['type'];
-            include_once XOOPS_ROOT_PATH .'/class/uploader.php';
-            $uploader = new \XoopsMediaUploader(WGLINKS_UPLOAD_IMAGE_PATH . '/links/large/', $helper->getConfig('mimetypes'), $helper->getConfig('maxsize'), null, null);
+            include_once \XOOPS_ROOT_PATH .'/class/uploader.php';
+            $uploader = new \XoopsMediaUploader(\WGLINKS_UPLOAD_IMAGE_PATH . '/links/large/', $helper->getConfig('mimetypes'), $helper->getConfig('maxsize'), null, null);
             if($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
-                $extension = preg_replace('/^.+\.([^.]+)$/sU', '', $fileName);
-                $imgName = str_replace(' ', '', $_POST['link_name']) . '.' . $extension;
+                $extension = \preg_replace('/^.+\.([^.]+)$/sU', '', $fileName);
+                $imgName = \str_replace(' ', '', $_POST['link_name']) . '.' . $extension;
                 $uploader->setPrefix($imgName);
                 $uploader->fetchMedia($_POST['xoops_upload_file'][0]);
                 if (!$uploader->upload()) {
                     $errors = $uploader->getErrors();
-                    redirect_header('javascript:history.go(-1)', 3, $errors);
+                    \redirect_header('javascript:history.go(-1)', 3, $errors);
                 } else {
                     $savedFilename = $uploader->getSavedFileName();
                     $linksObj->setVar('link_logo', $savedFilename);
                     // resize image
-                    include_once XOOPS_ROOT_PATH . '/modules/wglinks/include/imagehandler.php';
+                    include_once \XOOPS_ROOT_PATH . '/modules/wglinks/include/imagehandler.php';
                     // resize large image
                     $maxwidth = $helper->getConfig('maxwidth_large');
                     $maxheight = $helper->getConfig('maxheight_large');
-                    $ret = ResizeImage(WGLINKS_UPLOAD_IMAGE_PATH . '/links/large/' . $savedFilename, WGLINKS_UPLOAD_IMAGE_PATH . '/links/large/' . $savedFilename, $maxwidth, $maxheight, $imageMimetype);
+                    $ret = ResizeImage(\WGLINKS_UPLOAD_IMAGE_PATH . '/links/large/' . $savedFilename, \WGLINKS_UPLOAD_IMAGE_PATH . '/links/large/' . $savedFilename, $maxwidth, $maxheight, $imageMimetype);
                     // resize thumb image
                     $maxwidth = $helper->getConfig('maxwidth_thumbs');
                     $maxheight = $helper->getConfig('maxheight_thumbs');
-                    $ret = ResizeImage(WGLINKS_UPLOAD_IMAGE_PATH . '/links/large/' . $savedFilename, WGLINKS_UPLOAD_IMAGE_PATH . '/links/thumbs/' . $savedFilename, $maxwidth, $maxheight, $imageMimetype);
+                    $ret = ResizeImage(\WGLINKS_UPLOAD_IMAGE_PATH . '/links/large/' . $savedFilename, \WGLINKS_UPLOAD_IMAGE_PATH . '/links/thumbs/' . $savedFilename, $maxwidth, $maxheight, $imageMimetype);
                 }
             }
         } else {
@@ -139,10 +139,10 @@ switch($op) {
         }
         $linksObj->setVar('link_state', $_POST['link_state'] ?? 0);
         $linksObj->setVar('link_submitter', $_POST['link_submitter'] ?? 0);
-        $linksObj->setVar('link_date_created', strtotime($_POST['link_date_created']));
+        $linksObj->setVar('link_date_created', \strtotime($_POST['link_date_created']));
         // Insert Data
         if($linksHandler->insert($linksObj)) {
-            redirect_header('links.php?op=list', 2, _AM_WGLINKS_FORM_OK);
+            \redirect_header('links.php?op=list', 2, \_AM_WGLINKS_FORM_OK);
         }
         // Get Form
         $GLOBALS['xoopsTpl']->assign('error', $linksObj->getHtmlErrors());
@@ -153,8 +153,8 @@ switch($op) {
     case 'edit':
         $templateMain = 'wglinks_admin_links.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('links.php'));
-        $adminObject->addItemButton(_AM_WGLINKS_ADD_LINK, 'links.php?op=new', 'add');
-        $adminObject->addItemButton(_AM_WGLINKS_LINKS_LIST, 'links.php', 'list');
+        $adminObject->addItemButton(\_AM_WGLINKS_ADD_LINK, 'links.php?op=new');
+        $adminObject->addItemButton(\_AM_WGLINKS_LINKS_LIST, 'links.php', 'list');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
         // Get Form
         $linksObj = $linksHandler->get($linkId);
@@ -166,21 +166,21 @@ switch($op) {
         $linksObj = $linksHandler->get($linkId);
         if(isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
             if(!$GLOBALS['xoopsSecurity']->check()) {
-                redirect_header('links.php', 3, implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
+                \redirect_header('links.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
             }
             if($linksHandler->delete($linksObj)) {
-                redirect_header('links.php', 3, _AM_WGLINKS_FORM_DELETE_OK);
+                \redirect_header('links.php', 3, \_AM_WGLINKS_FORM_DELETE_OK);
             } else {
                 $GLOBALS['xoopsTpl']->assign('error', $linksObj->getHtmlErrors());
             }
         } else {
-            xoops_confirm(['ok' => 1, 'link_id' => $linkId, 'op' => 'delete'], $_SERVER['REQUEST_URI'], sprintf(_AM_WGLINKS_FORM_SURE_DELETE, $linksObj->getVar('link_name')));
+            xoops_confirm(['ok' => 1, 'link_id' => $linkId, 'op' => 'delete'], $_SERVER['REQUEST_URI'], \sprintf(\_AM_WGLINKS_FORM_SURE_DELETE, $linksObj->getVar('link_name')));
         }
 
     break;
     case 'order':
         $lorder = $_POST['lorder'];
-        for ($i = 0, $iMax = count($lorder); $i < $iMax; $i++){
+        for ($i = 0, $iMax = \count($lorder); $i < $iMax; $i++){
             $linksObj = $linksHandler->get($lorder[$i]);
             $linksObj->setVar('link_weight',$i+1);
             $linksHandler->insert($linksObj);
@@ -189,7 +189,7 @@ switch($op) {
         $linksAll = $linksHandler->getAllLinks();
         $cat_id_prev = 0;
         $j = 0;
-        foreach(array_keys($linksAll) as $i) {
+        foreach(\array_keys($linksAll) as $i) {
             $link = $linksAll[$i]->getValuesLinks();
             if ($cat_id_prev == $link['catid']) {
                 $j++;
@@ -211,7 +211,7 @@ switch($op) {
             $linksObj->setVar('link_state', Request::getInt('link_state'));
             // Insert Data
             if($linksHandler->insert($linksObj)) {
-                redirect_header('links.php?op=list&amp;start=' . $start . '&amp;limit=' . $limit, 2, _AM_WGLINKS_FORM_OK);
+                \redirect_header('links.php?op=list&amp;start=' . $start . '&amp;limit=' . $limit, 2, \_AM_WGLINKS_FORM_OK);
             }
             // Get Form
             $GLOBALS['xoopsTpl']->assign('error', $linksObj->getHtmlErrors());

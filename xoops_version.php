@@ -22,14 +22,14 @@
  */
 // 
 
-$moduleDirName      = basename(__DIR__);
-$moduleDirNameUpper = mb_strtoupper($moduleDirName);
+$moduleDirName      = \basename(__DIR__);
+$moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
 // ------------------- Informations ------------------- //
-$modversion['name']                = _MI_WGLINKS_NAME;
+$modversion['name']                = \_MI_WGLINKS_NAME;
 $modversion['version']             = '1.1.0';
 $modversion['module_status']       = 'RC 1';
-$modversion['description']         = _MI_WGLINKS_DESC;
+$modversion['description']         = \_MI_WGLINKS_DESC;
 $modversion['author']              = 'XOOPS on Wedega';
 $modversion['author_mail']         = 'webmaster@wedega.com';
 $modversion['author_website_url']  = 'http://xoops.org';
@@ -39,10 +39,10 @@ $modversion['license']             = 'GPL 2.0 or later';
 $modversion['license_url']         = 'www.gnu.org/licenses/gpl-2.0.html/';
 $modversion['help']                = 'page=help';
 $modversion['release_info']        = 'release_info';
-$modversion['release_file']        = XOOPS_URL . '/modules/wglinks/docs/release_info file';
+$modversion['release_file']        = \XOOPS_URL . '/modules/wglinks/docs/release_info file';
 $modversion['release_date']        = '2021/12/30';
 $modversion['manual']              = 'link to manual file';
-$modversion['manual_file']         = XOOPS_URL . '/modules/wglinks/docs/install.txt';
+$modversion['manual_file']         = \XOOPS_URL . '/modules/wglinks/docs/install.txt';
 $modversion['min_php']             = '7.4';
 $modversion['min_xoops']           = '2.5.11 Beta1';
 $modversion['min_admin']           = '1.1';
@@ -95,8 +95,8 @@ $modversion['tables'][2] = 'wglinks_categories';
 // Blocks
 $modversion['blocks'][] = [
     'file'        => 'links.php',
-    'name'        => _MI_WGLINKS_BLINKS_DEFAULT,
-    'description' => _MI_WGLINKS_BLINKS_DEFAULT_DESC,
+    'name'        => \_MI_WGLINKS_BLINKS_DEFAULT,
+    'description' => \_MI_WGLINKS_BLINKS_DEFAULT_DESC,
     'show_func'   => 'b_wglinks_links_show',
     'edit_func'   => 'b_wglinks_links_edit',
     'template'    => 'wglinks_block_links.tpl',
@@ -104,8 +104,8 @@ $modversion['blocks'][] = [
 ];
 $modversion['blocks'][] = [
     'file'        => 'links.php',
-    'name'        => _MI_WGLINKS_BLINKS_LOGOCHAIN,
-    'description' => _MI_WGLINKS_BLINKS_LOGOCHAIN_DESC,
+    'name'        => \_MI_WGLINKS_BLINKS_LOGOCHAIN,
+    'description' => \_MI_WGLINKS_BLINKS_LOGOCHAIN_DESC,
     'show_func'   => 'b_wglinks_links_show',
     'edit_func'   => 'b_wglinks_links_edit',
     'template'    => 'wglinks_block_links_logochain.tpl',
@@ -114,35 +114,35 @@ $modversion['blocks'][] = [
 
 // ------------------- Config ------------------- /
 // Editor desc
-xoops_load('xoopseditorhandler');
+\xoops_load('xoopseditorhandler');
 $editorHandlerDesc      = \XoopsEditorHandler::getInstance();
 $modversion['config'][] = [
     'name'        => 'editor',
-    'title'       => '_MI_WGLINKS_EDITOR',
-    'description' => '_MI_WGLINKS_EDITOR_DESC',
+    'title'       => '\_MI_WGLINKS_EDITOR',
+    'description' => '\_MI_WGLINKS_EDITOR_DESC',
     'formtype'    => 'select',
     'valuetype'   => 'text',
     'default'     => 'dhtml',
-    'options'     => array_flip($editorHandlerDesc->getList())
+    'options'     => \array_flip($editorHandlerDesc->getList())
 ];
 // Uploads : mimetypes of image
 $modversion['config'][] = [
     'name'        => 'mimetypes',
-    'title'       => '_MI_WGLINKS_MIMETYPES',
-    'description' => '_MI_WGLINKS_MIMETYPES_DESC',
+    'title'       => '\_MI_WGLINKS_MIMETYPES',
+    'description' => '\_MI_WGLINKS_MIMETYPES_DESC',
     'formtype'    => 'select_multi',
     'valuetype'   => 'array',
     'default'     => ['image/gif', 'image/jpg', 'image/jpeg', 'image/png'],
     'options'     => ['bmp' => 'image/bmp', 'gif' => 'image/gif', 'pjpeg' => 'image/pjpeg', 'jpeg' => 'image/jpeg', 'jpg' => 'image/jpg', 'jpe' => 'image/jpe', 'png' => 'image/png']
 ];
 // Uploads : maxsize of image
-$currdirname = isset($GLOBALS['xoopsModule']) && is_object($GLOBALS['xoopsModule']) ? $GLOBALS['xoopsModule']->getVar('dirname') : 'system';
+$currdirname = isset($GLOBALS['xoopsModule']) && \is_object($GLOBALS['xoopsModule']) ? $GLOBALS['xoopsModule']->getVar('dirname') : 'system';
 
 $optionMaxsize = 0;
 if ($moduleDirName == $currdirname) {
     include_once 'include/xoops_version.inc.php';
-    $iniPostMaxSize = wgLinksReturnBytes(ini_get('post_max_size'));
-    $iniUploadMaxFileSize = wgLinksReturnBytes(ini_get('upload_max_filesize'));
+    $iniPostMaxSize = wgLinksReturnBytes(\ini_get('post_max_size'));
+    $iniUploadMaxFileSize = wgLinksReturnBytes(\ini_get('upload_max_filesize'));
     $maxSize = min($iniPostMaxSize, $iniUploadMaxFileSize);
     if ($maxSize > 10000 * 1048576) {
         $increment = 500;
@@ -174,14 +174,14 @@ if ($moduleDirName == $currdirname) {
     $optionMaxsize = [];
     $i = $increment;
     while ($i* 1048576 <= $maxSize) {
-        $optionMaxsize[$i . ' ' . _MI_WGLINKS_MAXSIZE_MB] = $i * 1048576;
+        $optionMaxsize[$i . ' ' . \_MI_WGLINKS_MAXSIZE_MB] = $i * 1048576;
         $i += $increment;
     }
 }
 $modversion['config'][] = [
     'name'        => 'maxsize',
-    'title'       => '_MI_WGLINKS_MAXSIZE',
-    'description' => '_MI_WGLINKS_MAXSIZE_DESC',
+    'title'       => '\_MI_WGLINKS_MAXSIZE',
+    'description' => '\_MI_WGLINKS_MAXSIZE_DESC',
     'formtype'    => 'select',
     'valuetype'   => 'int',
     'default'     => 3145728,
@@ -190,8 +190,8 @@ $modversion['config'][] = [
 // Uploads : max width of images for upload
 $modversion['config'][] = [
     'name'        => 'maxwidth',
-    'title'       => '_MI_WGLINKS_MAXWIDTH',
-    'description' => '_MI_WGLINKS_MAXWIDTH_DESC',
+    'title'       => '\_MI_WGLINKS_MAXWIDTH',
+    'description' => '\_MI_WGLINKS_MAXWIDTH_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 4000,
@@ -199,8 +199,8 @@ $modversion['config'][] = [
 // Uploads : max height of images for upload
 $modversion['config'][] = [
     'name'        => 'maxheight',
-    'title'       => '_MI_WGLINKS_MAXHEIGHT',
-    'description' => '_MI_WGLINKS_MAXHEIGHT_DESC',
+    'title'       => '\_MI_WGLINKS_MAXHEIGHT',
+    'description' => '\_MI_WGLINKS_MAXHEIGHT_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 4000,
@@ -208,8 +208,8 @@ $modversion['config'][] = [
 // Uploads : max width for large images
 $modversion['config'][] = [
     'name'        => 'maxwidth_large',
-    'title'       => '_MI_WGLINKS_MAXWIDTH_LARGE',
-    'description' => '_MI_WGLINKS_MAXWIDTH_LARGE_DESC',
+    'title'       => '\_MI_WGLINKS_MAXWIDTH_LARGE',
+    'description' => '\_MI_WGLINKS_MAXWIDTH_LARGE_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 2000,
@@ -217,8 +217,8 @@ $modversion['config'][] = [
 // Uploads : max height for large images
 $modversion['config'][] = [
     'name'        => 'maxheight_large',
-    'title'       => '_MI_WGLINKS_MAXHEIGHT_LARGE',
-    'description' => '_MI_WGLINKS_MAXHEIGHT_LARGE_DESC',
+    'title'       => '\_MI_WGLINKS_MAXHEIGHT_LARGE',
+    'description' => '\_MI_WGLINKS_MAXHEIGHT_LARGE_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 2000,
@@ -226,8 +226,8 @@ $modversion['config'][] = [
 // Uploads : max width for thumbs
 $modversion['config'][] = [
     'name'        => 'maxwidth_thumbs',
-    'title'       => '_MI_WGLINKS_MAXWIDTH_THUMBS',
-    'description' => '_MI_WGLINKS_MAXWIDTH_THUMBS_DESC',
+    'title'       => '\_MI_WGLINKS_MAXWIDTH_THUMBS',
+    'description' => '\_MI_WGLINKS_MAXWIDTH_THUMBS_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 200,
@@ -235,8 +235,8 @@ $modversion['config'][] = [
 // Uploads : max height for thumbs
 $modversion['config'][] = [
     'name'        => 'maxheight_thumbs',
-    'title'       => '_MI_WGLINKS_MAXHEIGHT_THUMBS',
-    'description' => '_MI_WGLINKS_MAXHEIGHT_THUMBS_DESC',
+    'title'       => '\_MI_WGLINKS_MAXHEIGHT_THUMBS',
+    'description' => '\_MI_WGLINKS_MAXHEIGHT_THUMBS_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 200,
@@ -244,8 +244,8 @@ $modversion['config'][] = [
 // Admin pager
 $modversion['config'][] = [
     'name'        => 'adminpager',
-    'title'       => '_MI_WGLINKS_ADMIN_PAGER',
-    'description' => '_MI_WGLINKS_ADMIN_PAGER_DESC',
+    'title'       => '\_MI_WGLINKS_ADMIN_PAGER',
+    'description' => '\_MI_WGLINKS_ADMIN_PAGER_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 10,
@@ -253,8 +253,8 @@ $modversion['config'][] = [
 // User pager
 $modversion['config'][] = [
     'name'        => 'userpager',
-    'title'       => '_MI_WGLINKS_USER_PAGER',
-    'description' => '_MI_WGLINKS_USER_PAGER_DESC',
+    'title'       => '\_MI_WGLINKS_USER_PAGER',
+    'description' => '\_MI_WGLINKS_USER_PAGER_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 10,
@@ -262,8 +262,8 @@ $modversion['config'][] = [
 // Show breadcrumb
 $modversion['config'][] = [
     'name'        => 'show_breadcrumbs',
-    'title'       => '_MI_WGLINKS_SHOWBCRUMBS',
-    'description' => '_MI_WGLINKS_SHOWBCRUMBS_DESC',
+    'title'       => '\_MI_WGLINKS_SHOWBCRUMBS',
+    'description' => '\_MI_WGLINKS_SHOWBCRUMBS_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => 1,
@@ -271,8 +271,8 @@ $modversion['config'][] = [
 // Show module name
 $modversion['config'][] = [
     'name'        => 'show_bcrumb_mname',
-    'title'       => '_MI_WGLINKS_SHOWBCRUMBS_MNAME',
-    'description' => '_MI_WGLINKS_SHOWBCRUMBS_MNAME_DESC',
+    'title'       => '\_MI_WGLINKS_SHOWBCRUMBS_MNAME',
+    'description' => '\_MI_WGLINKS_SHOWBCRUMBS_MNAME_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => 1,
@@ -280,7 +280,7 @@ $modversion['config'][] = [
 // Maintained by
 $modversion['config'][] = [
     'name'        => 'maintainedby',
-    'title'       => '_MI_WGLINKS_MAINTAINEDBY',
+    'title'       => '\_MI_WGLINKS_MAINTAINEDBY',
     'description' => '',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
@@ -289,8 +289,8 @@ $modversion['config'][] = [
 // Show copyright
 $modversion['config'][] = [
     'name'        => 'show_copyright',
-    'title'       => '_MI_WGLINKS_SHOWCOPYRIGHT',
-    'description' => '_MI_WGLINKS_SHOWCOPYRIGHT_DESC',
+    'title'       => '\_MI_WGLINKS_SHOWCOPYRIGHT',
+    'description' => '\_MI_WGLINKS_SHOWCOPYRIGHT_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => 1,
@@ -298,26 +298,26 @@ $modversion['config'][] = [
 // text for header index page
 $modversion['config'][] = [
     'name'        => 'index_header',
-    'title'       => '_MI_WGLINKS_INDEXHEADER',
-    'description' => '_MI_WGLINKS_INDEXHEADER_DESC',
+    'title'       => '\_MI_WGLINKS_INDEXHEADER',
+    'description' => '\_MI_WGLINKS_INDEXHEADER_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
-    'default'     => _MI_WGLINKS_INDEXHEADER,
+    'default'     => \_MI_WGLINKS_INDEXHEADER,
 ];
 // text for info index page
 $modversion['config'][] = [
     'name'        => 'index_info',
-    'title'       => '_MI_WGLINKS_INDEXINFO',
-    'description' => '_MI_WGLINKS_INDEXINFO_DESC',
+    'title'       => '\_MI_WGLINKS_INDEXINFO',
+    'description' => '\_MI_WGLINKS_INDEXINFO_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
-    'default'     => _MI_WGLINKS_INDEXINFO,
+    'default'     => \_MI_WGLINKS_INDEXINFO,
 ];
 // style for index page
 $modversion['config'][] = [
     'name'        => 'index_style',
-    'title'       => '_MI_WGLINKS_INDEXSTYLE',
-    'description' => '_MI_WGLINKS_INDEXSTYLE_DESC',
+    'title'       => '\_MI_WGLINKS_INDEXSTYLE',
+    'description' => '\_MI_WGLINKS_INDEXSTYLE_DESC',
     'formtype'    => 'select',
     'valuetype'   => 'text',
     'default'     => 'default',
@@ -326,12 +326,12 @@ $modversion['config'][] = [
 // title style
 $modversion['config'][] = [
     'name'        => 'title_style',
-    'title'       => '_MI_WGLINKS_TITLESTYLE',
-    'description' => '_MI_WGLINKS_TITLESTYLE_DESC',
+    'title'       => '\_MI_WGLINKS_TITLESTYLE',
+    'description' => '\_MI_WGLINKS_TITLESTYLE_DESC',
     'formtype'    => 'select',
     'valuetype'   => 'text',
     'default'     => 'text',
-    'options'    => [_MI_WGLINKS_TITLESTYLE_TEXT => 'text', _MI_WGLINKS_TITLESTYLE_GLYPH => 'glyphicons'],
+    'options'    => [\_MI_WGLINKS_TITLESTYLE_TEXT => 'text', \_MI_WGLINKS_TITLESTYLE_GLYPH => 'glyphicons'],
 ];
 /**
  * Make Sample button visible?

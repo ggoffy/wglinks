@@ -50,7 +50,7 @@ function xoops_module_pre_update_wglinks(\XoopsModule $module)
  *
  * @return bool|null
  */
-function xoops_module_update_wglinks(&$module, $prev_version = null)
+function xoops_module_update_wglinks($module, $prev_version = null)
 {
     require \dirname(__DIR__) . '/preloads/autoloader.php';
 
@@ -58,7 +58,7 @@ function xoops_module_update_wglinks(&$module, $prev_version = null)
 
     //$ret = wglinks_check_db($module);
 
-    include_once __DIR__ . '/oninstall.php';
+    include_once __DIR__ . '/install.php';
     xoops_module_install_wglinks($module);
 
     // update DB corresponding to sql/mysql.sql

@@ -23,9 +23,9 @@
 
 use XoopsModules\Wglinks;
 
-include dirname(__DIR__) . '/preloads/autoloader.php';
-include dirname(__DIR__, 3) . '/include/cp_header.php';
-include_once dirname(__DIR__) .'/include/common.php';
+include \dirname(__DIR__) . '/preloads/autoloader.php';
+include \dirname(__DIR__, 3) . '/include/cp_header.php';
+include_once \dirname(__DIR__) .'/include/common.php';
 
 $sysPathIcon16  = '../' . $GLOBALS['xoopsModule']->getInfo('sysicons16');
 $sysPathIcon32  = '../' . $GLOBALS['xoopsModule']->getInfo('sysicons32');
@@ -39,8 +39,8 @@ $categoriesHandler = $helper->getHandler('categories');
 $linksHandler = $helper->getHandler('links');
 $myts = MyTextSanitizer::getInstance();
 // 
-if(!isset($xoopsTpl) || !is_object($xoopsTpl)) {
-include_once XOOPS_ROOT_PATH .'/class/template.php';
+if(!isset($xoopsTpl) || !\is_object($xoopsTpl)) {
+include_once \XOOPS_ROOT_PATH .'/class/template.php';
     $xoopsTpl = new \XoopsTpl();
 }
 // System icons path
@@ -49,8 +49,8 @@ $GLOBALS['xoopsTpl']->assign('sysPathIcon32', $sysPathIcon32);
 $GLOBALS['xoopsTpl']->assign('modPathIcon16', $modPathIcon16);
 $GLOBALS['xoopsTpl']->assign('modPathIcon32', $modPathIcon32);
 // Load languages
-xoops_loadLanguage('admin');
-xoops_loadLanguage('modinfo');
+\xoops_loadLanguage('admin');
+\xoops_loadLanguage('modinfo');
 
 xoops_cp_header();
 $adminObject = \Xmf\Module\Admin::getInstance();

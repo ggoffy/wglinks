@@ -27,33 +27,33 @@ $countLinks = $linksHandler->getCount();
 // Template Index
 $templateMain = 'wglinks_admin_index.tpl';
 // InfoBox Statistics
-$adminObject->addInfoBox(_AM_WGLINKS_STATISTICS);
+$adminObject->addInfoBox(\_AM_WGLINKS_STATISTICS);
 // Info elements
-$adminObject->addInfoBoxLine(sprintf('<label>' . _AM_WGLINKS_THEREARE_CATS . '</label>', $countCategories));
-$adminObject->addInfoBoxLine(sprintf('<label>' . _AM_WGLINKS_THEREARE_LINKS . '</label>', $countLinks));
+$adminObject->addInfoBoxLine(\sprintf('<label>' . \_AM_WGLINKS_THEREARE_CATS . '</label>', $countCategories));
+$adminObject->addInfoBoxLine(\sprintf('<label>' . \_AM_WGLINKS_THEREARE_LINKS . '</label>', $countLinks));
 // Upload Folders
 $folder = [
-    WGLINKS_UPLOAD_PATH,
-    WGLINKS_UPLOAD_PATH . '/categories/',
-    WGLINKS_UPLOAD_PATH . '/links/',
-    WGLINKS_UPLOAD_PATH . '/images/',
-    WGLINKS_UPLOAD_PATH . '/images/links/',
-    WGLINKS_UPLOAD_PATH . '/images/categories/',
+    \WGLINKS_UPLOAD_PATH,
+    \WGLINKS_UPLOAD_PATH . '/categories/',
+    \WGLINKS_UPLOAD_PATH . '/links/',
+    \WGLINKS_UPLOAD_PATH . '/images/',
+    \WGLINKS_UPLOAD_PATH . '/images/links/',
+    \WGLINKS_UPLOAD_PATH . '/images/categories/',
 ];
 // Uploads Folders Created
-foreach(array_keys($folder) as $i) {
+foreach(\array_keys($folder) as $i) {
     $adminObject->addConfigBoxLine($folder[$i], 'folder');
     $adminObject->addConfigBoxLine([$folder[$i], '777'], 'chmod');
 }
 
 //------------- Test Data ----------------------------
 if ($helper->getConfig('displaySampleButton')) {
-    xoops_loadLanguage('admin/modulesadmin', 'system');
-    require dirname(__DIR__) . '/testdata/index.php';
+    \xoops_loadLanguage('admin/modulesadmin', 'system');
+    require \dirname(__DIR__) . '/testdata/index.php';
 
-    $adminObject->addItemButton(constant('CO_' . $moduleDirNameUpper . '_' . 'ADD_SAMPLEDATA'), '__DIR__ . /../../testdata/index.php?op=load', 'add');
-    $adminObject->addItemButton(constant('CO_' . $moduleDirNameUpper . '_' . 'SAVE_SAMPLEDATA'), '__DIR__ . /../../testdata/index.php?op=save', 'add');
-    //    $adminObject->addItemButton(constant('CO_' . $moduleDirNameUpper . '_' . 'EXPORT_SCHEMA'), '__DIR__ . /../../testdata/index.php?op=exportschema', 'add');
+    $adminObject->addItemButton(\constant('CO_' . $moduleDirNameUpper . '_' . 'ADD_SAMPLEDATA'), '__DIR__ . /../../testdata/index.php?op=load');
+    $adminObject->addItemButton(\constant('CO_' . $moduleDirNameUpper . '_' . 'SAVE_SAMPLEDATA'), '__DIR__ . /../../testdata/index.php?op=save');
+    //    $adminObject->addItemButton(\constant('CO_' . $moduleDirNameUpper . '_' . 'EXPORT_SCHEMA'), '__DIR__ . /../../testdata/index.php?op=exportschema', 'add');
     $adminObject->displayButton('left', '');
 }
 //------------- End Test Data ----------------------------

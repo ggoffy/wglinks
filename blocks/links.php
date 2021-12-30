@@ -20,15 +20,15 @@
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 links.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
  */
-include_once XOOPS_ROOT_PATH.'/modules/wglinks/include/common.php';
+include_once \XOOPS_ROOT_PATH.'/modules/wglinks/include/common.php';
 // Function show block
 function b_wglinks_links_show($options)
 {
-    include_once XOOPS_ROOT_PATH.'/modules/wglinks/class/Links.php';
+    include_once \XOOPS_ROOT_PATH.'/modules/wglinks/class/Links.php';
     $myts = MyTextSanitizer::getInstance();
-    $GLOBALS['xoopsTpl']->assign('wglinks_upload_url', WGLINKS_UPLOAD_URL);
-    $GLOBALS['xoopsTpl']->assign('wglinks_url', WGLINKS_URL);
-    $GLOBALS['xoTheme']->addStylesheet(XOOPS_URL . '/modules/wglinks/assets/css/style.css');
+    $GLOBALS['xoopsTpl']->assign('wglinks_upload_url', \WGLINKS_UPLOAD_URL);
+    $GLOBALS['xoopsTpl']->assign('wglinks_url', \WGLINKS_URL);
+    $GLOBALS['xoTheme']->addStylesheet(\XOOPS_URL . '/modules/wglinks/assets/css/style.css');
     $block       = [];
     $typeBlock   = $options[0];
     $sortby      = $options[1];
@@ -42,13 +42,13 @@ function b_wglinks_links_show($options)
         $GLOBALS['xoopsTpl']->assign('imgheight', $logoHeight . 'px');
     }
     $linksHandler = $wglinks->getHandler('links');
-    array_shift($options);
-    array_shift($options);
-    array_shift($options);
-    array_shift($options);
-    array_shift($options);
-    array_shift($options);
-    array_shift($options);
+    \array_shift($options);
+    \array_shift($options);
+    \array_shift($options);
+    \array_shift($options);
+    \array_shift($options);
+    \array_shift($options);
+    \array_shift($options);
     $crLinks = new \CriteriaCompo();
     $crLinks->add(new \Criteria('link_state', 1));
     switch ( $sortby ) {
@@ -69,8 +69,8 @@ function b_wglinks_links_show($options)
             $crLinks->setOrder('ASC');
         break;
     }
-    $cat_ids = implode(',', $options);
-    if ( '0' !== substr($cat_ids, 0, 1)) {
+    $cat_ids = \implode(',', $options);
+    if ( '0' !== \substr($cat_ids, 0, 1)) {
         $crLinks->add(new \Criteria('link_catid', '(' . $cat_ids . ')', 'IN'));
         $GLOBALS['xoopsTpl']->assign('cat_ids', $cat_ids);
     }
@@ -79,7 +79,7 @@ function b_wglinks_links_show($options)
     }
     $linksAll = $linksHandler->getAll($crLinks);
     unset($crLinks);
-    foreach(array_keys($linksAll) as $i)
+    foreach(\array_keys($linksAll) as $i)
     {
         $block[$i] = $linksAll[$i]->getValuesLinks();
     }
@@ -95,57 +95,57 @@ function b_wglinks_links_show($options)
 // Function edit block
 function b_wglinks_links_edit($options)
 {
-    include_once XOOPS_ROOT_PATH.'/modules/wglinks/class/Links.php';
+    include_once \XOOPS_ROOT_PATH.'/modules/wglinks/class/Links.php';
     $wglinks = \XoopsModules\Wglinks\Helper::getInstance();
     $categoriesHandler = $wglinks->getHandler('categories');
-    $GLOBALS['xoopsTpl']->assign('wglinks_upload_url', WGLINKS_UPLOAD_URL);
+    $GLOBALS['xoopsTpl']->assign('wglinks_upload_url', \WGLINKS_UPLOAD_URL);
 
     $form = "<input type='hidden' name='options[0]' size='5' maxlength='255' value='".$options[0]."' />";
-    $form .= _MB_WGLINKS_LINKS_SORTBY.":&nbsp;&nbsp;<select name='options[1]' size='4'>";
+    $form .= \_MB_WGLINKS_LINKS_SORTBY.":&nbsp;&nbsp;<select name='options[1]' size='4'>";
     $currSortBy = $options[1];
-    $form .= "<option value='default' " . ( 'default' === $currSortBy ? "selected='selected'" : '' ) . '>'  . _MB_WGLINKS_LINKS_SORTBY_DEFAULT . '</option>';
-    $form .= "<option value='date_asc' " . ( 'date_asc' === $currSortBy ? "selected='selected'" : '' ) . '>'  . _MB_WGLINKS_LINKS_SORTBY_DATEASC . '</option>';
-    $form .= "<option value='date_desc' " . ( 'date_desc' === $currSortBy ? "selected='selected'" : '' ) . '>'  . _MB_WGLINKS_LINKS_SORTBY_DATEDESC . '</option>';
-    $form .= "<option value='random' " . ( 'random' === $currSortBy ? "selected='selected'" : '' ) . '>'  . _MB_WGLINKS_LINKS_SORTBY_RANDOM . '</option>';
+    $form .= "<option value='default' " . ( 'default' === $currSortBy ? "selected='selected'" : '' ) . '>'  . \_MB_WGLINKS_LINKS_SORTBY_DEFAULT . '</option>';
+    $form .= "<option value='date_asc' " . ( 'date_asc' === $currSortBy ? "selected='selected'" : '' ) . '>'  . \_MB_WGLINKS_LINKS_SORTBY_DATEASC . '</option>';
+    $form .= "<option value='date_desc' " . ( 'date_desc' === $currSortBy ? "selected='selected'" : '' ) . '>'  . \_MB_WGLINKS_LINKS_SORTBY_DATEDESC . '</option>';
+    $form .= "<option value='random' " . ( 'random' === $currSortBy ? "selected='selected'" : '' ) . '>'  . \_MB_WGLINKS_LINKS_SORTBY_RANDOM . '</option>';
     $form .= '</select><br /><br />';
     
 
-    $form .= _MB_WGLINKS_DISPLAY . ":&nbsp;&nbsp;<input type='text' name='options[2]' size='5' maxlength='255' value='".$options[2]."' />&nbsp;<br />";
-    $form .= _MB_WGLINKS_TITLE_LENGTH.":&nbsp;&nbsp;<input type='text' name='options[3]' size='5' maxlength='255' value='".$options[3]."' /><br /><br />";
-    $form .= _MB_WGLINKS_IMGHEIGHT.":&nbsp;&nbsp;<input type='text' name='options[4]' size='5' maxlength='255' value='".$options[4]."' /><br /><br />";
+    $form .= \_MB_WGLINKS_DISPLAY . ":&nbsp;&nbsp;<input type='text' name='options[2]' size='5' maxlength='255' value='".$options[2]."' />&nbsp;<br />";
+    $form .= \_MB_WGLINKS_TITLE_LENGTH.":&nbsp;&nbsp;<input type='text' name='options[3]' size='5' maxlength='255' value='".$options[3]."' /><br /><br />";
+    $form .= \_MB_WGLINKS_IMGHEIGHT.":&nbsp;&nbsp;<input type='text' name='options[4]' size='5' maxlength='255' value='".$options[4]."' /><br /><br />";
     $blockStyle = $options[5];
     if ('logochain' === $options[0]) {
         $form .= "<input type='hidden' name='options[5]' size='5' maxlength='255' value='".$options[5]."' />";
     } else {
-        $form .= _MB_WGLINKS_LINKS_BSTYLE.":&nbsp;&nbsp;<select name='options[5]' size='5'>";
-        $form .= "<option value='default' " . ( 'default' === $blockStyle ? "selected='selected'" : '' ) . '>'  . _MB_WGLINKS_LINKS_BSTYLE_DEFAULT . '</option>';
-        $form .= "<option value='2cards' " . ( '2cards' === $blockStyle ? "selected='selected'" : '' ) . '>'  . _MB_WGLINKS_LINKS_BSTYLE_2CARDS . '</option>';
-        $form .= "<option value='3cards' " . ( '3cards' === $blockStyle ? "selected='selected'" : '' ) . '>'  . _MB_WGLINKS_LINKS_BSTYLE_3CARDS . '</option>';
-        $form .= "<option value='4cards' " . ( '4cards' === $blockStyle ? "selected='selected'" : '' ) . '>'  . _MB_WGLINKS_LINKS_BSTYLE_4CARDS . '</option>';
-        $form .= "<option value='6cards' " . ( '6cards' === $blockStyle ? "selected='selected'" : '' ) . '>'  . _MB_WGLINKS_LINKS_BSTYLE_6CARDS . '</option>';
-        $form .= "<option value='12cards' " . ( '12cards' === $blockStyle ? "selected='selected'" : '' ) . '>'  . _MB_WGLINKS_LINKS_BSTYLE_12CARDS . '</option>';
+        $form .= \_MB_WGLINKS_LINKS_BSTYLE.":&nbsp;&nbsp;<select name='options[5]' size='5'>";
+        $form .= "<option value='default' " . ( 'default' === $blockStyle ? "selected='selected'" : '' ) . '>'  . \_MB_WGLINKS_LINKS_BSTYLE_DEFAULT . '</option>';
+        $form .= "<option value='2cards' " . ( '2cards' === $blockStyle ? "selected='selected'" : '' ) . '>'  . \_MB_WGLINKS_LINKS_BSTYLE_2CARDS . '</option>';
+        $form .= "<option value='3cards' " . ( '3cards' === $blockStyle ? "selected='selected'" : '' ) . '>'  . \_MB_WGLINKS_LINKS_BSTYLE_3CARDS . '</option>';
+        $form .= "<option value='4cards' " . ( '4cards' === $blockStyle ? "selected='selected'" : '' ) . '>'  . \_MB_WGLINKS_LINKS_BSTYLE_4CARDS . '</option>';
+        $form .= "<option value='6cards' " . ( '6cards' === $blockStyle ? "selected='selected'" : '' ) . '>'  . \_MB_WGLINKS_LINKS_BSTYLE_6CARDS . '</option>';
+        $form .= "<option value='12cards' " . ( '12cards' === $blockStyle ? "selected='selected'" : '' ) . '>'  . \_MB_WGLINKS_LINKS_BSTYLE_12CARDS . '</option>';
         $form .= '</select><br /><br />';
     }
-    $form .= _MB_WGLINKS_BTN_SHOW_MORE. ":&nbsp;&nbsp;<input type='radio' name='options[6]' value='0' " . ( '0' == $options[6] ? "checked='checked'" : '' ) . '>&nbsp;' . _NO;
+    $form .= \_MB_WGLINKS_BTN_SHOW_MORE. ":&nbsp;&nbsp;<input type='radio' name='options[6]' value='0' " . ( '0' == $options[6] ? "checked='checked'" : '' ) . '>&nbsp;' . _NO;
     $form .= "&nbsp;<input type='radio' name='options[6]' value='1' " . ( '1' == $options[6] ? "checked='checked'" : '' ) . '>' . _YES . '<br /><br />';
-    array_shift($options);
-    array_shift($options);
-    array_shift($options);
-    array_shift($options);
-    array_shift($options);
-    array_shift($options);
-    array_shift($options);
+    \array_shift($options);
+    \array_shift($options);
+    \array_shift($options);
+    \array_shift($options);
+    \array_shift($options);
+    \array_shift($options);
+    \array_shift($options);
 
     $crCats = new \CriteriaCompo();
     $crCats->setSort('cat_weight ASC, cat_id');
     $crCats->setOrder('ASC');
     $categoriesAll = $categoriesHandler->getAll($crCats);
     unset($crCats);
-    $form .= _MB_WGLINKS_LINKS_TO_DISPLAY.":<br><select name='options[]' multiple='multiple' size='5'>";
-    $form .= "<option value='0' " . (in_array(0, $options) === false ? '' : "selected='selected'") . '>' . _MB_WGLINKS_ALL_CATS . '</option>';
-    foreach (array_keys($categoriesAll) as $i) {
+    $form .= \_MB_WGLINKS_LINKS_TO_DISPLAY.":<br><select name='options[]' multiple='multiple' size='5'>";
+    $form .= "<option value='0' " . (\in_array(0, $options) === false ? '' : "selected='selected'") . '>' . \_MB_WGLINKS_ALL_CATS . '</option>';
+    foreach (\array_keys($categoriesAll) as $i) {
         $cat_id = $categoriesAll[$i]->getVar('cat_id');
-        $form .= "<option value='" . $cat_id . "' " . (in_array($cat_id, $options) === false || in_array(0, $options) === true ? '' : "selected='selected'") . '>' . $categoriesAll[$i]->getVar('cat_name') . '</option>';
+        $form .= "<option value='" . $cat_id . "' " . (\in_array($cat_id, $options) === false || \in_array(0, $options) === true ? '' : "selected='selected'") . '>' . $categoriesAll[$i]->getVar('cat_name') . '</option>';
     }
     $form .= '</select>';
     unset($crCats);

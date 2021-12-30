@@ -122,10 +122,10 @@ class Helper extends \Xmf\Module\Helper
 /*     public function initModule()
     {
         global $xoopsModule;
-        if (isset($xoopsModule) && is_object($xoopsModule) && $xoopsModule->getVar('dirname') == $this->dirname) {
+        if (isset($xoopsModule) && \is_object($xoopsModule) && $xoopsModule->getVar('dirname') == $this->dirname) {
             $this->module = $xoopsModule;
         } else {
-            $hModule = xoops_getHandler('module');
+            $hModule = \xoops_getHandler('module');
             $this->module = $hModule->getByDirname($this->dirname);
         }
         $this->addLog('INIT MODULE');
@@ -137,7 +137,7 @@ class Helper extends \Xmf\Module\Helper
 /*     public function initConfig()
     {
         $this->addLog('INIT CONFIG');
-        $hModConfig = xoops_getHandler('config');
+        $hModConfig = \xoops_getHandler('config');
         $this->config = $hModConfig->getConfigsByCat(0, $this->getModule()->getVar('mid'));
     } */
     /**
@@ -156,7 +156,7 @@ class Helper extends \Xmf\Module\Helper
 /*     public function addLog($log)
     {
         if ($this->debug) {
-            if (is_object($GLOBALS['xoopsLogger'])) {
+            if (\is_object($GLOBALS['xoopsLogger'])) {
                 $GLOBALS['xoopsLogger']->addExtra($this->module->name(), $log);
             }
         }

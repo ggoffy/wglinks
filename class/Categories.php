@@ -70,8 +70,7 @@ class Categories extends \XoopsObject
      */
     public function getNewInsertedIdCategories()
     {
-        $newInsertedId = $GLOBALS['xoopsDB']->getInsertId();
-        return $newInsertedId;
+        return $GLOBALS['xoopsDB']->getInsertId();
     }
 
     /**
@@ -86,25 +85,25 @@ class Categories extends \XoopsObject
             $action = $_SERVER['REQUEST_URI'];
         }
         // Title
-        $title = $this->isNew() ? \sprintf(_AM_WGLINKS_CAT_ADD) : \sprintf(_AM_WGLINKS_CAT_EDIT);
+        $title = $this->isNew() ? \sprintf(\_AM_WGLINKS_CAT_ADD) : \sprintf(\_AM_WGLINKS_CAT_EDIT);
         // Get Theme Form
         \xoops_load('XoopsFormLoader');
         $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
         // Form Text LinkName
-        $form->addElement(new \XoopsFormText( _AM_WGLINKS_CAT_NAME, 'cat_name', 50, 255, $this->getVar('cat_name') ), true);
+        $form->addElement(new \XoopsFormText( \_AM_WGLINKS_CAT_NAME, 'cat_name', 50, 255, $this->getVar('cat_name') ), true);
         // Form Text LinkUrl
         $cat_desc = $this->isNew() ? '' : $this->getVar('cat_desc');
-        $form->addElement(new \XoopsFormText( _AM_WGLINKS_CAT_DESC, 'cat_desc', 50, 255, $cat_desc ), false);
+        $form->addElement(new \XoopsFormText( \_AM_WGLINKS_CAT_DESC, 'cat_desc', 50, 255, $cat_desc ), false);
         // Form Text LinkWeight
         $linkWeight = $this->isNew() ? '0' : $this->getVar('cat_weight');
-        $form->addElement(new \XoopsFormText( _AM_WGLINKS_WEIGHT, 'cat_weight', 20, 150, $linkWeight ), true);
+        $form->addElement(new \XoopsFormText( \_AM_WGLINKS_WEIGHT, 'cat_weight', 20, 150, $linkWeight ), true);
         // Form Select User
         $catSubmitter = $this->isNew() ? $GLOBALS['xoopsUser']->getVar('uid') : $this->getVar('cat_submitter');
-        $form->addElement(new \XoopsFormSelectUser( _AM_WGLINKS_SUBMITTER, 'cat_submitter', false, $catSubmitter ), true);
+        $form->addElement(new \XoopsFormSelectUser( \_AM_WGLINKS_SUBMITTER, 'cat_submitter', false, $catSubmitter ), true);
         // Form Text Date Select
         $catDate_created = $this->isNew() ? 0 : $this->getVar('cat_date_created');
-        $form->addElement(new \XoopsFormTextDateSelect( _AM_WGLINKS_DATE_CREATED, 'cat_date_created', '', $catDate_created ), true);
+        $form->addElement(new \XoopsFormTextDateSelect( \_AM_WGLINKS_DATE_CREATED, 'cat_date_created', '', $catDate_created ), true);
         // To Save
         $form->addElement(new \XoopsFormHidden('op', 'save'));
         $form->addElement(new \XoopsFormButton('', 'submit', _SUBMIT, 'submit'));
@@ -129,7 +128,7 @@ class Categories extends \XoopsObject
         $ret['weight'] = $this->getVar('cat_weight');
         $ret['logo'] = $this->getVar('cat_logo');
         $ret['submitter'] = \XoopsUser::getUnameFromId($this->getVar('cat_submitter'));
-        $ret['date_created'] = formatTimestamp($this->getVar('cat_date_created'), 's');
+        $ret['date_created'] = \formatTimestamp($this->getVar('cat_date_created'), 's');
         return $ret;
     }
 

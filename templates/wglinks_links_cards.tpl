@@ -1,4 +1,4 @@
-<div class='col-xs-12 <{if $1card}>col-sm-12<{/if}><{if $index_style == '2cards'}>col-sm-6<{/if}><{if $index_style == '3cards'}>col-sm-4<{/if}><{if $index_style == '4cards'}>col-sm-3<{/if}> wglinks-link-panel'>
+<div class='col-xs-12 <{if $index_style == '1card'}>col-sm-12<{/if}><{if $index_style == '2cards'}>col-sm-6<{/if}><{if $index_style == '3cards'}>col-sm-4<{/if}><{if $index_style == '4cards'}>col-sm-3<{/if}> wglinks-link-panel'>
     <div class='wglinks-link-card'>
         <{if $link.logo}>
             <p class="center">
