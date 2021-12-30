@@ -29,7 +29,7 @@ if(!is_dir($wglinks)) {
     if (!mkdir($wglinks, 0777) && !is_dir($wglinks)) {
         throw new \RuntimeException(sprintf('Directory "%s" was not created', $wglinks));
     }
-	chmod($wglinks, 0777);
+    chmod($wglinks, 0777);
 }
 copy($indexFile, $wglinks.'/index.php');
 // Making of cats uploads folder
@@ -47,7 +47,7 @@ if(!is_dir($links)) {
     if (!mkdir($links, 0777) && !is_dir($links)) {
         throw new \RuntimeException(sprintf('Directory "%s" was not created', $links));
     }
-	chmod($links, 0777);
+    chmod($links, 0777);
 }
 copy($indexFile, $links.'/index.php');
 
@@ -57,7 +57,7 @@ if(!is_dir($images)) {
     if (!mkdir($images, 0777) && !is_dir($images)) {
         throw new \RuntimeException(sprintf('Directory "%s" was not created', $images));
     }
-	chmod($images, 0777);
+    chmod($images, 0777);
 }
 copy($indexFile, $images.'/index.php');
 copy($blankFile, $images.'/blank.gif');
@@ -67,7 +67,7 @@ if(!is_dir($links)) {
     if (!mkdir($links, 0777) && !is_dir($links)) {
         throw new \RuntimeException(sprintf('Directory "%s" was not created', $links));
     }
-	chmod($links, 0777);
+    chmod($links, 0777);
 }
 copy($indexFile, $links.'/index.php');
 copy($blankFile, $links.'/blank.gif');
@@ -76,7 +76,7 @@ if(!is_dir($links)) {
     if (!mkdir($links, 0777) && !is_dir($links)) {
         throw new \RuntimeException(sprintf('Directory "%s" was not created', $links));
     }
-	chmod($links, 0777);
+    chmod($links, 0777);
 }
 copy($indexFile, $links.'/index.php');
 copy($blankFile, $links.'/blank.gif');
@@ -85,7 +85,7 @@ if(!is_dir($links)) {
     if (!mkdir($links, 0777) && !is_dir($links)) {
         throw new \RuntimeException(sprintf('Directory "%s" was not created', $links));
     }
-	chmod($links, 0777);
+    chmod($links, 0777);
 }
 copy($indexFile, $links.'/index.php');
 copy($blankFile, $links.'/blank.gif');

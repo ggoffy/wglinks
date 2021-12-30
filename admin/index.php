@@ -33,8 +33,8 @@ $adminObject->addInfoBoxLine(sprintf('<label>' . _AM_WGLINKS_THEREARE_CATS . '</
 $adminObject->addInfoBoxLine(sprintf('<label>' . _AM_WGLINKS_THEREARE_LINKS . '</label>', $countLinks));
 // Upload Folders
 $folder = [
-	WGLINKS_UPLOAD_PATH,
-	WGLINKS_UPLOAD_PATH . '/categories/',
+    WGLINKS_UPLOAD_PATH,
+    WGLINKS_UPLOAD_PATH . '/categories/',
     WGLINKS_UPLOAD_PATH . '/links/',
     WGLINKS_UPLOAD_PATH . '/images/',
     WGLINKS_UPLOAD_PATH . '/images/links/',
@@ -42,8 +42,8 @@ $folder = [
 ];
 // Uploads Folders Created
 foreach(array_keys($folder) as $i) {
-	$adminObject->addConfigBoxLine($folder[$i], 'folder');
-	$adminObject->addConfigBoxLine([$folder[$i], '777'], 'chmod');
+    $adminObject->addConfigBoxLine($folder[$i], 'folder');
+    $adminObject->addConfigBoxLine([$folder[$i], '777'], 'chmod');
 }
 
 //------------- Test Data ----------------------------

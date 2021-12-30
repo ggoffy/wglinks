@@ -67,18 +67,18 @@ $keywords = [];
 $links    = [];
 
 if($linksCount > 0) {
-	$linksAll = $linksHandler->getAll($crLinks);
-	// Get All Links
-	foreach(array_keys($linksAll) as $i) {
-		$links[] = $linksAll[$i]->getValuesLinks();
-		$keywords[] = $linksAll[$i]->getVar('link_name');
-	}
+    $linksAll = $linksHandler->getAll($crLinks);
+    // Get All Links
+    foreach(array_keys($linksAll) as $i) {
+        $links[] = $linksAll[$i]->getValuesLinks();
+        $keywords[] = $linksAll[$i]->getVar('link_name');
+    }
     // Display Navigation
-	if($linksCount > $limit) {
-		include_once XOOPS_ROOT_PATH .'/class/pagenav.php';
-		$pagenav = new \XoopsPageNav($linksCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
-		$GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
-	}
+    if($linksCount > $limit) {
+        include_once XOOPS_ROOT_PATH .'/class/pagenav.php';
+        $pagenav = new \XoopsPageNav($linksCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
+        $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
+    }
 }
 
 $GLOBALS['xoopsTpl']->append('links_list', $links);

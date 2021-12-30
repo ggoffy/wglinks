@@ -21,7 +21,7 @@
  * @version        $Id: 1.0 footer.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
  */
 if(isset($templateMain)) {
-	$GLOBALS['xoopsTpl']->assign('maintainedby', $helper->getConfig('maintainedby'));
-	$GLOBALS['xoopsTpl']->display("db:{$templateMain}");}
+    $GLOBALS['xoopsTpl']->assign('maintainedby', $helper->getConfig('maintainedby'));
+    $GLOBALS['xoopsTpl']->display("db:{$templateMain}");}
 
 xoops_cp_footer();

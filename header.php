@@ -38,16 +38,16 @@ if ($helper->getConfig('show_breadcrumbs') && $helper->getConfig('show_bcrumb_mn
 include_once XOOPS_ROOT_PATH .'/class/xoopsform/grouppermform.php';
 $gpermHandler = xoops_getHandler('groupperm');
 if(is_object($xoopsUser)) {
-	$groups  = $xoopsUser->getGroups();
+    $groups  = $xoopsUser->getGroups();
 } else {
-	$groups  = XOOPS_GROUP_ANONYMOUS;
+    $groups  = XOOPS_GROUP_ANONYMOUS;
 }
 // 
 $myts = MyTextSanitizer::getInstance();
 // Default Css Style
 $style = WGLINKS_URL . '/assets/css/style.css';
 if(!file_exists($style)) {
-	return false;
+    return false;
 }
 // Smarty Default
 $sysPathIcon16 = $GLOBALS['xoopsModule']->getInfo('sysicons16');

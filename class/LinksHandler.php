@@ -30,32 +30,32 @@ namespace XoopsModules\Wglinks;
  */
 class LinksHandler extends \XoopsPersistableObjectHandler
 {
-	/**
-	 * @var mixed
-	 */
-	private $wglinks = null;
+    /**
+     * @var mixed
+     */
+    private $wglinks = null;
 
-	/**
-	 * Constructor 
-	 *
-	 * @param string $db
-	 */
-	public function __construct($db)
-	{
-		parent::__construct($db, 'wglinks_links', Links::class, 'link_id', 'link_url');
-		$this->wglinks = \XoopsModules\Wglinks\Helper::getInstance();
-		$this->db = $db;
-	}
+    /**
+     * Constructor 
+     *
+     * @param string $db
+     */
+    public function __construct($db)
+    {
+        parent::__construct($db, 'wglinks_links', Links::class, 'link_id', 'link_url');
+        $this->wglinks = \XoopsModules\Wglinks\Helper::getInstance();
+        $this->db = $db;
+    }
 
-	/**
-	 * @param bool $isNew
-	 *
-	 * @return object
-	 */
-	public function create($isNew = true)
-	{
-		return parent::create($isNew);
-	}
+    /**
+     * @param bool $isNew
+     *
+     * @return object
+     */
+    public function create($isNew = true)
+    {
+        return parent::create($isNew);
+    }
 
     /**
      * retrieve a field
@@ -64,21 +64,21 @@ class LinksHandler extends \XoopsPersistableObjectHandler
      * @param null $fields
      * @return \XoopsObject|null reference to the {@link Get} object
      */
-	public function get($i = null, $fields = null)
-	{
-		return parent::get($i, $fields);
-	}
+    public function get($i = null, $fields = null)
+    {
+        return parent::get($i, $fields);
+    }
 
-	/**
-	 * get inserted id
-	 *
-	 * @param null
-	 * @return int reference to the {@link Get} object
-	 */
-	public function getInsertId()
-	{
-		return $this->db->getInsertId();
-	}
+    /**
+     * get inserted id
+     *
+     * @param null
+     * @return int reference to the {@link Get} object
+     */
+    public function getInsertId()
+    {
+        return $this->db->getInsertId();
+    }
 
     /**
      * Get Count Links in the database
@@ -88,12 +88,12 @@ class LinksHandler extends \XoopsPersistableObjectHandler
      * @param string $order
      * @return int
      */
-	public function getCountLinks($start = 0, $limit = 0, $sort = 'link_catid ASC, link_weight ASC, link_id', $order = 'ASC')
-	{
-		$criteriaCountLinks = new \CriteriaCompo();
-		$criteriaCountLinks = $this->getLinksCriteria($criteriaCountLinks, $start, $limit, $sort, $order);
-		return parent::getCount($criteriaCountLinks);
-	}
+    public function getCountLinks($start = 0, $limit = 0, $sort = 'link_catid ASC, link_weight ASC, link_id', $order = 'ASC')
+    {
+        $criteriaCountLinks = new \CriteriaCompo();
+        $criteriaCountLinks = $this->getLinksCriteria($criteriaCountLinks, $start, $limit, $sort, $order);
+        return parent::getCount($criteriaCountLinks);
+    }
 
     /**
      * Get All Links in the database
@@ -103,12 +103,12 @@ class LinksHandler extends \XoopsPersistableObjectHandler
      * @param string $order
      * @return array
      */
-	public function getAllLinks($start = 0, $limit = 0, $sort = 'link_catid ASC, link_weight ASC, link_id', $order = 'ASC')
-	{
-		$criteriaAllLinks = new \CriteriaCompo();
-		$criteriaAllLinks = $this->getLinksCriteria($criteriaAllLinks, $start, $limit, $sort = 'link_catid ASC, link_weight ASC, link_id', $order = 'ASC');
-		return parent::getAll($criteriaAllLinks);
-	}
+    public function getAllLinks($start = 0, $limit = 0, $sort = 'link_catid ASC, link_weight ASC, link_id', $order = 'ASC')
+    {
+        $criteriaAllLinks = new \CriteriaCompo();
+        $criteriaAllLinks = $this->getLinksCriteria($criteriaAllLinks, $start, $limit, $sort = 'link_catid ASC, link_weight ASC, link_id', $order = 'ASC');
+        return parent::getAll($criteriaAllLinks);
+    }
 
     /**
      * Get Criteria Links
@@ -119,12 +119,12 @@ class LinksHandler extends \XoopsPersistableObjectHandler
      * @param $order
      * @return mixed
      */
-	private function getLinksCriteria($criteriaLinks, $start, $limit, $sort, $order)
-	{
-		$criteriaLinks->setStart( $start );
-		$criteriaLinks->setLimit( $limit );
-		$criteriaLinks->setSort( $sort );
-		$criteriaLinks->setOrder( $order );
-		return $criteriaLinks;
-	}
+    private function getLinksCriteria($criteriaLinks, $start, $limit, $sort, $order)
+    {
+        $criteriaLinks->setStart( $start );
+        $criteriaLinks->setLimit( $limit );
+        $criteriaLinks->setSort( $sort );
+        $criteriaLinks->setOrder( $order );
+        return $criteriaLinks;
+    }
 }

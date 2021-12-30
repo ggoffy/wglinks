@@ -30,32 +30,32 @@ namespace XoopsModules\Wglinks;
  */
 class CategoriesHandler extends \XoopsPersistableObjectHandler
 {
-	/**
-	 * @var mixed
-	 */
-	private $wgCategories = null;
+    /**
+     * @var mixed
+     */
+    private $wgCategories = null;
 
-	/**
-	 * Constructor 
-	 *
-	 * @param string $db
-	 */
-	public function __construct($db)
-	{
-		parent::__construct($db, 'wglinks_categories', Categories::class, 'cat_id', 'cat_name');
-		$this->wgCategories = \XoopsModules\Wglinks\Helper::getInstance();
-		$this->db = $db;
-	}
+    /**
+     * Constructor 
+     *
+     * @param string $db
+     */
+    public function __construct($db)
+    {
+        parent::__construct($db, 'wglinks_categories', Categories::class, 'cat_id', 'cat_name');
+        $this->wgCategories = \XoopsModules\Wglinks\Helper::getInstance();
+        $this->db = $db;
+    }
 
-	/**
-	 * @param bool $isNew
-	 *
-	 * @return object
-	 */
-	public function create($isNew = true)
-	{
-		return parent::create($isNew);
-	}
+    /**
+     * @param bool $isNew
+     *
+     * @return object
+     */
+    public function create($isNew = true)
+    {
+        return parent::create($isNew);
+    }
 
     /**
      * retrieve a field
@@ -64,21 +64,21 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
      * @param null $fields
      * @return \XoopsObject|null reference to the {@link Get} object
      */
-	public function get($i = null, $fields = null)
-	{
-		return parent::get($i, $fields);
-	}
+    public function get($i = null, $fields = null)
+    {
+        return parent::get($i, $fields);
+    }
 
-	/**
-	 * get inserted id
-	 *
-	 * @param null
-	 * @return int reference to the {@link Get} object
-	 */
-	public function getInsertId()
-	{
-		return $this->db->getInsertId();
-	}
+    /**
+     * get inserted id
+     *
+     * @param null
+     * @return int reference to the {@link Get} object
+     */
+    public function getInsertId()
+    {
+        return $this->db->getInsertId();
+    }
 
     /**
      * Get Count Categories in the database
@@ -88,12 +88,12 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
      * @param string $order
      * @return int
      */
-	public function getCountCategories($start = 0, $limit = 0, $sort = 'cat_id ASC, cat_desc', $order = 'ASC')
-	{
-		$criteriaCountCategories = new \CriteriaCompo();
-		$criteriaCountCategories = $this->getCategoriesCriteria($criteriaCountCategories, $start, $limit, $sort, $order);
-		return parent::getCount($criteriaCountCategories);
-	}
+    public function getCountCategories($start = 0, $limit = 0, $sort = 'cat_id ASC, cat_desc', $order = 'ASC')
+    {
+        $criteriaCountCategories = new \CriteriaCompo();
+        $criteriaCountCategories = $this->getCategoriesCriteria($criteriaCountCategories, $start, $limit, $sort, $order);
+        return parent::getCount($criteriaCountCategories);
+    }
 
     /**
      * Get All Categories in the database
@@ -103,12 +103,12 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
      * @param string $order
      * @return array
      */
-	public function getAllCategories($start = 0, $limit = 0, $sort = 'cat_id ASC, cat_desc', $order = 'ASC')
-	{
-		$criteriaAllCategories = new \CriteriaCompo();
-		$criteriaAllCategories = $this->getCategoriesCriteria($criteriaAllCategories, $start, $limit, $sort = 'cat_id ASC, cat_desc', $order = 'ASC');
-		return parent::getAll($criteriaAllCategories);
-	}
+    public function getAllCategories($start = 0, $limit = 0, $sort = 'cat_id ASC, cat_desc', $order = 'ASC')
+    {
+        $criteriaAllCategories = new \CriteriaCompo();
+        $criteriaAllCategories = $this->getCategoriesCriteria($criteriaAllCategories, $start, $limit, $sort = 'cat_id ASC, cat_desc', $order = 'ASC');
+        return parent::getAll($criteriaAllCategories);
+    }
 
     /**
      * Get Criteria Categories
@@ -119,12 +119,12 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
      * @param $order
      * @return mixed
      */
-	private function getCategoriesCriteria($criteriaCategories, $start, $limit, $sort, $order)
-	{
-		$criteriaCategories->setStart( $start );
-		$criteriaCategories->setLimit( $limit );
-		$criteriaCategories->setSort( $sort );
-		$criteriaCategories->setOrder( $order );
-		return $criteriaCategories;
-	}
+    private function getCategoriesCriteria($criteriaCategories, $start, $limit, $sort, $order)
+    {
+        $criteriaCategories->setStart( $start );
+        $criteriaCategories->setLimit( $limit );
+        $criteriaCategories->setSort( $sort );
+        $criteriaCategories->setOrder( $order );
+        return $criteriaCategories;
+    }
 }

@@ -21,7 +21,7 @@
  * @version        $Id: 1.0 footer.php 13070 Wed 2016-03-23 10:31:46Z XOOPS Development Team $
  */
 if(count($xoBreadcrumbs) > 0 && $helper->getConfig('show_breadcrumbs')) {
-	$GLOBALS['xoopsTpl']->assign('xoBreadcrumbs', $xoBreadcrumbs);
+    $GLOBALS['xoopsTpl']->assign('xoBreadcrumbs', $xoBreadcrumbs);
 }
 $GLOBALS['xoopsTpl']->assign('adv', $helper->getConfig('advertise'));
 // 

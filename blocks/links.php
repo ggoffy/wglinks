@@ -50,20 +50,20 @@ function b_wglinks_links_show($options)
     array_shift($options);
     array_shift($options);
     $crLinks = new \CriteriaCompo();
-	$crLinks->add(new \Criteria('link_state', 1));
+    $crLinks->add(new \Criteria('link_state', 1));
     switch ( $sortby ) {
         case 'date_asc':
             $crLinks->setSort('link_date');
             $crLinks->setOrder('ASC');
         break;
-		case 'date_desc':
+        case 'date_desc':
             $crLinks->setSort('link_date');
             $crLinks->setOrder('DESC');
         break;
         case 'random':
             $crLinks->setSort('RAND()');
         break;
-		case 'default':
+        case 'default':
         default:
             $crLinks->setSort('link_weight');
             $crLinks->setOrder('ASC');
@@ -78,7 +78,7 @@ function b_wglinks_links_show($options)
         $crLinks->setLimit($limit);
     }
     $linksAll = $linksHandler->getAll($crLinks);
-	unset($crLinks);
+    unset($crLinks);
     foreach(array_keys($linksAll) as $i)
     {
         $block[$i] = $linksAll[$i]->getValuesLinks();

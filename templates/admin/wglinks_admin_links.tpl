@@ -2,7 +2,7 @@
 <{include file='db:wglinks_admin_header.tpl'}>
 
 <{if $links_list|default:false}>
-	<table class='table table-bordered' id='sortable'>
+    <table class='table table-bordered' id='sortable'>
         <thead>
             <tr class="head">
                 <th class="center">&nbsp;</th>
@@ -75,11 +75,11 @@
 <{/if}>
 
 <{if $form|default:false}>
-	<{$form}>
+    <{$form}>
 <{/if}>
 
 <{if $error|default:false}>
-	<div class="errorMsg"><strong><{$error}></strong></div>
+    <div class="errorMsg"><strong><{$error}></strong></div>
 <{/if}>
 
 <br />
