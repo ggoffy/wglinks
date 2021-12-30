@@ -20,84 +20,98 @@
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 install.php 13070 Sun 2016-03-20 15:20:15Z XOOPS Development Team $
  */
-// Copy base file
-$indexFile = XOOPS_UPLOAD_PATH.'/index.php';
-$blankFile = XOOPS_UPLOAD_PATH.'/blank.gif';
-// Making of uploads/wglinks folder
-$wglinks = XOOPS_UPLOAD_PATH.'/wglinks';
-if(!is_dir($wglinks)) {
-    if (!mkdir($wglinks, 0777) && !is_dir($wglinks)) {
-        throw new \RuntimeException(sprintf('Directory "%s" was not created', $wglinks));
-    }
-    chmod($wglinks, 0777);
-}
-copy($indexFile, $wglinks.'/index.php');
-// Making of cats uploads folder
-$categories = $wglinks.'/categories';
-if(!is_dir($categories)) {
-    if (!mkdir($categories, 0777) && !is_dir($categories)) {
-        throw new \RuntimeException(sprintf('Directory "%s" was not created', $categories));
-    }
-    chmod($categories, 0777);
-}
-copy($indexFile, $categories.'/index.php');
-// Making of links uploads folder
-$links = $wglinks.'/links';
-if(!is_dir($links)) {
-    if (!mkdir($links, 0777) && !is_dir($links)) {
-        throw new \RuntimeException(sprintf('Directory "%s" was not created', $links));
-    }
-    chmod($links, 0777);
-}
-copy($indexFile, $links.'/index.php');
 
-// Making of images folder
-$images = $wglinks.'/images';
-if(!is_dir($images)) {
-    if (!mkdir($images, 0777) && !is_dir($images)) {
-        throw new \RuntimeException(sprintf('Directory "%s" was not created', $images));
-    }
-    chmod($images, 0777);
-}
-copy($indexFile, $images.'/index.php');
-copy($blankFile, $images.'/blank.gif');
-// Making of images/links folder
-$links = $images.'/links';
-if(!is_dir($links)) {
-    if (!mkdir($links, 0777) && !is_dir($links)) {
-        throw new \RuntimeException(sprintf('Directory "%s" was not created', $links));
-    }
-    chmod($links, 0777);
-}
-copy($indexFile, $links.'/index.php');
-copy($blankFile, $links.'/blank.gif');
-$links = $images.'/links/large';
-if(!is_dir($links)) {
-    if (!mkdir($links, 0777) && !is_dir($links)) {
-        throw new \RuntimeException(sprintf('Directory "%s" was not created', $links));
-    }
-    chmod($links, 0777);
-}
-copy($indexFile, $links.'/index.php');
-copy($blankFile, $links.'/blank.gif');
-$links = $images.'/links/thumbs';
-if(!is_dir($links)) {
-    if (!mkdir($links, 0777) && !is_dir($links)) {
-        throw new \RuntimeException(sprintf('Directory "%s" was not created', $links));
-    }
-    chmod($links, 0777);
-}
-copy($indexFile, $links.'/index.php');
-copy($blankFile, $links.'/blank.gif');
 
-// Making of images/links folder
-$categories = $images.'/categories';
-if(!is_dir($categories)) {
-    if (!mkdir($categories, 0777) && !is_dir($categories)) {
-        throw new \RuntimeException(sprintf('Directory "%s" was not created', $categories));
+use XoopsModules\Wglinks;
+use XoopsModules\Wglinks\Common;
+
+/**
+ * @param  \XoopsModule $module
+ * @return bool
+ */
+function xoops_module_pre_install_wglinks(\XoopsModule $module)
+{
+    require \dirname(__DIR__) . '/preloads/autoloader.php';
+    $utility = new Wglinks\Utility();
+
+    //check for minimum XOOPS version
+    $xoopsSuccess = $utility::checkVerXoops($module);
+
+    // check for minimum PHP version
+    $phpSuccess = $utility::checkVerPhp($module);
+
+    if (false !== $xoopsSuccess && false !== $phpSuccess) {
+        $moduleTables = &$module->getInfo('tables');
+        foreach ($moduleTables as $table) {
+            $GLOBALS['xoopsDB']->queryF('DROP TABLE IF EXISTS ' . $GLOBALS['xoopsDB']->prefix($table) . ';');
+        }
     }
-    chmod($categories, 0777);
+
+    return $xoopsSuccess && $phpSuccess;
 }
-copy($indexFile, $categories.'/index.php');
-copy($blankFile, $categories.'/blank.gif');
-// ------------------- Install Footer ------------------- //
+
+/**
+ * @param \XoopsModule $module
+ *
+ * @return bool|string
+ */
+function xoops_module_install_wglinks(\XoopsModule $module)
+{
+    require \dirname(__DIR__) . '/preloads/autoloader.php';
+
+    $moduleDirName = \basename(\dirname(__DIR__));
+
+    /** @var Wglinks\Helper $helper */
+    /** @var Wglinks\Utility $utility */
+    /** @var Common\Configurator $configurator */
+    $helper       = Wglinks\Helper::getInstance();
+    $utility      = new Wglinks\Utility();
+    $configurator = new Common\Configurator();
+
+    // Load language files
+    $helper->loadLanguage('admin');
+    $helper->loadLanguage('modinfo');
+    $helper->loadLanguage('common');
+
+    //  ---  CREATE FOLDERS ---------------
+    if ($configurator->uploadFolders && \is_array($configurator->uploadFolders)) {
+        //    foreach (\array_keys($GLOBALS['uploadFolders']) as $i) {
+        foreach (\array_keys($configurator->uploadFolders) as $i) {
+            $utility::createFolder($configurator->uploadFolders[$i]);
+        }
+    }
+
+    //  ---  COPY blank.gif FILES ---------------
+    if ($configurator->copyBlankFiles && \is_array($configurator->copyBlankFiles)) {
+        $file = \dirname(__DIR__) . '/assets/images/blank.gif';
+        foreach (\array_keys($configurator->copyBlankFiles) as $i) {
+            $dest = $configurator->copyBlankFiles[$i] . '/blank.gif';
+            $utility::copyFile($file, $dest);
+        }
+    }
+
+    //  ---  DELETE OLD FILES ---------------
+    if (\count($configurator->oldFiles) > 0) {
+        //    foreach (\array_keys($GLOBALS['uploadFolders']) as $i) {
+        foreach (\array_keys($configurator->oldFiles) as $i) {
+            $tempFile = $GLOBALS['xoops']->path('modules/' . $moduleDirName . $configurator->oldFiles[$i]);
+            if (\is_file($tempFile)) {
+                \unlink($tempFile);
+            }
+        }
+    }
+
+    //  ---  DELETE OLD FOLDERS ---------------
+    \xoops_load('XoopsFile');
+    if (\count($configurator->oldFolders) > 0) {
+        //    foreach (\array_keys($GLOBALS['uploadFolders']) as $i) {
+        foreach (\array_keys($configurator->oldFolders) as $i) {
+            $tempFolder = $GLOBALS['xoops']->path('modules/' . $moduleDirName . $configurator->oldFolders[$i]);
+            /* @var $folderHandler XoopsObjectHandler */
+            $folderHandler = XoopsFile::getHandler('folder', $tempFolder);
+            $folderHandler->delete($tempFolder);
+        }
+    }
+
+    return true;
+}
