@@ -33,7 +33,7 @@
     </table>
 
     <div class="clear">&nbsp;</div>
-    <{if $pagenav|default:''}>
+    <{if $pagenav|default:''|default:''}>
         <div class="xo-pagenav floatright"><{$pagenav}></div><div class="clear spacer"></div>
     <{/if}>
 <{/if}>
