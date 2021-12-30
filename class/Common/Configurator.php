@@ -21,7 +21,7 @@ namespace XoopsModules\Wglinks\Common;
  * @since       1.05
  */
 
-// require_once dirname(dirname(__DIR__)) . '/include/common.php';
+// require_once \dirname(\dirname(__DIR__)) . '/include/common.php';
 
 /**
  * Class Configurator
@@ -36,6 +36,8 @@ class Configurator
     public $templateFolders = [];
     public $oldFiles        = [];
     public $oldFolders      = [];
+    public $renameTables    = [];
+    public $moduleStats     = [];
     public $modCopyright;
 
     /**
@@ -43,11 +45,13 @@ class Configurator
      */
     public function __construct()
     {
-        $moduleDirName = \basename(\dirname(__DIR__));
-        $capsDirName   = mb_strtoupper($moduleDirName);
+        //        $moduleDirName      = \basename(\dirname(\dirname(__DIR__)));
+        //        $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
-        require \dirname(__DIR__, 2) . '/include/config.php';
-        $config = getConfig();
+        //        require \dirname(\dirname(__DIR__)) . '/config/config.php';
+        //        $config = getConfig();
+
+        $config = include \dirname(__DIR__, 2) . '/config/config.php';
 
         $this->name            = $config->name;
         $this->paths           = $config->paths;
@@ -57,6 +61,8 @@ class Configurator
         $this->templateFolders = $config->templateFolders;
         $this->oldFiles        = $config->oldFiles;
         $this->oldFolders      = $config->oldFolders;
+        $this->renameTables    = $config->renameTables;
+        $this->moduleStats     = $config->moduleStats;
         $this->modCopyright    = $config->modCopyright;
     }
 }

@@ -24,20 +24,20 @@ trait FilesManagement
      *
      * @param string $folder The full path of the directory to check
      *
+     * @return void
      * @throws \RuntimeException
      */
     public static function createFolder($folder)
     {
         try {
-            if (!\is_dir($folder)) {
+            if (!\file_exists($folder)) {
                 if (!\is_dir($folder) && !\mkdir($folder) && !\is_dir($folder)) {
                     throw new \RuntimeException(\sprintf('Unable to create the %s directory', $folder));
                 }
 
-                file_put_contents($folder . '/index.html', '<script>history.go(-1);</script>');
+                \file_put_contents($folder . '/index.html', '<script>history.go(-1);</script>');
             }
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             echo 'Caught exception: ', $e->getMessage(), '<br>';
         }
     }
@@ -59,8 +59,9 @@ trait FilesManagement
     public static function recurseCopy($src, $dst)
     {
         $dir = \opendir($src);
-        if (!\mkdir($dst) && !\is_dir($dst)) {
-            throw new \RuntimeException(\sprintf('Directory "%s" was not created', $dst));
+        //        @\mkdir($dst);
+        if (!@\mkdir($dst) && !\is_dir($dst)) {
+            throw new \RuntimeException('The directory ' . $dst . ' could not be created.');
         }
         while (false !== ($file = \readdir($dir))) {
             if (('.' !== $file) && ('..' !== $file)) {
@@ -103,7 +104,7 @@ trait FilesManagement
         }
 
         // Loop through the folder
-        $dir = \dir($source);
+        $dir = dir($source);
         if (@\is_dir($dir)) {
             while (false !== $entry = $dir->read()) {
                 // Skip pointers
@@ -127,6 +128,7 @@ trait FilesManagement
      *
      * @return bool true on success
      * @uses \Xmf\Module\Helper::isUserAdmin()
+     *
      * @uses \Xmf\Module\Helper::getHelper()
      */
     public static function deleteDirectory($src)
@@ -141,7 +143,7 @@ trait FilesManagement
         $dirInfo = new \SplFileInfo($src);
         // validate is a directory
         if ($dirInfo->isDir()) {
-            $fileList = \array_diff(\scandir($src, \SCANDIR_SORT_NONE), ['..', '.']);
+            $fileList = \array_diff(\scandir($src, SCANDIR_SORT_NONE), ['..', '.']);
             foreach ($fileList as $k => $v) {
                 $fileInfo = new \SplFileInfo("{$src}/{$v}");
                 if ($fileInfo->isDir()) {
@@ -242,7 +244,7 @@ trait FilesManagement
             } elseif (!$fObj->isDot() && $fObj->isDir()) {
                 // Try recursively on directory
                 self::rmove($fObj->getPathname(), "{$dest}/" . $fObj->getFilename());
-                //                rmdir($fObj->getPath()); // now delete the directory
+                //                \rmdir($fObj->getPath()); // now delete the directory
             }
         }
         $iterator = null;   // clear iterator Obj to close file/directory
@@ -257,6 +259,7 @@ trait FilesManagement
      *
      * @return bool true on success
      * @uses \Xmf\Module\Helper::isUserAdmin()
+     *
      * @uses \Xmf\Module\Helper::getHelper()
      */
     public static function rcopy($src, $dest)
