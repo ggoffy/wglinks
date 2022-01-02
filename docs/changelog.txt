@@ -1,3 +1,8 @@
+<h5>1.1.0 RC 1  NOT RELEASED</h5>  [2021/../..]
+ - semantic versioning (goffy)
+ - update to php8 (goffy)
+ - replaced Common/XoopsConfirm by Common/Confirm(mamba/goffy)
+
 <h5>1.07 RC 1  NOT RELEASED</h5>  [2019/../..]
  - fixed bug with missing index.html (cesagonchu/goffy)
  - replaced index.html by index.php (goffy)
