@@ -10,8 +10,6 @@
 */
 
 /**
- * wgGitHub module for xoops
- *
  * @copyright      2020 XOOPS Project (https://xooops.org)
  * @license        GPL 2.0 or later
  * @package        wggithub
@@ -42,11 +40,19 @@ return (object)[
         XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/links',
         XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images',
         XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images/links',
+        XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images/links/large',
+        XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images/links/thumbs',
         XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images/categories',
+        XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images/categories/large',
+        XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images/categories/thumbs',
     ],
     'copyBlankFiles' => [
         XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images/links',
+        XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images/links/large',
+        XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images/links/thumbs',
         XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images/categories',
+        XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images/categories/large',
+        XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images/categories/thumbs',
         //XOOPS_UPLOAD_PATH . '/flags'
     ],
 

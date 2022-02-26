@@ -1,6 +1,6 @@
 <?php
 
-namespace XoopsModules\Wglinks;
+namespace XoopsModules\Wglinks\Common;
 
 /*
  Utility Class Definition
@@ -14,27 +14,53 @@ namespace XoopsModules\Wglinks;
  WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
+
 /**
- * Module:  xSitemap
  *
- * @package      \module\xsitemap\class
- * @license      http://www.fsf.org/copyleft/gpl.html GNU public license
- * @copyright    https://xoops.org 2001-2017 &copy; XOOPS Project
- * @author       ZySpec <owners@zyspec.com>
+ * @license      https://www.fsf.org/copyleft/gpl.html GNU public license
+ * @copyright    https://xoops.org 2000-2020 &copy; XOOPS Project
+ * @author       ZySpec <zyspec@yahoo.com>
  * @author       Mamba <mambax7@gmail.com>
- * @since        File available since version 1.54
  */
+
+use MyTextSanitizer;
+use XoopsFormDhtmlTextArea;
+use XoopsFormTextArea;
+use XoopsModules\Wglinks;
+use XoopsModules\Wglinks\Helper;
 
 /**
  * Class Utility
  */
-class Utility
+class SysUtility
 {
-    use Common\VersionChecks; //checkVerXoops, checkVerPhp Traits
+    use VersionChecks;
 
-    use Common\ServerStats; // getServerStats Trait
+    //checkVerXoops, checkVerPhp Traits
 
-    use Common\FilesManagement; // Files Management Trait
+    use ServerStats;
+
+    // getServerStats Trait
+
+    use FilesManagement;
+
+    // Files Management Trait
+
+    /**
+     * Access the only instance of this class
+     *
+     * @return object
+     *
+     */
+    public static function getInstance()
+    {
+        static $instance;
+        if (null === $instance) {
+            $instance = new static();
+        }
+
+        return $instance;
+    }
 
     /**
      * truncateHtml can truncate a string up to a number of characters while preserving whole words and HTML tags
@@ -101,7 +127,7 @@ class Utility
                             }
                         }
                     }
-                    $truncate .= mb_substr($line_matchings[2], 0, $left + $entities_length);
+                    $truncate .= \mb_substr($line_matchings[2], 0, $left + $entities_length);
                     // maximum lenght is reached, so get off the loop
                     break;
                 }
@@ -117,7 +143,7 @@ class Utility
             if (\mb_strlen($text) <= $length) {
                 return $text;
             }
-            $truncate = mb_substr($text, 0, $length - \mb_strlen($ending));
+            $truncate = \mb_substr($text, 0, $length - \mb_strlen($ending));
         }
         // if the words shouldn't be cut in the middle...
         if (!$exact) {
@@ -125,7 +151,7 @@ class Utility
             $spacepos = \mb_strrpos($truncate, ' ');
             if (isset($spacepos)) {
                 // ...and cut the text in this position
-                $truncate = mb_substr($truncate, 0, $spacepos);
+                $truncate = \mb_substr($truncate, 0, $spacepos);
             }
         }
         // add the defined ending to the text
@@ -140,4 +166,56 @@ class Utility
         return $truncate;
     }
 
+    /**
+     * @param \Xmf\Module\Helper $helper
+     * @param array|null         $options
+     * @return \XoopsFormDhtmlTextArea|\XoopsFormEditor
+     */
+    public static function getEditor($helper = null, $options = null)
+    {
+        /** @var Helper $helper */
+        if (null === $options) {
+            $options           = [];
+            $options['name']   = 'Editor';
+            $options['value']  = 'Editor';
+            $options['rows']   = 10;
+            $options['cols']   = '100%';
+            $options['width']  = '100%';
+            $options['height'] = '400px';
+        }
+
+        if (null === $helper) {
+            $helper = Helper::getInstance();
+        }
+
+        $isAdmin = $helper->isUserAdmin();
+
+        if (\class_exists('\XoopsFormEditor')) {
+            if ($isAdmin) {
+                $descEditor = new \XoopsFormEditor(\ucfirst($options['name']), $helper->getConfig('editorAdmin'), $options, $nohtml = false, $onfailure = 'textarea');
+            } else {
+                $descEditor = new \XoopsFormEditor(\ucfirst($options['name']), $helper->getConfig('editorUser'), $options, $nohtml = false, $onfailure = 'textarea');
+            }
+        } else {
+            $descEditor = new \XoopsFormDhtmlTextArea(\ucfirst($options['name']), $options['name'], $options['value'], '100%', '100%');
+        }
+
+        //        $form->addElement($descEditor);
+
+        return $descEditor;
+    }
+
+    /**
+     * @param $fieldname
+     * @param $table
+     *
+     * @return bool
+     */
+    public function fieldExists($fieldname, $table)
+    {
+        global $xoopsDB;
+        $result = $xoopsDB->queryF("SHOW COLUMNS FROM   $table LIKE '$fieldname'");
+
+        return ($xoopsDB->getRowsNum($result) > 0);
+    }
 }

@@ -20,6 +20,9 @@
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 index.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
  */
+
+use XoopsModules\Wglinks\Common;
+
 include __DIR__ . '/header.php';
 // Count elements
 $countCategories = $categoriesHandler->getCount();
@@ -31,17 +34,16 @@ $adminObject->addInfoBox(\_AM_WGLINKS_STATISTICS);
 // Info elements
 $adminObject->addInfoBoxLine(\sprintf('<label>' . \_AM_WGLINKS_THEREARE_CATS . '</label>', $countCategories));
 $adminObject->addInfoBoxLine(\sprintf('<label>' . \_AM_WGLINKS_THEREARE_LINKS . '</label>', $countLinks));
+
 // Upload Folders
-$folder = [
-    \WGLINKS_UPLOAD_PATH,
-    \WGLINKS_UPLOAD_PATH . '/categories/',
-    \WGLINKS_UPLOAD_PATH . '/links/',
-    \WGLINKS_UPLOAD_PATH . '/images/',
-    \WGLINKS_UPLOAD_PATH . '/images/links/',
-    \WGLINKS_UPLOAD_PATH . '/images/categories/',
-];
+$configurator = new Common\Configurator();
+if ($configurator->uploadFolders && \is_array($configurator->uploadFolders)) {
+    foreach (\array_keys($configurator->uploadFolders) as $i) {
+        $folder[] = $configurator->uploadFolders[$i];
+    }
+}
 // Uploads Folders Created
-foreach(\array_keys($folder) as $i) {
+foreach (\array_keys($folder) as $i) {
     $adminObject->addConfigBoxLine($folder[$i], 'folder');
     $adminObject->addConfigBoxLine([$folder[$i], '777'], 'chmod');
 }

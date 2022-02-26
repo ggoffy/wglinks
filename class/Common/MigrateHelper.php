@@ -212,7 +212,7 @@ class MigrateHelper
         } else {
             return false;
         }
-        $attributes = \trim(\str_replace([$name, '`', ','], '', $line));
+        $attributes = \rtrim(\trim(\str_replace([$name, '`'], '', $line)), ',');
 
         $columns['name'] = $name;
         // update quotes
