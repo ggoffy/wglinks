@@ -1,4 +1,4 @@
-<ul class="nav nav-pills nav-stacked">
+<ul class="nav nav-pills nav-stacked wglinks-block-ul">
     <{foreach item=link from=$block}>
         <li>
             <a class="wglinks-block-link" href="<{$wglinks_url}>/index.php?link_id=<{$link.id}>" title="<{$link.tooltip|default:''}>" target="_self">
