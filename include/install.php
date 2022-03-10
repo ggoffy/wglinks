@@ -78,6 +78,7 @@ function xoops_module_install_wglinks(\XoopsModule $module)
         //    foreach (\array_keys($GLOBALS['uploadFolders']) as $i) {
         foreach (\array_keys($configurator->uploadFolders) as $i) {
             $utility::createFolder($configurator->uploadFolders[$i]);
+            chmod($configurator->uploadFolders[$i], 0777);
         }
     }
 
