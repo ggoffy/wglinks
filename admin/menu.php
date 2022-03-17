@@ -25,20 +25,34 @@ $moduleHandler = \xoops_getHandler('module');
 $xoopsModule = \XoopsModule::getByDirname($dirname);
 $moduleInfo = $moduleHandler->get($xoopsModule->getVar('mid'));
 $sysPathIcon32 = $moduleInfo->getInfo('sysicons32');
-$i = 1;
-$adminmenu[$i]['title'] = \_MI_WGLINKS_ADMENU1;
-$adminmenu[$i]['link'] = 'admin/index.php';
-$adminmenu[$i]['icon'] = $sysPathIcon32.'/dashboard.png';
-++$i;
-$adminmenu[$i]['title'] = \_MI_WGLINKS_ADMENU2;
-$adminmenu[$i]['link'] = 'admin/categories.php';
-$adminmenu[$i]['icon'] = 'assets/icons/32/category.png';
-++$i;
-$adminmenu[$i]['title'] = \_MI_WGLINKS_ADMENU3;
-$adminmenu[$i]['link'] = 'admin/links.php';
-$adminmenu[$i]['icon'] = 'assets/icons/32/addlink.png';
-++$i;
-$adminmenu[$i]['title'] = \_MI_WGLINKS_ABOUT;
-$adminmenu[$i]['link'] = 'admin/about.php';
-$adminmenu[$i]['icon'] = $sysPathIcon32.'/about.png';
-unset($i);
+
+$adminmenu[] = [
+    'title' => \_MI_WGLINKS_ADMENU1,
+    'link' => 'admin/index.php',
+    'icon' => 'assets/icons/32/dashboard.png',
+];
+$adminmenu[] = [
+    'title' => \_MI_WGLINKS_ADMENU2,
+    'link' => 'admin/categories.php',
+    'icon' => 'assets/icons/32/category.png',
+];
+$adminmenu[] = [
+    'title' => \_MI_WGLINKS_ADMENU3,
+    'link' => 'admin/links.php',
+    'icon' => 'assets/icons/32/link.png',
+];
+$adminmenu[] = [
+    'title' => \_MI_WGLINKS_ADMENU20,
+    'link' => 'admin/clone.php',
+    'icon' => 'assets/icons/32/clone.png',
+];
+$adminmenu[] = [
+    'title' => \_MI_WGLINKS_ADMENU21,
+    'link' => 'admin/feedback.php',
+    'icon' => 'assets/icons/32/feedback.png',
+];
+$adminmenu[] = [
+    'title' => \_MI_WGLINKS_ABOUT,
+    'link' => 'admin/about.php',
+    'icon' => 'assets/icons/32/about.png',
+];

@@ -30,6 +30,8 @@ require_once __DIR__ . '/common.php';
 \define('_MI_WGLINKS_ADMENU1', 'Dashboard');
 \define('_MI_WGLINKS_ADMENU2', 'Categories');
 \define('_MI_WGLINKS_ADMENU3', 'Links');
+\define('_MI_WGLINKS_ADMENU20', 'Clone');
+\define('_MI_WGLINKS_ADMENU21', 'Feedback');
 \define('_MI_WGLINKS_ABOUT', 'About');
 // ---------------- Admin Nav ----------------
 \define('_MI_WGLINKS_ADMIN_PAGER', 'List items admin pages');
