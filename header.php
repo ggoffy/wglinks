@@ -26,7 +26,7 @@ $dirname  = \basename(__DIR__);
 
 // Get instance of module
 $helper = \XoopsModules\Wglinks\Helper::getInstance();
-$linksHandler = $helper->getHandler('links');
+$linksHandler = $helper->getHandler('Link');
 // Breadcrumbs
 $xoBreadcrumbs = [];
 if ($helper->getConfig('show_breadcrumbs') && $helper->getConfig('show_bcrumb_mname')) {

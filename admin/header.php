@@ -35,8 +35,8 @@ $modPathIcon32  = $GLOBALS['xoopsModule']->getInfo('modicons32');
 // Get instance of module
 $helper = \XoopsModules\Wglinks\Helper::getInstance();
 $utility = new \XoopsModules\Wglinks\Utility();
-$categoriesHandler = $helper->getHandler('categories');
-$linksHandler = $helper->getHandler('links');
+$categoriesHandler = $helper->getHandler('Category');
+$linksHandler = $helper->getHandler('Link');
 $myts = MyTextSanitizer::getInstance();
 // 
 if(!isset($xoopsTpl) || !\is_object($xoopsTpl)) {

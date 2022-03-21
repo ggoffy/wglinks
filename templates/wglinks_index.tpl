@@ -12,7 +12,7 @@
         <{foreach item=links from=$links_list}>
             <{foreach name=link item=link from=$links}>
                 <{if $index_style|default:'' == '2cards' || $index_style|default:'' == '3cards' || $index_style|default:'' == '4cards'}>
-                    <{include file='db:wglinks_links_cards.tpl' link=$link}>
+                    <{include file='db:wglinks_link_cards.tpl' link=$link}>
                 <{else}>
                     <{include file='db:wglinks_links_default.tpl' link=$link}>
                 <{/if}>

@@ -21,14 +21,14 @@ namespace XoopsModules\Wglinks;
  * @since          1.0
  * @min_xoops      2.5.7
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
- * @version        $Id: 1.0 categories.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
+ * @version        $Id: 1.0 category.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
  */
 \defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * Class Object WglinksCategories
  */
-class Categories extends \XoopsObject
+class Category extends \XoopsObject
 {
     /**
      * @var mixed

@@ -177,7 +177,7 @@ $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
 //Module Stats
 \define('CO_' . $moduleDirNameUpper . '_' . 'STATS_SUMMARY', 'Module Statistics');
-\define('CO_' . $moduleDirNameUpper . '_' . 'TOTAL_CATEGORIES', 'Categories:');
+\define('CO_' . $moduleDirNameUpper . '_' . 'TOTAL_CATEGORIES', 'Category:');
 \define('CO_' . $moduleDirNameUpper . '_' . 'TOTAL_ITEMS', 'Items');
 \define('CO_' . $moduleDirNameUpper . '_' . 'TOTAL_OFFLINE', 'Offline');
 \define('CO_' . $moduleDirNameUpper . '_' . 'TOTAL_PUBLISHED', 'Published');

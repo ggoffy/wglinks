@@ -29,7 +29,7 @@
 // ---------------- Contents ----------------
 // Link
 \define('_MA_WGLINKS_LINK', 'Link');
-\define('_MA_WGLINKS_LINKS', 'Links');
+\define('_MA_WGLINKS_LINKS', 'Link');
 \define('_MA_WGLINKS_LINK_URL', 'Website');
 \define('_MA_WGLINKS_LINK_CONTACT', 'Contact');
 \define('_MA_WGLINKS_LINK_EMAIL', 'Email');

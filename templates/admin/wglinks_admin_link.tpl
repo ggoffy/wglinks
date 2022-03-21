@@ -43,15 +43,19 @@
                         <td class="center"><{$link.phone|default:''}></td>
                         <td class="center"><{$link.address|default:''}></td>
                        
-                        <td class="center"><img src="<{$wglinks_upload_url}>/images/links/thumbs/<{$link.logo|default:''}>" alt="<{$link.name|default:''}>" style="height:50px" /></td>
+                        <td class="center">
+                            <{if $link.logo|default:''}>
+                                <img src="<{$wglinks_upload_url}>/images/links/thumbs/<{$link.logo|default:''}>" alt="<{$link.name|default:''}>" style="height:50px" />
+                            <{/if}>
+                        </td>
                         <td class="center">
                             <{if $link.state|default:0 == 0}>
-                                <a href='links.php?op=change_state&amp;link_state=1&amp;link_id=<{$link.id}>&amp;start=<{$start}>&amp;limit=<{$limit}>' title='<{$smarty.const._AM_WGLINKS_STATE_ONLINE}>'>
+                                <a href='link.php?op=change_state&amp;link_state=1&amp;link_id=<{$link.id}>&amp;start=<{$start}>&amp;limit=<{$limit}>' title='<{$smarty.const._AM_WGLINKS_STATE_ONLINE}>'>
                                     <img src='<{$wglinks_url}>/assets/icons/16/state0.png' alt='<{$smarty.const._AM_WGLINKS_STATE_ONLINE}>' />
                                 </a>
                             <{/if}>
                             <{if $link.state|default:0 == 1}>
-                                <a href='links.php?op=change_state&amp;link_state=0&amp;link_id=<{$link.id}>&amp;start=<{$start}>&amp;limit=<{$limit}>' title='<{$smarty.const._AM_WGLINKS_STATE_OFFLINE}>'>
+                                <a href='link.php?op=change_state&amp;link_state=0&amp;link_id=<{$link.id}>&amp;start=<{$start}>&amp;limit=<{$limit}>' title='<{$smarty.const._AM_WGLINKS_STATE_OFFLINE}>'>
                                     <img src='<{$wglinks_url}>/assets/icons/16/state1.png' alt='<{$smarty.const._AM_WGLINKS_STATE_OFFLINE}>' />
                                 </a>
                             <{/if}>
@@ -59,8 +63,8 @@
                         <td class="center"><{$link.submitter}></td>
                         <td class="center"><{$link.date_created}></td>
                         <td class="center  width5">
-                        <a href="links.php?op=edit&amp;link_id=<{$link.id}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 edit.png}>" alt="links" /></a>
-                        <a href="links.php?op=delete&amp;link_id=<{$link.id}>" title="<{$smarty.const._DELETE}>"><img src="<{xoModuleIcons16 delete.png}>" alt="links" /></a>
+                        <a href="link.php?op=edit&amp;link_id=<{$link.id}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 edit.png}>" alt="links" /></a>
+                        <a href="link.php?op=delete&amp;link_id=<{$link.id}>" title="<{$smarty.const._DELETE}>"><img src="<{xoModuleIcons16 delete.png}>" alt="links" /></a>
                         </td>
                     </tr>
                 <{/foreach}>

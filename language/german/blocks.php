@@ -23,9 +23,9 @@
 
 include_once 'main.php';
 // Admin Edit
-\define('_MB_WGLINKS_DISPLAY', 'Wieviele Links sollen angezeigt werden (0 = kein Limit)');
+\define('_MB_WGLINKS_DISPLAY', 'Wieviele Link sollen angezeigt werden (0 = kein Limit)');
 \define('_MB_WGLINKS_TITLE_LENGTH', 'Titellänge (0 = kein Limit)');
-\define('_MB_WGLINKS_LINKS_SORTBY', 'Sortierung der Links');
+\define('_MB_WGLINKS_LINKS_SORTBY', 'Sortierung der Link');
 \define('_MB_WGLINKS_LINKS_SORTBY_DEFAULT', 'nach Gewichtung');
 \define('_MB_WGLINKS_LINKS_SORTBY_DATEASC', 'nach Datum aufsteigend');
 \define('_MB_WGLINKS_LINKS_SORTBY_DATEDESC', 'nach Datum absteigend');
@@ -38,8 +38,8 @@ include_once 'main.php';
 \define('_MB_WGLINKS_LINKS_BSTYLE_6CARDS', '6 Cards');
 \define('_MB_WGLINKS_LINKS_BSTYLE_12CARDS', '12 Cards');
 \define('_MB_WGLINKS_BTN_SHOW_MORE', "Schaltflächte '" . \_MA_WGLINKS_SHOW_MORE . "' anzeigen");
-// Links
-\define('_MB_WGLINKS_ALL_LINKS', 'Alle Links');
+// Link
+\define('_MB_WGLINKS_ALL_LINKS', 'Alle Link');
 \define('_MB_WGLINKS_LINKS_TO_DISPLAY', 'Link-Kategorien zum Anzeigen');
 \define('_MB_WGLINKS_LINK_NAME', 'Name');
 \define('_MB_WGLINKS_LINK_TOOLTIP', 'Tooltip');

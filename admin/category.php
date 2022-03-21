@@ -18,7 +18,7 @@
  * @since          1.0
  * @min_xoops      2.5.7
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
- * @version        $Id: 1.0 categories.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
+ * @version        $Id: 1.0 category.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
  */
 
 use Xmf\Request;
@@ -33,9 +33,9 @@ switch($op) {
     default:
         $start = Request::getInt('start');
         $limit = Request::getInt('limit', $helper->getConfig('adminpager'));
-        $templateMain = 'wglinks_admin_categories.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('categories.php'));
-        $adminObject->addItemButton(\_AM_WGLINKS_ADD_CAT, 'categories.php?op=new');
+        $templateMain = 'wglinks_admin_category.tpl';
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('category.php'));
+        $adminObject->addItemButton(\_AM_WGLINKS_ADD_CAT, 'category.php?op=new');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
         $categoriesCount = $categoriesHandler->getCountCategories();
         $categoriesAll = $categoriesHandler->getAllCategories($start, $limit);
@@ -61,9 +61,9 @@ switch($op) {
 
     break;
     case 'new':
-        $templateMain = 'wglinks_admin_categories.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('categories.php'));
-        $adminObject->addItemButton(\_AM_WGLINKS_CATS_LIST, 'categories.php', 'list');
+        $templateMain = 'wglinks_admin_category.tpl';
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('category.php'));
+        $adminObject->addItemButton(\_AM_WGLINKS_CATS_LIST, 'category.php', 'list');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
         // Get Form
         $categoriesObj = $categoriesHandler->create();
@@ -74,7 +74,7 @@ switch($op) {
     case 'save':
         // Security Check
         if(!$GLOBALS['xoopsSecurity']->check()) {
-            \redirect_header('categories.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
+            \redirect_header('category.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
         }
         if(0 < $catId) {
             $categoriesObj = $categoriesHandler->get($catId);
@@ -89,7 +89,7 @@ switch($op) {
         $categoriesObj->setVar('cat_date_created', \strtotime($_POST['cat_date_created']));
         // Insert Data
         if($categoriesHandler->insert($categoriesObj)) {
-            \redirect_header('categories.php?op=list', 2, \_AM_WGLINKS_FORM_OK);
+            \redirect_header('category.php?op=list', 2, \_AM_WGLINKS_FORM_OK);
         }
         // Get Form
         $GLOBALS['xoopsTpl']->assign('error', $categoriesObj->getHtmlErrors());
@@ -98,10 +98,10 @@ switch($op) {
 
     break;
     case 'edit':
-        $templateMain = 'wglinks_admin_categories.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('categories.php'));
-        $adminObject->addItemButton(\_AM_WGLINKS_ADD_CAT, 'categories.php?op=new');
-        $adminObject->addItemButton(\_AM_WGLINKS_CATS_LIST, 'categories.php', 'list');
+        $templateMain = 'wglinks_admin_category.tpl';
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('category.php'));
+        $adminObject->addItemButton(\_AM_WGLINKS_ADD_CAT, 'category.php?op=new');
+        $adminObject->addItemButton(\_AM_WGLINKS_CATS_LIST, 'category.php', 'list');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
         // Get Form
         $categoriesObj = $categoriesHandler->get($catId);
@@ -112,10 +112,10 @@ switch($op) {
         $categoriesObj = $categoriesHandler->get($catId);
         if(isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
             if(!$GLOBALS['xoopsSecurity']->check()) {
-                \redirect_header('categories.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
+                \redirect_header('category.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
             }
             if($categoriesHandler->delete($categoriesObj)) {
-                \redirect_header('categories.php', 3, \_AM_WGLINKS_FORM_DELETE_OK);
+                \redirect_header('category.php', 3, \_AM_WGLINKS_FORM_DELETE_OK);
             } else {
                 $GLOBALS['xoopsTpl']->assign('error', $categoriesObj->getHtmlErrors());
             }

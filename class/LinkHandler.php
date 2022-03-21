@@ -21,14 +21,14 @@ namespace XoopsModules\Wglinks;
  * @since          1.0
  * @min_xoops      2.5.7
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
- * @version        $Id: 1.0 links.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
+ * @version        $Id: 1.0 link.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
  */
 \defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * Class Object Handler WglinksCategories
  */
-class LinksHandler extends \XoopsPersistableObjectHandler
+class LinkHandler extends \XoopsPersistableObjectHandler
 {
     /**
      * @var mixed
@@ -42,7 +42,7 @@ class LinksHandler extends \XoopsPersistableObjectHandler
      */
     public function __construct($db)
     {
-        parent::__construct($db, 'wglinks_links', Links::class, 'link_id', 'link_url');
+        parent::__construct($db, 'wglinks_links', Link::class, 'link_id', 'link_url');
         $this->wglinks = \XoopsModules\Wglinks\Helper::getInstance();
         $this->db = $db;
     }
@@ -81,7 +81,7 @@ class LinksHandler extends \XoopsPersistableObjectHandler
     }
 
     /**
-     * Get Count Links in the database
+     * Get Count Link in the database
      * @param int $start
      * @param int $limit
      * @param string $sort
@@ -96,7 +96,7 @@ class LinksHandler extends \XoopsPersistableObjectHandler
     }
 
     /**
-     * Get All Links in the database
+     * Get All Link in the database
      * @param int $start
      * @param int $limit
      * @param string $sort
@@ -111,7 +111,7 @@ class LinksHandler extends \XoopsPersistableObjectHandler
     }
 
     /**
-     * Get Criteria Links
+     * Get Criteria Link
      * @param $criteriaLinks
      * @param $start
      * @param $limit

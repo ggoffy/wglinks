@@ -18,7 +18,7 @@
  * @since          1.0
  * @min_xoops      2.5.7
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
- * @version        $Id: 1.0 links.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
+ * @version        $Id: 1.0 link.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
  */
 
 use Xmf\Request;
@@ -37,9 +37,9 @@ switch($op) {
         $GLOBALS['xoTheme']->addScript(\WGLINKS_URL . '/assets/js/sortable-links.js');
         $start = Request::getInt('start');
         $limit = Request::getInt('limit', $helper->getConfig('adminpager'));
-        $templateMain = 'wglinks_admin_links.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('links.php'));
-        $adminObject->addItemButton(\_AM_WGLINKS_ADD_LINK, 'links.php?op=new');
+        $templateMain = 'wglinks_admin_link.tpl';
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('link.php'));
+        $adminObject->addItemButton(\_AM_WGLINKS_ADD_LINK, 'link.php?op=new');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
         $linksCount = $linksHandler->getCountLinks();
         $linksAll = $linksHandler->getAllLinks($start, $limit);
@@ -74,9 +74,9 @@ switch($op) {
 
     break;
     case 'new':
-        $templateMain = 'wglinks_admin_links.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('links.php'));
-        $adminObject->addItemButton(\_AM_WGLINKS_LINKS_LIST, 'links.php', 'list');
+        $templateMain = 'wglinks_admin_link.tpl';
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('link.php'));
+        $adminObject->addItemButton(\_AM_WGLINKS_LINKS_LIST, 'link.php', 'list');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
         // Get Form
         $linksObj = $linksHandler->create();
@@ -87,7 +87,7 @@ switch($op) {
     case 'save':
         // Security Check
         if(!$GLOBALS['xoopsSecurity']->check()) {
-            \redirect_header('links.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
+            \redirect_header('link.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
         }
         if(isset($linkId)) {
             $linksObj = $linksHandler->get($linkId);
@@ -142,7 +142,7 @@ switch($op) {
         $linksObj->setVar('link_date_created', \strtotime($_POST['link_date_created']));
         // Insert Data
         if($linksHandler->insert($linksObj)) {
-            \redirect_header('links.php?op=list', 2, \_AM_WGLINKS_FORM_OK);
+            \redirect_header('link.php?op=list', 2, \_AM_WGLINKS_FORM_OK);
         }
         // Get Form
         $GLOBALS['xoopsTpl']->assign('error', $linksObj->getHtmlErrors());
@@ -151,10 +151,10 @@ switch($op) {
 
     break;
     case 'edit':
-        $templateMain = 'wglinks_admin_links.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('links.php'));
-        $adminObject->addItemButton(\_AM_WGLINKS_ADD_LINK, 'links.php?op=new');
-        $adminObject->addItemButton(\_AM_WGLINKS_LINKS_LIST, 'links.php', 'list');
+        $templateMain = 'wglinks_admin_link.tpl';
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('link.php'));
+        $adminObject->addItemButton(\_AM_WGLINKS_ADD_LINK, 'link.php?op=new');
+        $adminObject->addItemButton(\_AM_WGLINKS_LINKS_LIST, 'link.php', 'list');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
         // Get Form
         $linksObj = $linksHandler->get($linkId);
@@ -166,10 +166,10 @@ switch($op) {
         $linksObj = $linksHandler->get($linkId);
         if(isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
             if(!$GLOBALS['xoopsSecurity']->check()) {
-                \redirect_header('links.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
+                \redirect_header('link.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
             }
             if($linksHandler->delete($linksObj)) {
-                \redirect_header('links.php', 3, \_AM_WGLINKS_FORM_DELETE_OK);
+                \redirect_header('link.php', 3, \_AM_WGLINKS_FORM_DELETE_OK);
             } else {
                 $GLOBALS['xoopsTpl']->assign('error', $linksObj->getHtmlErrors());
             }
@@ -211,7 +211,7 @@ switch($op) {
             $linksObj->setVar('link_state', Request::getInt('link_state'));
             // Insert Data
             if($linksHandler->insert($linksObj)) {
-                \redirect_header('links.php?op=list&amp;start=' . $start . '&amp;limit=' . $limit, 2, \_AM_WGLINKS_FORM_OK);
+                \redirect_header('link.php?op=list&amp;start=' . $start . '&amp;limit=' . $limit, 2, \_AM_WGLINKS_FORM_OK);
             }
             // Get Form
             $GLOBALS['xoopsTpl']->assign('error', $linksObj->getHtmlErrors());

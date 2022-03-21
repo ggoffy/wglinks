@@ -21,14 +21,14 @@ namespace XoopsModules\Wglinks;
  * @since          1.0
  * @min_xoops      2.5.7
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
- * @version        $Id: 1.0 categories.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
+ * @version        $Id: 1.0 category.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
  */
 \defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * Class Object Handler WglinksCategories
  */
-class CategoriesHandler extends \XoopsPersistableObjectHandler
+class CategoryHandler extends \XoopsPersistableObjectHandler
 {
     /**
      * @var mixed
@@ -42,7 +42,7 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
      */
     public function __construct($db)
     {
-        parent::__construct($db, 'wglinks_categories', Categories::class, 'cat_id', 'cat_name');
+        parent::__construct($db, 'wglinks_categories', Category::class, 'cat_id', 'cat_name');
         $this->wgCategories = \XoopsModules\Wglinks\Helper::getInstance();
         $this->db = $db;
     }
@@ -81,7 +81,7 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
     }
 
     /**
-     * Get Count Categories in the database
+     * Get Count Category in the database
      * @param int $start
      * @param int $limit
      * @param string $sort
@@ -96,7 +96,7 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
     }
 
     /**
-     * Get All Categories in the database
+     * Get All Category in the database
      * @param int $start
      * @param int $limit
      * @param string $sort
@@ -111,7 +111,7 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
     }
 
     /**
-     * Get Criteria Categories
+     * Get Criteria Category
      * @param $criteriaCategories
      * @param $start
      * @param $limit

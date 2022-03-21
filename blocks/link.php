@@ -18,13 +18,13 @@
  * @since          1.0
  * @min_xoops      2.5.7
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
- * @version        $Id: 1.0 links.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
+ * @version        $Id: 1.0 link.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
  */
 include_once \XOOPS_ROOT_PATH.'/modules/wglinks/include/common.php';
 // Function show block
 function b_wglinks_links_show($options)
 {
-    include_once \XOOPS_ROOT_PATH.'/modules/wglinks/class/Links.php';
+    include_once \XOOPS_ROOT_PATH.'/modules/wglinks/class/Link.php';
     $myts = MyTextSanitizer::getInstance();
     $GLOBALS['xoopsTpl']->assign('wglinks_upload_url', \WGLINKS_UPLOAD_URL);
     $GLOBALS['xoopsTpl']->assign('wglinks_url', \WGLINKS_URL);
@@ -41,7 +41,7 @@ function b_wglinks_links_show($options)
     if (0 < $logoHeight) {
         $GLOBALS['xoopsTpl']->assign('imgheight', $logoHeight . 'px');
     }
-    $linksHandler = $wglinks->getHandler('links');
+    $linksHandler = $wglinks->getHandler('Link');
     \array_shift($options);
     \array_shift($options);
     \array_shift($options);
@@ -95,9 +95,9 @@ function b_wglinks_links_show($options)
 // Function edit block
 function b_wglinks_links_edit($options)
 {
-    include_once \XOOPS_ROOT_PATH.'/modules/wglinks/class/Links.php';
+    include_once \XOOPS_ROOT_PATH.'/modules/wglinks/class/Link.php';
     $wglinks = \XoopsModules\Wglinks\Helper::getInstance();
-    $categoriesHandler = $wglinks->getHandler('categories');
+    $categoriesHandler = $wglinks->getHandler('Category');
     $GLOBALS['xoopsTpl']->assign('wglinks_upload_url', \WGLINKS_UPLOAD_URL);
 
     $form = "<input type='hidden' name='options[0]' size='5' maxlength='255' value='".$options[0]."' />";

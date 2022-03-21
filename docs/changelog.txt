@@ -7,6 +7,7 @@
  - added clone feature (goffy)
  - added feedback feature (goffy)
  - added new icon set (goffy)
+ - moved to singular table names - part 1 (goffy)
 
 <h5>1.07 RC 1  NOT RELEASED</h5>  [2019/../..]
  - fixed bug with missing index.html (cesagonchu/goffy)

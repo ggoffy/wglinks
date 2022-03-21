@@ -21,14 +21,14 @@ namespace XoopsModules\Wglinks;
  * @since          1.0
  * @min_xoops      2.5.7
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
- * @version        $Id: 1.0 links.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
+ * @version        $Id: 1.0 link.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
  */
 \defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * Class Object WglinksLinks
  */
-class Links extends \XoopsObject
+class Link extends \XoopsObject
 {
     /**
      * @var mixed
@@ -100,7 +100,7 @@ class Links extends \XoopsObject
         $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
         // Form Table categories
-        $categoriesHandler = $helper->getHandler('categories');
+        $categoriesHandler = $helper->getHandler('Category');
         $imgCatidSelect = new \XoopsFormSelect( \_AM_WGLINKS_CAT, 'link_catid', $this->getVar('link_catid'));
         $imgCatidSelect->addOptionArray($categoriesHandler->getList());
         $form->addElement($imgCatidSelect, true);
@@ -193,7 +193,7 @@ class Links extends \XoopsObject
         $ret = parent::getValues($keys, $format, $maxDepth);
         $ret['id'] = $this->getVar('link_id');
         $ret['catid'] = $this->getVar('link_catid');
-        $categoriesHandler = $helper->getHandler('categories');
+        $categoriesHandler = $helper->getHandler('Category');
         $categoriesObj = $categoriesHandler->get($this->getVar('link_catid'));
         $ret['catname'] = $categoriesObj->getVar('cat_name');
         $ret['name'] = $this->getVar('link_name');

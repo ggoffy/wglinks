@@ -74,17 +74,17 @@ $modversion['onUninstall']         = 'include/onuninstall.php';
 $modversion['templates'][] = ['file' => 'wglinks_admin_about.tpl', 'description' => '', 'type' => 'admin'];
 $modversion['templates'][] = ['file' => 'wglinks_admin_header.tpl', 'description' => '', 'type' => 'admin'];
 $modversion['templates'][] = ['file' => 'wglinks_admin_index.tpl', 'description' => '', 'type' => 'admin'];
-$modversion['templates'][] = ['file' => 'wglinks_admin_categories.tpl', 'description' => '', 'type' => 'admin'];
-$modversion['templates'][] = ['file' => 'wglinks_admin_links.tpl', 'description' => '', 'type' => 'admin'];
+$modversion['templates'][] = ['file' => 'wglinks_admin_category.tpl', 'description' => '', 'type' => 'admin'];
+$modversion['templates'][] = ['file' => 'wglinks_admin_link.tpl', 'description' => '', 'type' => 'admin'];
 $modversion['templates'][] = ['file' => 'wglinks_admin_footer.tpl', 'description' => '', 'type' => 'admin'];
 // User
 $modversion['templates'][] = ['file' => 'wglinks_header.tpl', 'description' => ''];
 $modversion['templates'][] = ['file' => 'wglinks_index.tpl', 'description' => ''];
-$modversion['templates'][] = ['file' => 'wglinks_links_default.tpl', 'description' => ''];
-$modversion['templates'][] = ['file' => 'wglinks_links_cards.tpl', 'description' => ''];
-$modversion['templates'][] = ['file' => 'wglinks_block_links_default.tpl', 'description' => ''];
-$modversion['templates'][] = ['file' => 'wglinks_block_links_cards.tpl', 'description' => ''];
-$modversion['templates'][] = ['file' => 'wglinks_breadcrumbs.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wglinks_link_default.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wglinks_link_cards.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wglinks_block_link_default.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wglinks_block_link_cards.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wglinks_breadcrumb.tpl', 'description' => ''];
 $modversion['templates'][] = ['file' => 'wglinks_footer.tpl', 'description' => ''];
 // ------------------- Mysql ------------------- //
 $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
@@ -94,21 +94,21 @@ $modversion['tables'][2] = 'wglinks_categories';
 // ------------------- Blocks ------------------- //
 // Blocks
 $modversion['blocks'][] = [
-    'file'        => 'links.php',
+    'file'        => 'link.php',
     'name'        => \_MI_WGLINKS_BLINKS_DEFAULT,
     'description' => \_MI_WGLINKS_BLINKS_DEFAULT_DESC,
     'show_func'   => 'b_wglinks_links_show',
     'edit_func'   => 'b_wglinks_links_edit',
-    'template'    => 'wglinks_block_links.tpl',
+    'template'    => 'wglinks_block_link.tpl',
     'options'     => 'default|default|10|100|50|default|0'
 ];
 $modversion['blocks'][] = [
-    'file'        => 'links.php',
+    'file'        => 'link.php',
     'name'        => \_MI_WGLINKS_BLINKS_LOGOCHAIN,
     'description' => \_MI_WGLINKS_BLINKS_LOGOCHAIN_DESC,
     'show_func'   => 'b_wglinks_links_show',
     'edit_func'   => 'b_wglinks_links_edit',
-    'template'    => 'wglinks_block_links_logochain.tpl',
+    'template'    => 'wglinks_block_link_logochain.tpl',
     'options'     => 'logochain|default|10|100|50|default|0'
 ];
 

@@ -38,6 +38,7 @@ CREATE TABLE `wglinks_links` (
   `link_weight` INT(8) NOT NULL DEFAULT '0',
   `link_logo` VARCHAR(100) NULL DEFAULT '',
   `link_state` INT(10) NOT NULL DEFAULT '0',
+  `link_type` INT(10) NOT NULL DEFAULT '0',
   `link_submitter` INT(10) NOT NULL DEFAULT '0',
   `link_date_created` INT(10) NOT NULL DEFAULT '0',
   PRIMARY KEY (`link_id`)

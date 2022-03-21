@@ -68,7 +68,7 @@ $links    = [];
 
 if($linksCount > 0) {
     $linksAll = $linksHandler->getAll($crLinks);
-    // Get All Links
+    // Get All Link
     foreach(\array_keys($linksAll) as $i) {
         $links[] = $linksAll[$i]->getValuesLinks();
         $keywords[] = $linksAll[$i]->getVar('link_name');
