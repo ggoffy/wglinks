@@ -44,8 +44,6 @@ require_once __DIR__ . '/common.php';
 \define('_AM_WGLINKS_CATS_LIST', 'List of Categorie');
 \define('_AM_WGLINKS_LINKS_LIST', 'List of Links');
 // ---------------- Admin Classes ----------------
-\define('_AM_WGLINKS_STATE_OFFLINE', 'Offline');
-\define('_AM_WGLINKS_STATE_ONLINE', 'Online');
 // Category add/edit
 \define('_AM_WGLINKS_CAT_ADD', 'Add Category');
 \define('_AM_WGLINKS_CAT_EDIT', 'Edit Category');

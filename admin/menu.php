@@ -33,12 +33,12 @@ $adminmenu[] = [
 ];
 $adminmenu[] = [
     'title' => \_MI_WGLINKS_ADMENU2,
-    'link' => 'admin/categories.php',
+    'link' => 'admin/category.php',
     'icon' => 'assets/icons/32/category.png',
 ];
 $adminmenu[] = [
     'title' => \_MI_WGLINKS_ADMENU3,
-    'link' => 'admin/links.php',
+    'link' => 'admin/link.php',
     'icon' => 'assets/icons/32/link.png',
 ];
 $adminmenu[] = [

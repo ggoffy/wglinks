@@ -37,8 +37,13 @@ interface Constants
     public const STATUS_ONLINE  = 1;
 
     // Constants for link types
-    public const TYPE_CONTENT = 1;
-    public const TYPE_DIRECT  = 2;
+    public const TYPE_CONTENT = 0;
+    public const TYPE_DIRECT  = 1;
 
+    // Constants for link target
+    public const TARGET_SELF   = '_self';
+    public const TARGET_BLANK  = '_blank';
+    public const TARGET_PARENT = '_parent';
+    public const TARGET_TOP    = '_top';
 
 }

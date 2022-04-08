@@ -27,6 +27,9 @@
 \define('_MA_WGLINKS_DESC', 'Dieses Modul stellt eine Liste von Link bereit');
 \define('_MA_WGLINKS_INDEX_DESC', '');
 \define('_MA_WGLINKS_SHOW_MORE', 'Weitere anzeigen');
+//Constants
+\define('_MA_WGLINKS_STATE_OFFLINE', 'Offline');
+\define('_MA_WGLINKS_STATE_ONLINE', 'Online');
 // ---------------- Contents ----------------
 // Link
 \define('_MA_WGLINKS_LINK', 'Link');
@@ -36,6 +39,14 @@
 \define('_MA_WGLINKS_LINK_EMAIL', 'e-Mail');
 \define('_MA_WGLINKS_LINK_PHONE', 'Telefon');
 \define('_MA_WGLINKS_LINK_ADDRESS', 'Adresse');
+\define('_MA_WGLINKS_LINK_TYPE', 'Art');
+\define('_MA_WGLINKS_LINK_TARGET', 'Ziel');
+\define('_MA_WGLINKS_LINK_TYPE_CONTENT', 'Inhalt in wgLinks anzeigen');
+\define('_MA_WGLINKS_LINK_TYPE_DIRECT', 'Link direkt öffnen');
+\define('_MA_WGLINKS_LINK_TARGET_SELF', 'Gleicher Tab');
+\define('_MA_WGLINKS_LINK_TARGET_BLANK', 'Neuer Tab');
+\define('_MA_WGLINKS_LINK_TARGET_PARENT', 'Elternfenster');
+\define('_MA_WGLINKS_LINK_TARGET_TOP', 'Neues Fenster');
 // Admin link
 \define('_MA_WGLINKS_ADMIN', 'Admininistration');
 // ---------------- End ----------------

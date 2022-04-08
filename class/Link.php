@@ -56,6 +56,8 @@ class Link extends \XoopsObject
         $this->initVar('link_weight', \XOBJ_DTYPE_INT);
         $this->initVar('link_logo', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('link_state', \XOBJ_DTYPE_INT);
+        $this->initVar('link_type', \XOBJ_DTYPE_INT);
+        $this->initVar('link_target', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('link_submitter', \XOBJ_DTYPE_INT);
         $this->initVar('link_date_created', \XOBJ_DTYPE_INT);
     }
@@ -162,12 +164,26 @@ class Link extends \XoopsObject
         // Form Text LinkWeight
         $linkWeight = $this->isNew() ? '0' : $this->getVar('link_weight');
         $form->addElement(new \XoopsFormText( \_AM_WGLINKS_WEIGHT, 'link_weight', 20, 150, $linkWeight ), true);
-        // Form Select Albstate
-        $linkState = $this->isNew() ? 0 : $this->getVar('link_state');
+        // Form Select LinkState
+        $linkState = $this->isNew() ? Constants::STATUS_OFFLINE : $this->getVar('link_state');
         $linkStateSelect = new \XoopsFormRadio( \_AM_WGLINKS_LINK_STATE, 'link_state', $linkState);
-        $linkStateSelect->addOption(0, \_AM_WGLINKS_STATE_OFFLINE);
-        $linkStateSelect->addOption(1, \_AM_WGLINKS_STATE_ONLINE);
+        $linkStateSelect->addOption(Constants::STATUS_OFFLINE, \_MA_WGLINKS_STATE_OFFLINE);
+        $linkStateSelect->addOption(Constants::STATUS_ONLINE, \_MA_WGLINKS_STATE_ONLINE);
         $form->addElement($linkStateSelect);
+        // Form Select LinkType
+        $linkType = $this->isNew() ? Constants::TYPE_CONTENT : $this->getVar('link_type');
+        $linkTypeSelect = new \XoopsFormRadio( \_MA_WGLINKS_LINK_TYPE, 'link_type', $linkType);
+        $linkTypeSelect->addOption(Constants::TYPE_CONTENT, \_MA_WGLINKS_LINK_TYPE_CONTENT);
+        $linkTypeSelect->addOption(Constants::TYPE_DIRECT, \_MA_WGLINKS_LINK_TYPE_DIRECT);
+        $form->addElement($linkTypeSelect);
+        // Form Select LinkTarget
+        $linkTarget = $this->isNew() ? Constants::TARGET_SELF : $this->getVar('link_target');
+        $linkTargetSelect = new \XoopsFormRadio( \_MA_WGLINKS_LINK_TARGET, 'link_target', $linkTarget);
+        $linkTargetSelect->addOption(Constants::TARGET_SELF, \_MA_WGLINKS_LINK_TARGET_SELF);
+        $linkTargetSelect->addOption(Constants::TARGET_BLANK, \_MA_WGLINKS_LINK_TARGET_BLANK);
+        $linkTargetSelect->addOption(Constants::TARGET_PARENT, \_MA_WGLINKS_LINK_TARGET_PARENT);
+        $linkTargetSelect->addOption(Constants::TARGET_TOP, \_MA_WGLINKS_LINK_TARGET_TOP);
+        $form->addElement($linkTargetSelect);
         // Form Select User
         $linkSubmitter = $this->isNew() ? $GLOBALS['xoopsUser']->getVar('uid') : $this->getVar('link_submitter');
         $form->addElement(new \XoopsFormSelectUser( \_AM_WGLINKS_SUBMITTER, 'link_submitter', false, $linkSubmitter ), true);
@@ -216,6 +232,34 @@ class Link extends \XoopsObject
         $ret['weight'] = $this->getVar('link_weight');
         $ret['logo'] = 'blank.gif' === $this->getVar('link_logo') ? '' : $this->getVar('link_logo');
         $ret['state'] = $this->getVar('link_state');
+        $ret['state_text'] = Constants::STATUS_ONLINE == $this->getVar('link_state') ? \_MA_WGLINKS_STATE_ONLINE : \_MA_WGLINKS_STATE_OFFLINE;
+        $ret['type'] = $this->getVar('link_type');
+        switch ($this->getVar('link_type')) {
+            case Constants::TYPE_DIRECT:
+                $ret['type_text'] = \_MA_WGLINKS_LINK_TYPE_CONTENT;
+                $ret['href']      = $ret['url'];
+                break;
+            case Constants::TYPE_CONTENT:
+            default:
+                $ret['type_text'] = \_MA_WGLINKS_LINK_TYPE_DIRECT;
+                $ret['href']      = \WGLINKS_URL . '/index.php?link_id=' . $ret['id'];
+                break;
+        }
+        switch ($this->getVar('link_target')) {
+            case Constants::TARGET_BLANK:
+                $ret['target_text'] = \_MA_WGLINKS_LINK_TARGET_BLANK;
+                break;
+            case Constants::TARGET_PARENT:
+                $ret['target_text'] = \_MA_WGLINKS_LINK_TARGET_PARENT;
+                break;
+            case Constants::TARGET_TOP:
+                $ret['target_text'] = \_MA_WGLINKS_LINK_TARGET_TOP;
+                break;
+            case Constants::TARGET_SELF:
+            default:
+                $ret['target_text'] = \_MA_WGLINKS_LINK_TARGET_SELF;
+                break;
+        }
         $ret['submitter'] = \XoopsUser::getUnameFromId($this->getVar('link_submitter'));
         $ret['date_created'] = \formatTimestamp($this->getVar('link_date_created'), 's');
         return $ret;

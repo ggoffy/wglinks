@@ -95,16 +95,16 @@ switch($op) {
             $linksObj = $linksHandler->create();
         }
         // Set Vars
-        $linksObj->setVar('link_catid', $_POST['link_catid']);
-        $linksObj->setVar('link_name', $_POST['link_name']);
-        $linksObj->setVar('link_url', $_POST['link_url']);
-        $linksObj->setVar('link_tooltip', $_POST['link_tooltip']);
-        $linksObj->setVar('link_detail', $_POST['link_detail']);
-        $linksObj->setVar('link_contact', $_POST['link_contact']);
-        $linksObj->setVar('link_email', $_POST['link_email']);
-        $linksObj->setVar('link_phone', $_POST['link_phone']);
-        $linksObj->setVar('link_address', $_POST['link_address']);
-        $linksObj->setVar('link_weight', $_POST['link_weight'] ?? 0);
+        $linksObj->setVar('link_catid', Request::getInt('link_catid'));
+        $linksObj->setVar('link_name', Request::getString('link_name'));
+        $linksObj->setVar('link_url', Request::getString('link_url'));
+        $linksObj->setVar('link_tooltip', Request::getString('link_tooltip'));
+        $linksObj->setVar('link_detail', Request::getString('link_detail'));
+        $linksObj->setVar('link_contact', Request::getString('link_contact'));
+        $linksObj->setVar('link_email', Request::getString('link_email'));
+        $linksObj->setVar('link_phone', Request::getString('link_phone'));
+        $linksObj->setVar('link_address', Request::getString('link_address'));
+        $linksObj->setVar('link_weight', Request::getInt('link_weight'));
         // Set Var link_logo
         $fileName = $_FILES['attachedfile']['name'];
         if (\strlen($fileName) > 0) {
@@ -113,7 +113,7 @@ switch($op) {
             $uploader = new \XoopsMediaUploader(\WGLINKS_UPLOAD_IMAGE_PATH . '/links/large/', $helper->getConfig('mimetypes'), $helper->getConfig('maxsize'), null, null);
             if($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
                 $extension = \preg_replace('/^.+\.([^.]+)$/sU', '', $fileName);
-                $imgName = \str_replace(' ', '', $_POST['link_name']) . '.' . $extension;
+                $imgName = \str_replace(' ', '', Request::getString('link_name')) . '.' . $extension;
                 $uploader->setPrefix($imgName);
                 $uploader->fetchMedia($_POST['xoops_upload_file'][0]);
                 if (!$uploader->upload()) {
@@ -135,11 +135,13 @@ switch($op) {
                 }
             }
         } else {
-                $linksObj->setVar('link_logo', $_POST['link_logo']);
+                $linksObj->setVar('link_logo', Request::getString('link_logo'));
         }
-        $linksObj->setVar('link_state', $_POST['link_state'] ?? 0);
-        $linksObj->setVar('link_submitter', $_POST['link_submitter'] ?? 0);
-        $linksObj->setVar('link_date_created', \strtotime($_POST['link_date_created']));
+        $linksObj->setVar('link_state', Request::getInt('link_state'));
+        $linksObj->setVar('link_type', Request::getInt('link_type'));
+        $linksObj->setVar('link_target', Request::getString('link_target'));
+        $linksObj->setVar('link_submitter', Request::getInt('link_submitter'));
+        $linksObj->setVar('link_date_created', \strtotime(Request::getString('link_date_created')));
         // Insert Data
         if($linksHandler->insert($linksObj)) {
             \redirect_header('link.php?op=list', 2, \_AM_WGLINKS_FORM_OK);
@@ -179,7 +181,7 @@ switch($op) {
 
     break;
     case 'order':
-        $lorder = $_POST['lorder'];
+        $lorder = Request::getInt('lorder');
         for ($i = 0, $iMax = \count($lorder); $i < $iMax; $i++){
             $linksObj = $linksHandler->get($lorder[$i]);
             $linksObj->setVar('link_weight',$i+1);

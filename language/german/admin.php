@@ -44,8 +44,6 @@ require_once __DIR__ . '/common.php';
 \define('_AM_WGLINKS_CATS_LIST', 'Liste der Kategorien');
 \define('_AM_WGLINKS_LINKS_LIST', 'Liste der Links');
 // ---------------- Admin Classes ----------------
-\define('_AM_WGLINKS_STATE_OFFLINE', 'Offline');
-\define('_AM_WGLINKS_STATE_ONLINE', 'Online');
 // Link add/edit
 \define('_AM_WGLINKS_CAT_ADD', 'Link hinzufügen');
 \define('_AM_WGLINKS_CAT_EDIT', 'Link bearbeiten');
@@ -69,7 +67,7 @@ require_once __DIR__ . '/common.php';
 \define('_AM_WGLINKS_LINK_PHONE', 'Telefon');
 \define('_AM_WGLINKS_LINK_ADDRESS', 'Adresse');
 \define('_AM_WGLINKS_LINK_LOGO', 'Logo');
-\define('_AM_WGLINKS_LINK_STATE', 'State');
+\define('_AM_WGLINKS_LINK_STATE', 'Status');
 // Clone feature
 \define('_AM_WGLINKS_CLONE', 'Klonen');
 \define('_AM_WGLINKS_CLONE_DSC', 'Ein Modul zu klonen war noch nie so einfach! Geben Sie einfach den Namen den Sie wollen und Knopf drücken!');

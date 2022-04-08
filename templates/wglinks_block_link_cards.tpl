@@ -4,14 +4,16 @@
             <div class='wglinks-link-card'>
                 <{if $link.logo|default:false}>
                     <p class="wglinks-link-img">
-                        <a href="<{$wglinks_url}>/index.php?link_id=<{$link.id}>" title="<{$link.tooltip|default:''}>" target="_self">
+                        <a href="<{$link.href}>" title="<{$link.tooltip|default:''}>" target="<{$link.link_target|default:'_self'}>">
                             <img src="<{$wglinks_upload_url}>/images/links/thumbs/<{$link.logo}>" alt="<{$link.tooltip|default:''}>" class="img-responsive center" style="height:<{$imgheight}>">
                         </a>
                     </p>
                 <{/if}>
-                <p class="wglinks-link-block center">
-                    <a href="<{$wglinks_url}>/index.php?link_id=<{$link.id}>" title="<{$link.tooltip|default:''}>" target="_self"><{$link.tooltip|default:''}></a>
-                </p>
+                <{if $link.tooltip|default:''}>
+                    <p class="wglinks-link-block center">
+                        <a href="<{$link.href}>" title="<{$link.tooltip|default:''}>" target="<{$link.link_target|default:'_self'}>"><{$link.tooltip|default:''}></a>
+                    </p>
+                <{/if}>
             </div>
         </div>
         <{if ($index_style|default:'' == '2cards' && $smarty.foreach.link.iteration % 2 == 0) || ($index_style|default:'' == '3cards' && $smarty.foreach.link.iteration % 3 == 0) || ($index_style|default:'' == '4cards' && $smarty.foreach.link.iteration % 4 == 0) || ($index_style|default:'' == '6cards' && $smarty.foreach.link.iteration % 6 == 0) || ($index_style|default:'' == '12cards' && $smarty.foreach.link.iteration % 12 == 0)}>

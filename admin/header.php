@@ -49,8 +49,9 @@ $GLOBALS['xoopsTpl']->assign('sysPathIcon32', $sysPathIcon32);
 $GLOBALS['xoopsTpl']->assign('modPathIcon16', $modPathIcon16);
 $GLOBALS['xoopsTpl']->assign('modPathIcon32', $modPathIcon32);
 // Load languages
-\xoops_loadLanguage('admin');
-\xoops_loadLanguage('modinfo');
+//\xoops_loadLanguage('admin');
+\xoops_loadLanguage('modinfo', 'wglinks');
+\xoops_loadLanguage('main', 'wglinks');
 
-xoops_cp_header();
+\xoops_cp_header();
 $adminObject = \Xmf\Module\Admin::getInstance();
