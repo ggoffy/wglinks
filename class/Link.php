@@ -213,6 +213,7 @@ class Link extends \XoopsObject
         $categoriesObj = $categoriesHandler->get($this->getVar('link_catid'));
         $ret['catname'] = $categoriesObj->getVar('cat_name');
         $ret['name'] = $this->getVar('link_name');
+        $ret['url'] = '';
         if ( 'http://' !== $this->getVar('link_url') && 'https://' !== $this->getVar('link_url') ) {
             $ret['url'] = $this->getVar('link_url');
             if (\substr($this->getVar('link_url'), 0, 5) == 'http:') {
@@ -236,12 +237,12 @@ class Link extends \XoopsObject
         $ret['type'] = $this->getVar('link_type');
         switch ($this->getVar('link_type')) {
             case Constants::TYPE_DIRECT:
-                $ret['type_text'] = \_MA_WGLINKS_LINK_TYPE_CONTENT;
+                $ret['type_text'] = \_MA_WGLINKS_LINK_TYPE_DIRECT;
                 $ret['href']      = $ret['url'];
                 break;
             case Constants::TYPE_CONTENT:
             default:
-                $ret['type_text'] = \_MA_WGLINKS_LINK_TYPE_DIRECT;
+                $ret['type_text'] = \_MA_WGLINKS_LINK_TYPE_CONTENT;
                 $ret['href']      = \WGLINKS_URL . '/index.php?link_id=' . $ret['id'];
                 break;
         }
