@@ -28,7 +28,7 @@ $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 // ------------------- Informations ------------------- //
 $modversion['name']                = \_MI_WGLINKS_NAME;
 $modversion['version']             = '1.1.0';
-$modversion['module_status']       = 'RC 1';
+$modversion['module_status']       = 'Stable';
 $modversion['description']         = \_MI_WGLINKS_DESC;
 $modversion['author']              = 'XOOPS on Wedega';
 $modversion['author_mail']         = 'webmaster@wedega.com';
@@ -40,7 +40,7 @@ $modversion['license_url']         = 'www.gnu.org/licenses/gpl-2.0.html/';
 $modversion['help']                = 'page=help';
 $modversion['release_info']        = 'release_info';
 $modversion['release_file']        = \XOOPS_URL . '/modules/wglinks/docs/release_info file';
-$modversion['release_date']        = '2021/12/30';
+$modversion['release_date']        = '2023/02/28'; // format: yyyy/mm/dd
 $modversion['manual']              = 'link to manual file';
 $modversion['manual_file']         = \XOOPS_URL . '/modules/wglinks/docs/install.txt';
 $modversion['min_php']             = '7.4';
@@ -60,7 +60,7 @@ $modversion['support_url']         = 'http://xoops.org/modules/newbb';
 $modversion['support_name']        = 'Support Forum';
 $modversion['module_website_url']  = 'www.xoops.org';
 $modversion['module_website_name'] = 'XOOPS Project';
-$modversion['release']             = '2021-12-30';
+$modversion['release']             = '2023-02-28';
 $modversion['system_menu']         = 1;
 $modversion['hasAdmin']            = 1;
 $modversion['hasMain']             = 1;
