@@ -27,8 +27,8 @@ $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
 // ------------------- Informations ------------------- //
 $modversion['name']                = \_MI_WGLINKS_NAME;
-$modversion['version']             = '1.1.0';
-$modversion['module_status']       = 'Stable';
+$modversion['version']             = '1.1.1';
+$modversion['module_status']       = 'RC1';
 $modversion['description']         = \_MI_WGLINKS_DESC;
 $modversion['author']              = 'XOOPS on Wedega';
 $modversion['author_mail']         = 'webmaster@wedega.com';
@@ -76,6 +76,7 @@ $modversion['templates'][] = ['file' => 'wglinks_admin_header.tpl', 'description
 $modversion['templates'][] = ['file' => 'wglinks_admin_index.tpl', 'description' => '', 'type' => 'admin'];
 $modversion['templates'][] = ['file' => 'wglinks_admin_category.tpl', 'description' => '', 'type' => 'admin'];
 $modversion['templates'][] = ['file' => 'wglinks_admin_link.tpl', 'description' => '', 'type' => 'admin'];
+$modversion['templates'][] = ['file' => 'wglinks_admin_clone.tpl', 'description' => '', 'type' => 'admin'];
 $modversion['templates'][] = ['file' => 'wglinks_admin_footer.tpl', 'description' => '', 'type' => 'admin'];
 // User
 $modversion['templates'][] = ['file' => 'wglinks_header.tpl', 'description' => ''];
