@@ -70,7 +70,7 @@ function b_wglinks_links_show($options)
         break;
     }
     $cat_ids = \implode(',', $options);
-    if ( '0' !== \substr($cat_ids, 0, 1)) {
+    if ('' !== $cat_ids &&  '0' !== \substr($cat_ids, 0, 1)) {
         $crLinks->add(new \Criteria('link_catid', '(' . $cat_ids . ')', 'IN'));
         $GLOBALS['xoopsTpl']->assign('cat_ids', $cat_ids);
     }
