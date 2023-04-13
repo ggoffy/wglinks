@@ -67,8 +67,8 @@
                         <td class="center"><{$link.submitter}></td>
                         <td class="center"><{$link.date_created}></td>
                         <td class="center  width5">
-                        <a href="link.php?op=edit&amp;link_id=<{$link.id}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 edit.png}>" alt="links" /></a>
-                        <a href="link.php?op=delete&amp;link_id=<{$link.id}>" title="<{$smarty.const._DELETE}>"><img src="<{xoModuleIcons16 delete.png}>" alt="links" /></a>
+                        <a href="link.php?op=edit&amp;link_id=<{$link.id}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 'edit.png'}>" alt="links" /></a>
+                        <a href="link.php?op=delete&amp;link_id=<{$link.id}>" title="<{$smarty.const._DELETE}>"><img src="<{xoModuleIcons16 'delete.png'}>" alt="links" /></a>
                         </td>
                     </tr>
                 <{/foreach}>

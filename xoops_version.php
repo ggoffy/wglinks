@@ -40,11 +40,11 @@ $modversion['license_url']         = 'www.gnu.org/licenses/gpl-2.0.html/';
 $modversion['help']                = 'page=help';
 $modversion['release_info']        = 'release_info';
 $modversion['release_file']        = \XOOPS_URL . '/modules/wglinks/docs/release_info file';
-$modversion['release_date']        = '2023/02/28'; // format: yyyy/mm/dd
+$modversion['release_date']        = '2023/03/14'; // format: yyyy/mm/dd
 $modversion['manual']              = 'link to manual file';
 $modversion['manual_file']         = \XOOPS_URL . '/modules/wglinks/docs/install.txt';
 $modversion['min_php']             = '7.4';
-$modversion['min_xoops']           = '2.5.11 Beta1';
+$modversion['min_xoops']           = '2.5.11 RC1';
 $modversion['min_admin']           = '1.1';
 $modversion['min_db']              = ['mysql' => '5.0.7', 'mysqli' => '5.0.7'];
 $modversion['image']               = 'assets/images/wglinks_logo.png';
@@ -60,7 +60,7 @@ $modversion['support_url']         = 'http://xoops.org/modules/newbb';
 $modversion['support_name']        = 'Support Forum';
 $modversion['module_website_url']  = 'www.xoops.org';
 $modversion['module_website_name'] = 'XOOPS Project';
-$modversion['release']             = '2023-02-28';
+$modversion['release']             = '2023-03-14';
 $modversion['system_menu']         = 1;
 $modversion['hasAdmin']            = 1;
 $modversion['hasMain']             = 1;

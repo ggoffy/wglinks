@@ -24,8 +24,8 @@
                     <td class="center"><{$category.submitter}></td>
                     <td class="center"><{$category.date_created}></td>
                     <td class="center  width5">
-                        <a href="category.php?op=edit&amp;cat_id=<{$category.id}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 edit.png}>" alt="categories" /></a>
-                        <a href="category.php?op=delete&amp;cat_id=<{$category.id}>" title="<{$smarty.const._DELETE}>"><img src="<{xoModuleIcons16 delete.png}>" alt="categories" /></a>
+                        <a href="category.php?op=edit&amp;cat_id=<{$category.id}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 'edit.png'}>" alt="categories" /></a>
+                        <a href="category.php?op=delete&amp;cat_id=<{$category.id}>" title="<{$smarty.const._DELETE}>"><img src="<{xoModuleIcons16 'delete.png'}>" alt="categories" /></a>
                     </td>
                 </tr>
             <{/foreach}></tbody>
