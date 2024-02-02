@@ -3,6 +3,7 @@
  - fixed missing default value smarty (goffy)
  - fixed bug in blocks when missing cats (goffy)
  - update smarty3 (goffy)
+ - updates for XOOPS 2.5.11 Stable (goffy)
  
 <h5>1.1.0 Stable</h5>  [2023/02/28]
  - moved to last stable with smarty 2 (goffy)
