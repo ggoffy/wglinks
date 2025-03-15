@@ -42,7 +42,6 @@ class Link extends \XoopsObject
      */
     public function __construct()
     {
-        $this->helper = \XoopsModules\Wglinks\Helper::getInstance();
         $this->initVar('link_id', \XOBJ_DTYPE_INT);
         $this->initVar('link_catid', \XOBJ_DTYPE_INT);
         $this->initVar('link_name', \XOBJ_DTYPE_TXTBOX);

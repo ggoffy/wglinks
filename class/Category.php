@@ -42,7 +42,6 @@ class Category extends \XoopsObject
      */
     public function __construct()
     {
-        $this->wglinks = \XoopsModules\Wglinks\Helper::getInstance();
         $this->initVar('cat_id', \XOBJ_DTYPE_INT);
         $this->initVar('cat_name', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_desc', \XOBJ_DTYPE_TXTBOX);
