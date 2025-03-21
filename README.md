@@ -4,11 +4,13 @@
 
 ## wgLinks module for  [XOOPS CMS 2.5.11+](https://xoops.org)
 
+![module image](./assets/images/wglinks.jpg)
+
+**wgLinks** module for [XOOPS CMS](https://xoops.org), a very simple module for link collections
+
 [![Software License](https://img.shields.io/badge/license-GPL-brightgreen.svg?style=flat)](LICENSE)
 [![Latest Pre-Release](https://img.shields.io/github/tag/ggoffy/wglinks.svg?style=flat)](https://github.com/XoopsModules25x/wglinks/tags/)
 [![Latest Version](https://img.shields.io/github/release/ggoffy/wglinks.svg?style=flat)](https://github.com/XoopsModules25x/wglinks/releases/)
-
-**wgLinks** module for [XOOPS CMS](https://xoops.org), a very simple module for link collections
 
 Main features:
 * Usage of categories
