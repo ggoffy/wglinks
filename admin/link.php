@@ -15,10 +15,7 @@
  * @copyright      module for xoops
  * @license        GPL 2.0 or later
  * @package        wglinks
- * @since          1.0
- * @min_xoops      2.5.7
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
- * @version        $Id: 1.0 link.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
  */
 
 use Xmf\Request;
@@ -28,6 +25,8 @@ include __DIR__ . '/header.php';
 $op = Request::getString('op', 'list');
 // Request link_id
 $linkId = Request::getInt('link_id');
+$start  = Request::getInt('start');
+$limit  = Request::getInt('limit');
 
 switch($op) {
     case 'list':

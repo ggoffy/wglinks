@@ -18,10 +18,7 @@ namespace XoopsModules\Wglinks;
  * @copyright      module for xoops
  * @license        GPL 2.0 or later
  * @package        wglinks
- * @since          1.0
- * @min_xoops      2.5.7
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
- * @version        $Id: 1.0 category.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
  */
 \defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
@@ -33,14 +30,14 @@ class CategoryHandler extends \XoopsPersistableObjectHandler
     /**
      * @var mixed
      */
-    private $wgCategories = null;
+    private mixed $wgCategories = null;
 
     /**
      * Constructor 
      *
-     * @param string $db
+     * @param null|XoopsDatabase $db
      */
-    public function __construct($db)
+    public function __construct(?\XoopsDatabase $db)
     {
         parent::__construct($db, 'wglinks_categories', Category::class, 'cat_id', 'cat_name');
         $this->wgCategories = \XoopsModules\Wglinks\Helper::getInstance();
@@ -52,7 +49,7 @@ class CategoryHandler extends \XoopsPersistableObjectHandler
      *
      * @return object
      */
-    public function create($isNew = true)
+    public function create($isNew = true): object
     {
         return parent::create($isNew);
     }
@@ -60,22 +57,21 @@ class CategoryHandler extends \XoopsPersistableObjectHandler
     /**
      * retrieve a field
      *
-     * @param int $i field id
+     * @param int $id field id
      * @param null $fields
      * @return \XoopsObject|null reference to the {@link Get} object
      */
-    public function get($i = null, $fields = null)
+    public function get($id = null, $fields = null): ?\XoopsObject
     {
-        return parent::get($i, $fields);
+        return parent::get($id, $fields);
     }
 
     /**
      * get inserted id
      *
-     * @param null
      * @return int reference to the {@link Get} object
      */
-    public function getInsertId()
+    public function getInsertId(): int
     {
         return $this->db->getInsertId();
     }
@@ -88,7 +84,7 @@ class CategoryHandler extends \XoopsPersistableObjectHandler
      * @param string $order
      * @return int
      */
-    public function getCountCategories($start = 0, $limit = 0, $sort = 'cat_id ASC, cat_desc', $order = 'ASC')
+    public function getCountCategories(int $start = 0, int $limit = 0, string $sort = 'cat_id ASC, cat_desc', string $order = 'ASC'): int
     {
         $criteriaCountCategories = new \CriteriaCompo();
         $criteriaCountCategories = $this->getCategoriesCriteria($criteriaCountCategories, $start, $limit, $sort, $order);
@@ -99,14 +95,14 @@ class CategoryHandler extends \XoopsPersistableObjectHandler
      * Get All Category in the database
      * @param int $start
      * @param int $limit
-     * @param string $sort
-     * @param string $order
+     * @param null|string $sort
+     * @param null|string $order
      * @return array
      */
-    public function getAllCategories($start = 0, $limit = 0, $sort = 'cat_id ASC, cat_desc', $order = 'ASC')
+    public function getAllCategories(int $start = 0, int $limit = 0, null|string $sort = 'cat_id ASC, cat_desc', null|string $order = 'ASC'): array
     {
         $criteriaAllCategories = new \CriteriaCompo();
-        $criteriaAllCategories = $this->getCategoriesCriteria($criteriaAllCategories, $start, $limit, $sort = 'cat_id ASC, cat_desc', $order = 'ASC');
+        $criteriaAllCategories = $this->getCategoriesCriteria($criteriaAllCategories, $start, $limit, $sort, $order);
         return parent::getAll($criteriaAllCategories);
     }
 
@@ -119,7 +115,7 @@ class CategoryHandler extends \XoopsPersistableObjectHandler
      * @param $order
      * @return mixed
      */
-    private function getCategoriesCriteria($criteriaCategories, $start, $limit, $sort, $order)
+    private function getCategoriesCriteria($criteriaCategories, $start, $limit, $sort, $order): mixed
     {
         $criteriaCategories->setStart( $start );
         $criteriaCategories->setLimit( $limit );

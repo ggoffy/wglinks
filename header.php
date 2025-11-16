@@ -15,14 +15,12 @@
  * @copyright      module for xoops
  * @license        GPL 2.0 or later
  * @package        wglinks
- * @since          1.0
- * @min_xoops      2.5.7
  * @author         XOOPS on Wedega - Email:<info@email.com> - Website:<http://xoops.org>
- * @version        $Id: 1.0 header.php 13070 Wed 2016-03-23 10:31:46Z XOOPS Development Team $
  */
 include \dirname(__DIR__, 2) . '/mainfile.php';
 include __DIR__ .'/include/common.php';
 $dirname  = \basename(__DIR__);
+$moduleDirNameUpper = \mb_strtoupper($dirname);
 
 // Get instance of module
 $helper = \XoopsModules\Wglinks\Helper::getInstance();

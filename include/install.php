@@ -15,10 +15,7 @@
  * @copyright      module for xoops
  * @license        GPL 2.0 or later
  * @package        wglinks
- * @since          1.0
- * @min_xoops      2.5.7
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
- * @version        $Id: 1.0 install.php 13070 Sun 2016-03-20 15:20:15Z XOOPS Development Team $
  */
 
 
@@ -29,7 +26,7 @@ use XoopsModules\Wglinks\Common;
  * @param  \XoopsModule $module
  * @return bool
  */
-function xoops_module_pre_install_wglinks(\XoopsModule $module)
+function xoops_module_pre_install_wglinks(\XoopsModule $module): bool
 {
     require \dirname(__DIR__) . '/preloads/autoloader.php';
     $utility = new Wglinks\Utility();
@@ -51,11 +48,10 @@ function xoops_module_pre_install_wglinks(\XoopsModule $module)
 }
 
 /**
- * @param \XoopsModule $module
- *
- * @return bool|string
+ * @param \XoopsModule $module {@link XoopsModule}
+ * @return true
  */
-function xoops_module_install_wglinks(\XoopsModule $module)
+function xoops_module_install_wglinks(\XoopsModule $module) : bool
 {
     require \dirname(__DIR__) . '/preloads/autoloader.php';
 

@@ -12,9 +12,7 @@
 /**
  * @copyright      2020 XOOPS Project (https://xooops.org)
  * @license        GPL 2.0 or later
- * @package        wggithub
- * @since          1.0
- * @min_xoops      2.5.10
+ * @package        wglinks
  * @author         Goffy - XOOPS Development Team - Email:<goffy@wedega.com> - Website:<https://wedega.com>
  */
 

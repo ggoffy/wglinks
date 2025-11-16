@@ -20,9 +20,7 @@ namespace XoopsModules\Wglinks;
  *
  * @copyright    2021 XOOPS Project (https://xoops.org)
  * @license      GPL 2.0 or later
- * @package      wgblocks
- * @since        1.0
- * @min_xoops    2.5.11 Beta1
+ * @package      wglinks
  * @author       Goffy - Wedega.com - Email:webmaster@wedega.com - Website:https://xoops.wedega.com
  */
 
@@ -33,17 +31,17 @@ interface Constants
 {
 
     // Constants for status
-    public const STATUS_OFFLINE = 0;
-    public const STATUS_ONLINE  = 1;
+    public const int STATUS_OFFLINE = 0;
+    public const int STATUS_ONLINE  = 1;
 
     // Constants for link types
-    public const TYPE_CONTENT = 0;
-    public const TYPE_DIRECT  = 1;
+    public const int TYPE_CONTENT = 0;
+    public const int TYPE_DIRECT  = 1;
 
     // Constants for link target
-    public const TARGET_SELF   = '_self';
-    public const TARGET_BLANK  = '_blank';
-    public const TARGET_PARENT = '_parent';
-    public const TARGET_TOP    = '_top';
+    public const string TARGET_SELF   = '_self';
+    public const string TARGET_BLANK  = '_blank';
+    public const string TARGET_PARENT = '_parent';
+    public const string TARGET_TOP    = '_top';
 
 }

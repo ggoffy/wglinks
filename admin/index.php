@@ -15,10 +15,7 @@
  * @copyright      module for xoops
  * @license        GPL 2.0 or later
  * @package        wglinks
- * @since          1.0
- * @min_xoops      2.5.7
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
- * @version        $Id: 1.0 index.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
  */
 
 use XoopsModules\Wglinks\Common;
@@ -36,6 +33,7 @@ $adminObject->addInfoBoxLine(\sprintf('<label>' . \_AM_WGLINKS_THEREARE_CATS . '
 $adminObject->addInfoBoxLine(\sprintf('<label>' . \_AM_WGLINKS_THEREARE_LINKS . '</label>', $countLinks));
 
 // Upload Folders
+$folder = [];
 $configurator = new Common\Configurator();
 if ($configurator->uploadFolders && \is_array($configurator->uploadFolders)) {
     foreach (\array_keys($configurator->uploadFolders) as $i) {

@@ -14,16 +14,13 @@
  *
  * @copyright      module for xoops
  * @license        GPL 2.0 or later
- * @package        wggallery
- * @since          1.0
- * @min_xoops      2.5.9
+ * @package        wglinks
  * @author         Wedega - Email:<webmaster@wedega.com> - Website:<https://wedega.com>
- * @version        $Id: 1.0 imagehandler.php 1 Mon 2018-03-19 10:04:49Z XOOPS Project (www.xoops.org) $
  */
 
 /**
  * resize image if size exceed given width/height
- * @param $sourcefile
+ * @param string $sourcefile
  * @param string $endfile
  * @param int $max_width
  * @param int $max_height
@@ -31,7 +28,8 @@
  * @return string|bool
  */
 
-function ResizeImage($sourcefile, $endfile, $max_width, $max_height, $imageMimetype){
+function ResizeImage(string $sourcefile, string $endfile, int $max_width, int $max_height, $imageMimetype): bool|string
+{
     // check file extension
     switch($imageMimetype){
         case'image/png':
@@ -105,7 +103,7 @@ function ResizeImage($sourcefile, $endfile, $max_width, $max_height, $imageMimet
 }
 
 
-function ResizeAndCrop($src_url, $src_mimetype, $dest_url, $dest_w, $dest_h, $quality=90)
+function ResizeAndCrop($src_url, $src_mimetype, $dest_url, $dest_w, $dest_h, $quality=90): bool|string
 {
     // check file extension
     switch($src_mimetype){
@@ -180,7 +178,7 @@ function ResizeAndCrop($src_url, $src_mimetype, $dest_url, $dest_w, $dest_h, $qu
     return TRUE;
 }
 
-function MergeImage($src_url, $dest_url, $pos, $of)
+function MergeImage($src_url, $dest_url, $pos, $of): void
 {
     $dest = \imagecreatefromjpeg($dest_url);
     // ImageCopy ( resource $dst_im , resource $src_im , int $dst_x , int $dst_y , int $src_x , int $src_y , int $src_w , int $src_h )

@@ -15,25 +15,22 @@
  * @copyright      module for xoops
  * @license        GPL 2.0 or later
  * @package        wglinks
- * @since          1.0
- * @min_xoops      2.5.7
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
- * @version        $Id: 1.0 link.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
  */
 include_once \XOOPS_ROOT_PATH.'/modules/wglinks/include/common.php';
 // Function show block
-function b_wglinks_links_show($options)
+function b_wglinks_links_show($options): array
 {
     include_once \XOOPS_ROOT_PATH.'/modules/wglinks/class/Link.php';
-    $myts = MyTextSanitizer::getInstance();
+
     $GLOBALS['xoopsTpl']->assign('wglinks_upload_url', \WGLINKS_UPLOAD_URL);
     $GLOBALS['xoopsTpl']->assign('wglinks_url', \WGLINKS_URL);
     $GLOBALS['xoTheme']->addStylesheet(\XOOPS_URL . '/modules/wglinks/assets/css/style.css');
     $block       = [];
-    $typeBlock   = $options[0];
+    //$typeBlock   = $options[0];
     $sortby      = $options[1];
     $limit       = $options[2];
-    $lenghtTitle = $options[3];
+    //$lenghtTitle = $options[3];
     $logoHeight  = $options[4];
     $blockStyle  = $options[5];
     $showMore    = $options[6];
@@ -70,7 +67,7 @@ function b_wglinks_links_show($options)
         break;
     }
     $cat_ids = \implode(',', $options);
-    if ('' !== $cat_ids &&  '0' !== \substr($cat_ids, 0, 1)) {
+    if ('' !== $cat_ids && !str_starts_with($cat_ids, '0')) {
         $crLinks->add(new \Criteria('link_catid', '(' . $cat_ids . ')', 'IN'));
         $GLOBALS['xoopsTpl']->assign('cat_ids', $cat_ids);
     }
@@ -93,7 +90,7 @@ function b_wglinks_links_show($options)
 }
 
 // Function edit block
-function b_wglinks_links_edit($options)
+function b_wglinks_links_edit($options): string
 {
     include_once \XOOPS_ROOT_PATH.'/modules/wglinks/class/Link.php';
     $wglinks = \XoopsModules\Wglinks\Helper::getInstance();
@@ -148,6 +145,5 @@ function b_wglinks_links_edit($options)
         $form .= "<option value='" . $cat_id . "' " . (\in_array($cat_id, $options) === false || \in_array(0, $options) === true ? '' : "selected='selected'") . '>' . $categoriesAll[$i]->getVar('cat_name') . '</option>';
     }
     $form .= '</select>';
-    unset($crCats);
     return $form;
 }

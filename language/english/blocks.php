@@ -15,10 +15,7 @@
  * @copyright      module for xoops
  * @license        GPL 2.0 or later
  * @package        wglinks
- * @since          1.0
- * @min_xoops      2.5.7
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
- * @version        $Id: 1.0 blocks.php 13070 Sun 2016-03-20 15:20:15Z XOOPS Development Team $
  */
 
 include_once 'main.php';

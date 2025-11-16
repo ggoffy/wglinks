@@ -15,10 +15,7 @@
  * @copyright      module for xoops
  * @license        GPL 2.0 or later
  * @package        wglinks
- * @since          1.0
- * @min_xoops      2.5.7
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
- * @version        $Id: 1.0 xoops_version.php 13070 Sun 2016-03-20 15:20:15Z XOOPS Development Team $
  */
 // 
 
@@ -27,14 +24,14 @@ $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
 // ------------------- Informations ------------------- //
 $modversion['name']                = \_MI_WGLINKS_NAME;
-$modversion['version']             = '1.1.1';
-$modversion['module_status']       = 'Stable';
-$modversion['release']             = '2025-06-07';
-$modversion['release_date']        = '2025/06/07'; // format: yyyy/mm/dd
+$modversion['version']             = '1.1.2';
+$modversion['module_status']       = 'Beta';
+$modversion['release']             = '2025-11-16';
+$modversion['release_date']        = '2025/11/16'; // format: yyyy/mm/dd
 $modversion['description']         = \_MI_WGLINKS_DESC;
 $modversion['author']              = 'XOOPS on Wedega';
 $modversion['author_mail']         = 'webmaster@wedega.com';
-$modversion['author_website_url']  = 'http://xoops.org';
+$modversion['author_website_url']  = 'https://xoops.org';
 $modversion['author_website_name'] = 'XOOPS Project';
 $modversion['credits']             = 'XOOPS Development Team';
 $modversion['license']             = 'GPL 2.0 or later';
@@ -44,8 +41,8 @@ $modversion['release_info']        = 'release_info';
 $modversion['release_file']        = \XOOPS_URL . '/modules/wglinks/docs/release_info file';
 $modversion['manual']              = 'link to manual file';
 $modversion['manual_file']         = \XOOPS_URL . '/modules/wglinks/docs/install.txt';
-$modversion['min_php']             = '7.4';
-$modversion['min_xoops']           = '2.5.11 Stable';
+$modversion['min_php']             = '8.4';
+$modversion['min_xoops']           = '2.5.12';
 $modversion['min_admin']           = '1.1';
 $modversion['min_db']              = ['mysql' => '5.0.7', 'mysqli' => '5.0.7'];
 $modversion['image']               = 'assets/images/wglinks_logo.png';
@@ -55,9 +52,9 @@ $modversion['sysicons16']          = '../../Frameworks/moduleclasses/icons/16';
 $modversion['sysicons32']          = '../../Frameworks/moduleclasses/icons/32';
 $modversion['modicons16']          = 'assets/icons/16';
 $modversion['modicons32']          = 'assets/icons/32';
-$modversion['demo_site_url']       = 'http://www.xoops.org';
+$modversion['demo_site_url']       = 'https://www.xoops.org';
 $modversion['demo_site_name']      = 'XOOPS Demo Site';
-$modversion['support_url']         = 'http://xoops.org/modules/newbb';
+$modversion['support_url']         = 'https://xoops.org/modules/newbb';
 $modversion['support_name']        = 'Support Forum';
 $modversion['module_website_url']  = 'www.xoops.org';
 $modversion['module_website_name'] = 'XOOPS Project';
@@ -142,9 +139,7 @@ require_once __DIR__ . '/include/xoops_version.inc.php';
 $iniPostMaxSize = wgLinksReturnBytes(\ini_get('post_max_size'));
 $iniUploadMaxFileSize = wgLinksReturnBytes(\ini_get('upload_max_filesize'));
 $maxSize              = min($iniPostMaxSize, $iniUploadMaxFileSize);
-if ($maxSize > 10000 * 1048576) {
-    $increment = 500;
-}
+$increment = 500;
 if ($maxSize <= 10000 * 1048576) {
     $increment = 200;
 }

@@ -14,11 +14,8 @@
  *
  * @copyright      module for xoops
  * @license        GPL 2.0 or later
- * @package        wgblocks
- * @since          1.0
- * @min_xoops      2.5.11
+ * @package        wglinks
  * @author         Wedega - Email:<webmaster@wedega.com> - Website:<https://wedega.com>
- * @version        $Id: 1.0 images.php 1 Mon 2018-03-19 10:04:51Z XOOPS Project (www.xoops.org) $
  */
 
 use Xmf\Request;
@@ -102,7 +99,7 @@ require __DIR__ . '/footer.php';
 /**
  * @param $path
  */
-function cloneFileFolder($path)
+function cloneFileFolder($path): void
 {
     global $patKeys;
     global $patValues;
@@ -121,7 +118,7 @@ function cloneFileFolder($path)
         if ($handle) {
             while (false !== ($file = \readdir($handle))) {
                 if (0 !== \mb_strpos($file, '.')) {
-                    cloneFileFolder("{$path}/{$file}");
+                    cloneFileFolder("$path/$file");
                 }
             }
             \closedir($handle);
@@ -145,7 +142,7 @@ function cloneFileFolder($path)
  *
  * @return bool
  */
-function createLogo($dirname)
+function createLogo($dirname): bool
 {
     if (!\extension_loaded('gd')) {
         return false;
@@ -184,7 +181,7 @@ function createLogo($dirname)
     // Write text
     $textColor     = \imagecolorallocate($imageModule, 0, 0, 0);
     $spaceToBorder = (int)((80 - \mb_strlen($dirname) * 6.5) / 2);
-    \imagefttext($imageModule, 8.5, 0, $spaceToBorder, 45, $textColor, $font, \ucfirst($dirname), []);
+    \imagefttext($imageModule, 8.5, 0, $spaceToBorder, 45, $textColor, $font, \ucfirst($dirname));
 
     // Set transparency color
     //$white = imagecolorallocatealpha($imageModule, 255, 255, 255, 127);

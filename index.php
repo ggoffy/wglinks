@@ -15,10 +15,7 @@
  * @copyright      module for xoops
  * @license        GPL 2.0 or later
  * @package        wglinks
- * @since          1.0
- * @min_xoops      2.5.7
  * @author         XOOPS on Wedega - Email:<info@email.com> - Website:<http://xoops.org>
- * @version        $Id: 1.0 index.php 13070 Wed 2016-03-23 10:31:46Z XOOPS Development Team $
  */
 
 use Xmf\Request;
@@ -54,7 +51,7 @@ if ( 0 < $linkId ) {
 if ( 0 < $linkCatId ) {
     $crLinks->add(new \Criteria('link_catid', $linkCatId));
 }
-if ( '0' !== \substr($catIds, 0, 1)) {
+if (!str_starts_with($catIds, '0')) {
     $crLinks->add(new \Criteria('link_catid', '(' . $catIds . ')', 'IN'));
 }
 $crLinks->setStart( $start );

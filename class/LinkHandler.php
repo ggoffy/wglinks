@@ -18,10 +18,7 @@ namespace XoopsModules\Wglinks;
  * @copyright      module for xoops
  * @license        GPL 2.0 or later
  * @package        wglinks
- * @since          1.0
- * @min_xoops      2.5.7
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
- * @version        $Id: 1.0 link.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
  */
 \defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
@@ -33,14 +30,14 @@ class LinkHandler extends \XoopsPersistableObjectHandler
     /**
      * @var mixed
      */
-    private $wglinks = null;
+    private mixed $wglinks = null;
 
     /**
      * Constructor 
      *
-     * @param string $db
+     * @param null|XoopsDatabase $db
      */
-    public function __construct($db)
+    public function __construct(?\XoopsDatabase $db)
     {
         parent::__construct($db, 'wglinks_links', Link::class, 'link_id', 'link_url');
         $this->wglinks = \XoopsModules\Wglinks\Helper::getInstance();
@@ -52,7 +49,7 @@ class LinkHandler extends \XoopsPersistableObjectHandler
      *
      * @return object
      */
-    public function create($isNew = true)
+    public function create($isNew = true): object
     {
         return parent::create($isNew);
     }
@@ -60,22 +57,21 @@ class LinkHandler extends \XoopsPersistableObjectHandler
     /**
      * retrieve a field
      *
-     * @param int $i field id
+     * @param int $id field id
      * @param null $fields
      * @return \XoopsObject|null reference to the {@link Get} object
      */
-    public function get($i = null, $fields = null)
+    public function get($id = null, $fields = null): ?\XoopsObject
     {
-        return parent::get($i, $fields);
+        return parent::get($id, $fields);
     }
 
     /**
      * get inserted id
      *
-     * @param null
      * @return int reference to the {@link Get} object
      */
-    public function getInsertId()
+    public function getInsertId(): int
     {
         return $this->db->getInsertId();
     }
@@ -88,7 +84,7 @@ class LinkHandler extends \XoopsPersistableObjectHandler
      * @param string $order
      * @return int
      */
-    public function getCountLinks($start = 0, $limit = 0, $sort = 'link_catid ASC, link_weight ASC, link_id', $order = 'ASC')
+    public function getCountLinks(int $start = 0, int $limit = 0, string $sort = 'link_catid ASC, link_weight ASC, link_id', string $order = 'ASC'): int
     {
         $criteriaCountLinks = new \CriteriaCompo();
         $criteriaCountLinks = $this->getLinksCriteria($criteriaCountLinks, $start, $limit, $sort, $order);
@@ -99,14 +95,14 @@ class LinkHandler extends \XoopsPersistableObjectHandler
      * Get All Link in the database
      * @param int $start
      * @param int $limit
-     * @param string $sort
-     * @param string $order
+     * @param null|string $sort
+     * @param null|string $order
      * @return array
      */
-    public function getAllLinks($start = 0, $limit = 0, $sort = 'link_catid ASC, link_weight ASC, link_id', $order = 'ASC')
+    public function getAllLinks(int $start = 0, int $limit = 0, null|string $sort = 'link_catid ASC, link_weight ASC, link_id', null|string $order = 'ASC'): array
     {
         $criteriaAllLinks = new \CriteriaCompo();
-        $criteriaAllLinks = $this->getLinksCriteria($criteriaAllLinks, $start, $limit, $sort = 'link_catid ASC, link_weight ASC, link_id', $order = 'ASC');
+        $criteriaAllLinks = $this->getLinksCriteria($criteriaAllLinks, $start, $limit, $sort, $order);
         return parent::getAll($criteriaAllLinks);
     }
 
@@ -119,7 +115,7 @@ class LinkHandler extends \XoopsPersistableObjectHandler
      * @param $order
      * @return mixed
      */
-    private function getLinksCriteria($criteriaLinks, $start, $limit, $sort, $order)
+    private function getLinksCriteria($criteriaLinks, $start, $limit, $sort, $order): mixed
     {
         $criteriaLinks->setStart( $start );
         $criteriaLinks->setLimit( $limit );

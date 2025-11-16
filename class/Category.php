@@ -18,10 +18,7 @@ namespace XoopsModules\Wglinks;
  * @copyright      module for xoops
  * @license        GPL 2.0 or later
  * @package        wglinks
- * @since          1.0
- * @min_xoops      2.5.7
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
- * @version        $Id: 1.0 category.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
  */
 \defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
@@ -31,14 +28,7 @@ namespace XoopsModules\Wglinks;
 class Category extends \XoopsObject
 {
     /**
-     * @var mixed
-     */
-    private $wgCategories = null;
-
-    /**
-     * Constructor 
-     *
-     * @param null
+     * Constructor
      */
     public function __construct()
     {
@@ -53,10 +43,8 @@ class Category extends \XoopsObject
 
     /**
      * @static function &getInstance
-     *
-     * @param null
      */
-    public static function &getInstance()
+    public static function &getInstance(): void
     {
         static $instance = false;
         if(!$instance) {
@@ -75,16 +63,16 @@ class Category extends \XoopsObject
     /**
      * Get form
      *
-     * @param mixed $action
+     * @param bool $action
      * @return \XoopsThemeForm
      */
-    public function getFormCategories($action = false)
+    public function getFormCategories(bool $action = false): \XoopsThemeForm
     {
         if($action === false) {
             $action = $_SERVER['REQUEST_URI'];
         }
         // Title
-        $title = $this->isNew() ? \sprintf(\_AM_WGLINKS_CAT_ADD) : \sprintf(\_AM_WGLINKS_CAT_EDIT);
+        $title = $this->isNew() ? \_AM_WGLINKS_CAT_ADD : \_AM_WGLINKS_CAT_EDIT;
         // Get Theme Form
         \xoops_load('XoopsFormLoader');
         $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
@@ -93,7 +81,7 @@ class Category extends \XoopsObject
         $form->addElement(new \XoopsFormText( \_AM_WGLINKS_CAT_NAME, 'cat_name', 50, 255, $this->getVar('cat_name') ), true);
         // Form Text LinkUrl
         $cat_desc = $this->isNew() ? '' : $this->getVar('cat_desc');
-        $form->addElement(new \XoopsFormText( \_AM_WGLINKS_CAT_DESC, 'cat_desc', 50, 255, $cat_desc ), false);
+        $form->addElement(new \XoopsFormText( \_AM_WGLINKS_CAT_DESC, 'cat_desc', 50, 255, $cat_desc ));
         // Form Text LinkWeight
         $linkWeight = $this->isNew() ? '0' : $this->getVar('cat_weight');
         $form->addElement(new \XoopsFormText( \_AM_WGLINKS_WEIGHT, 'cat_weight', 20, 150, $linkWeight ), true);
@@ -116,7 +104,7 @@ class Category extends \XoopsObject
      * @param null $maxDepth
      * @return array
      */
-    public function getValuesCategories($keys = null, $format = null, $maxDepth = null)
+    public function getValuesCategories($keys = null, $format = null, $maxDepth = null): array
     {
         $ret = parent::getValues($keys, $format, $maxDepth);
         $ret['id'] = $this->getVar('cat_id');
@@ -136,7 +124,7 @@ class Category extends \XoopsObject
      *
      * @return array
      */
-    public function toArrayCategories()
+    public function toArrayCategories(): array
     {
         $ret = [];
         $vars = $this->getVars();

@@ -15,17 +15,15 @@
  * @copyright      module for xoops
  * @license        GPL 2.0 or later
  * @package        wglinks
- * @since          1.0
- * @min_xoops      2.5.7
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
- * @version        $Id: 1.0 functions.php 13070 Sun 2016-03-20 15:20:15Z XOOPS Development Team $
  */
 
 /***************Blocks**************
  * @param $cats
  * @return string
  */
-function wglinks_block_addCatSelect($cats) {
+function wglinks_block_addCatSelect($cats): string
+{
     $cat_sql = '';
     if(\is_array($cats))
     {
@@ -40,7 +38,7 @@ function wglinks_block_addCatSelect($cats) {
     return $cat_sql;
 }
 
-function wglinksMetaKeywords($content)
+function wglinksMetaKeywords($content): void
 {
     global $xoopsTpl, $xoTheme;
     $myts = MyTextSanitizer::getInstance();
@@ -52,7 +50,7 @@ function wglinksMetaKeywords($content)
     }
 }
 
-function wglinksMetaDescription($content)
+function wglinksMetaDescription($content): void
 {
     global $xoopsTpl, $xoTheme;
     $myts = MyTextSanitizer::getInstance();
@@ -74,20 +72,18 @@ function wglinksMetaDescription($content)
  * @param string $type
  * @return string $type    string replacement for any blank case
  */
-function wglinks_RewriteUrl($module, $array, $type = 'content')
+function wglinks_RewriteUrl($module, $array, string $type = 'content'): string
 {
     $comment = '';
     $wglinks = \XoopsModules\Wglinks\Helper::getInstance();
     $lenght_id = $wglinks->getConfig('lenght_id');
     $rewrite_url = $wglinks->getConfig('rewrite_url');
 
+    $id = $array['content_id'];
     if ($lenght_id != 0) {
-        $id = $array['content_id'];
         while (\strlen($id) < $lenght_id) {
             $id = '0' . $id;
         }
-    } else {
-        $id = $array['content_id'];
     }
 
     if (isset($array['topic_alias']) && $array['topic_alias']) {
@@ -151,7 +147,7 @@ function wglinks_RewriteUrl($module, $array, $type = 'content')
 
             return \XOOPS_URL . $rewrite_base . $module_name . $type . $topic_name . $page . $rewrite_ext;
     }
-    return void;
+    return '';
 }
 
 /**
@@ -159,12 +155,12 @@ function wglinks_RewriteUrl($module, $array, $type = 'content')
  *
  * @String  $url    string to transform
  * @String  $type   string replacement for any blank case
- * @param $url
+ * @param string $url
  * @param string $type
- * @param string $module
  * @return string $url
  */
-function wglinks_Filter($url, $type = '', $module = 'wglinks') {
+function wglinks_Filter(string $url, string $type = ''): string
+{
 
     // Get regular expression from module setting. default setting is : `[^a-z0-9]`i
     $wglinks = \XoopsModules\Wglinks\Helper::getInstance();
@@ -176,6 +172,5 @@ function wglinks_Filter($url, $type = '', $module = 'wglinks') {
     $url = htmlentities($url, ENT_COMPAT, 'utf-8');
     $url = \preg_replace('`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i', "\1", $url);
     $url = \preg_replace([$regular_expression, '`[-]+`'], '-', $url);
-    $url = ($url == '') ? $type : strtolower(\trim($url, '-'));
-    return $url;
+    return ($url == '') ? $type : strtolower(\trim($url, '-'));
 }

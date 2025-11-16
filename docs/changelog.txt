@@ -1,3 +1,8 @@
+
+<h5>1.1.2 Beta</h5>  [2025/11/16]
+- moving to PHP 8.4 (goffy)
+- PHPStorm code inspection (goffy)
+
 <h5>1.1.1 Stable</h5>  [2025/06/07]
 - last stable version for PHP 7 (goffy)
  

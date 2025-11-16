@@ -18,10 +18,7 @@ namespace XoopsModules\Wglinks;
  * @copyright      module for xoops
  * @license        GPL 3.0 or later
  * @package        Myexample
- * @since          1.0
- * @min_xoops      2.5.7
  * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
- * @version        $Id: 1.0 helper.php 13070 Sat 2016-10-01 05:42:17Z XOOPS Development Team $
  */
 
 /**
@@ -40,11 +37,11 @@ class Helper extends \Xmf\Module\Helper
     /**
      * @var string
      */
-    protected $handler = null;
+    protected ?string $handler = null;
     /**
      * @var string
      */
-    protected $config = null;
+    protected ?string $config = null;
     /**
      * @var string
      */
@@ -52,7 +49,7 @@ class Helper extends \Xmf\Module\Helper
     /**
      * @var array
      */
-    protected $debugArray = [];
+    protected array $debugArray = [];
     /**
     *  @protected function constructor class
     *  @param mixed $debug
@@ -66,10 +63,10 @@ class Helper extends \Xmf\Module\Helper
 
     /**
      * @static function getInstance
-     * @param mixed $debug
+     * @param false|mixed $debug
      * @return Helper
      */
-    public static function getInstance($debug = false)
+    public static function getInstance(false|mixed $debug = false): Helper
     {
         static $instance;
         if (null === $instance) {
@@ -81,10 +78,10 @@ class Helper extends \Xmf\Module\Helper
 
     /**
      * @static function getModule
-     * @param null
+     *
      * @return string
      */
-    public function &getModule()
+    public function &getModule(): ?string
     {
         if ($this->module == null) {
             $this->initModule();
@@ -98,11 +95,10 @@ class Helper extends \Xmf\Module\Helper
      * @param string $name name of handler to load
      *
      * @return bool|\XoopsObjectHandler|\XoopsPersistableObjectHandler
+     * @throws \Exception
      */
-    public function getHandler($name)
+    public function getHandler($name): \XoopsObjectHandler|bool|\XoopsPersistableObjectHandler
     {
-        $ret = false;
-
         $class = __NAMESPACE__ . '\\' . \ucfirst($name) . 'Handler';
         if (!\class_exists($class)) {
             throw new \RuntimeException("Class '$class' not found");
@@ -111,13 +107,12 @@ class Helper extends \Xmf\Module\Helper
         $db     = \XoopsDatabaseFactory::getDatabaseConnection();
         $helper = self::getInstance();
         $ret    = new $class($db, $helper);
-        $this->addLog("Getting handler '{$name}'");
+        $this->addLog("Getting handler '$name'");
         return $ret;
     }
 
     /**
     *  @static function initModule
-    *  @param null
     */
 /*     public function initModule()
     {
@@ -132,7 +127,6 @@ class Helper extends \Xmf\Module\Helper
     } */
     /**
     *  @static function initConfig
-    *  @param null
     */
 /*     public function initConfig()
     {
@@ -168,14 +162,14 @@ class Helper extends \Xmf\Module\Helper
      * www.cakephp.org
      *
      * @param string $text         String to truncate.
-     * @param int    $length       Length of returned string, including ellipsis.
+     * @param int $length       Length of returned string, including ellipsis.
      * @param string $ending       Ending to be appended to the trimmed string.
-     * @param bool   $exact        If false, $text will not be cut mid-word
-     * @param bool   $considerHtml If true, HTML tags would be handled correctly
+     * @param bool $exact        If false, $text will not be cut mid-word
+     * @param bool $considerHtml If true, HTML tags would be handled correctly
      *
      * @return string Trimmed string.
      */
-    public function truncateHtml($text, $length = 200, $ending = '...', $exact = false, $considerHtml = true)
+    public function truncateHtml(string $text, int $length = 200, string $ending = '...', bool $exact = false, bool $considerHtml = true): string
     {
         if ($considerHtml) {
             // if the plain text is shorter than the maximum length, return the whole text
@@ -250,10 +244,8 @@ class Helper extends \Xmf\Module\Helper
         if (!$exact) {
             // ...search the last occurance of a space...
             $spacepos = \strrpos($truncate, ' ');
-            if (isset($spacepos)) {
-                // ...and cut the text in this position
-                $truncate = \substr($truncate, 0, $spacepos);
-            }
+            // ...and cut the text in this position
+            $truncate = \substr($truncate, 0, $spacepos);
         }
         // add the defined ending to the text
         $truncate .= $ending;

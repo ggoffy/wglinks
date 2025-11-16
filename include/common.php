@@ -15,10 +15,7 @@
  * @copyright      module for xoops
  * @license        GPL 2.0 or later
  * @package        wglinks
- * @since          1.0
- * @min_xoops      2.5.7
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
- * @version        $Id: 1.0 common.php 13070 Sun 2016-03-20 15:20:15Z XOOPS Development Team $
  */
 
 if (!\defined('WGLINKS_MODULE_PATH')) {
@@ -42,7 +39,7 @@ if (!\defined('WGLINKS_MODULE_PATH')) {
     \define('WGLINKS_ADMIN', \WGLINKS_URL . '/admin/index.php');
 }
 // module information
-$copyright = "<a href='http://xoops.wedega.com' title='XOOPS on Wedega' target='_blank'>
+$copyright = "<a href='https://xoops.wedega.com' title='XOOPS on Wedega' target='_blank'>
                      <img src='" . \WGLINKS_IMAGE_URL . "/wedega_logo.png' alt='XOOPS on Wedega' /></a>";
 
 // include_once \XOOPS_ROOT_PATH.'/class/xoopsrequest.php';

@@ -18,10 +18,7 @@ namespace XoopsModules\Wglinks;
  * @copyright      module for xoops
  * @license        GPL 2.0 or later
  * @package        wglinks
- * @since          1.0
- * @min_xoops      2.5.7
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
- * @version        $Id: 1.0 link.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
  */
 \defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
@@ -31,14 +28,7 @@ namespace XoopsModules\Wglinks;
 class Link extends \XoopsObject
 {
     /**
-     * @var mixed
-     */
-    private $wglinks = null;
-
-    /**
-     * Constructor 
-     *
-     * @param null
+     * Constructor
      */
     public function __construct()
     {
@@ -63,10 +53,8 @@ class Link extends \XoopsObject
 
     /**
      * @static function &getInstance
-     *
-     * @param null
      */
-    public static function &getInstance()
+    public static function &getInstance(): void
     {
         static $instance = false;
         if(!$instance) {
@@ -87,15 +75,16 @@ class Link extends \XoopsObject
      *
      * @param mixed $action
      * @return \XoopsThemeForm
+     * @throws \Exception
      */
-    public function getFormLinks($action = false)
+    public function getFormLinks(mixed $action = false): \XoopsThemeForm
     {
         $helper = \XoopsModules\Wglinks\Helper::getInstance();
         if($action === false) {
             $action = $_SERVER['REQUEST_URI'];
         }
         // Title
-        $title = $this->isNew() ? \sprintf(\_AM_WGLINKS_LINK_ADD) : \sprintf(\_AM_WGLINKS_LINK_EDIT);
+        $title = $this->isNew() ? \_AM_WGLINKS_LINK_ADD : \_AM_WGLINKS_LINK_EDIT;
         // Get Theme Form
         \xoops_load('XoopsFormLoader');
         $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
@@ -109,7 +98,7 @@ class Link extends \XoopsObject
         $form->addElement(new \XoopsFormText( \_AM_WGLINKS_LINK_NAME, 'link_name', 50, 255, $this->getVar('link_name') ), true);
         // Form Text LinkUrl
         $link_url = $this->isNew() ? 'https://' : $this->getVar('link_url');
-        $form->addElement(new \XoopsFormText( \_AM_WGLINKS_LINK_URL, 'link_url', 50, 255, $link_url ), false);
+        $form->addElement(new \XoopsFormText( \_AM_WGLINKS_LINK_URL, 'link_url', 50, 255, $link_url ));
         // Form Text LinkTooltip
         $form->addElement(new \XoopsFormText( \_AM_WGLINKS_LINK_TOOLTIP, 'link_tooltip', 50, 255, $this->getVar('link_tooltip') ));
         // Form editor link_detail
@@ -143,13 +132,13 @@ class Link extends \XoopsObject
         $linkLogo = $getLinkLogo ?: 'blank.gif';
         $imageDirectory = '/uploads/wglinks/images/links/large';
         $imageTray = new \XoopsFormElementTray(\_AM_WGLINKS_LINK_LOGO, '<br />' );
-        $imageSelect = new \XoopsFormSelect(\sprintf(\_AM_WGLINKS_FORM_IMAGE_PATH, ".{$imageDirectory}/"), 'link_logo', $linkLogo, 5);
+        $imageSelect = new \XoopsFormSelect(\sprintf(\_AM_WGLINKS_FORM_IMAGE_PATH, ".$imageDirectory/"), 'link_logo', $linkLogo, 5);
         $imageArray = \XoopsLists::getImgListAsArray( \XOOPS_ROOT_PATH . $imageDirectory );
         foreach($imageArray as $image1) {
             $imageSelect->addOption((string)($image1), $image1);
         }
         $imageSelect->setExtra("onchange='showImgSelected(\"image1\", \"link_logo\", \"".$imageDirectory."\", \"\", \"".\XOOPS_URL."\")'");
-        $imageTray->addElement($imageSelect, false);
+        $imageTray->addElement($imageSelect);
         $imageTray->addElement(new \XoopsFormLabel('', "<br /><img src='".\XOOPS_URL . '/' . $imageDirectory . '/' . $linkLogo . "' name='image1' id='image1' alt='' style='max-width:100px' />"));
         // Form File
         $fileSelectTray = new \XoopsFormElementTray('', '<br />' );
@@ -201,8 +190,9 @@ class Link extends \XoopsObject
      * @param null $format
      * @param null $maxDepth
      * @return array
+     * @throws \Exception
      */
-    public function getValuesLinks($keys = null, $format = null, $maxDepth = null)
+    public function getValuesLinks($keys = null, $format = null, $maxDepth = null): array
     {
         $helper = \XoopsModules\Wglinks\Helper::getInstance();
         $ret = parent::getValues($keys, $format, $maxDepth);
@@ -215,10 +205,10 @@ class Link extends \XoopsObject
         $ret['url'] = '';
         if ( 'http://' !== $this->getVar('link_url') && 'https://' !== $this->getVar('link_url') ) {
             $ret['url'] = $this->getVar('link_url');
-            if (\substr($this->getVar('link_url'), 0, 5) == 'http:') {
+            if (str_starts_with($this->getVar('link_url'), 'http:')) {
                 $ret['url_text'] = \substr($this->getVar('link_url'), 7);
             }
-            if (\substr($this->getVar('link_url'), 0, 6) == 'https:') {
+            if (str_starts_with($this->getVar('link_url'), 'https:')) {
                 $ret['url_text'] = \substr($this->getVar('link_url'), 8);
             }
         }
@@ -245,21 +235,12 @@ class Link extends \XoopsObject
                 $ret['href']      = \WGLINKS_URL . '/index.php?link_id=' . $ret['id'];
                 break;
         }
-        switch ($this->getVar('link_target')) {
-            case Constants::TARGET_BLANK:
-                $ret['target_text'] = \_MA_WGLINKS_LINK_TARGET_BLANK;
-                break;
-            case Constants::TARGET_PARENT:
-                $ret['target_text'] = \_MA_WGLINKS_LINK_TARGET_PARENT;
-                break;
-            case Constants::TARGET_TOP:
-                $ret['target_text'] = \_MA_WGLINKS_LINK_TARGET_TOP;
-                break;
-            case Constants::TARGET_SELF:
-            default:
-                $ret['target_text'] = \_MA_WGLINKS_LINK_TARGET_SELF;
-                break;
-        }
+        $ret['target_text'] = match ($this->getVar('link_target')) {
+            Constants::TARGET_BLANK => \_MA_WGLINKS_LINK_TARGET_BLANK,
+            Constants::TARGET_PARENT => \_MA_WGLINKS_LINK_TARGET_PARENT,
+            Constants::TARGET_TOP => \_MA_WGLINKS_LINK_TARGET_TOP,
+            default => \_MA_WGLINKS_LINK_TARGET_SELF,
+        };
         $ret['submitter'] = \XoopsUser::getUnameFromId($this->getVar('link_submitter'));
         $ret['date_created'] = \formatTimestamp($this->getVar('link_date_created'), 's');
         return $ret;
@@ -270,7 +251,7 @@ class Link extends \XoopsObject
      *
      * @return array
      */
-    public function toArrayLinks()
+    public function toArrayLinks(): array
     {
         $ret = [];
         $vars = $this->getVars();
