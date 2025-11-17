@@ -1,0 +1,56 @@
+name: Analyse & Sicherheit
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+  security-events: write
+  pull-requests: write
+
+jobs:
+  copilot-analysis:
+    name: Copilot Code Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run Copilot code analysis
+        uses: github/copilot-analysis-action@v1
+        with:
+          report_format: sarif
+          output: copilot-report.sarif
+
+      - name: Upload Copilot SARIF results
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: copilot-report.sarif
+
+  phpstan:
+    name: PHP Static Analysis (PHPStan)
+    runs-on: ubuntu-latest
+    needs: copilot-analysis
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+          extensions: mbstring, intl # je nachdem, was du brauchst
+
+      - name: Install dependencies via Composer
+        run: |
+          composer install --no-progress --no-suggest
+
+      - name: Run PHPStan
+        uses: php-actions/phpstan@v3
+        with:
+          args: analyse src/ # passe src/ an deinen Modul-Ordner an
+          configuration: phpstan.neon # falls du eine eigene config hast
+
