@@ -63,10 +63,10 @@ class Helper extends \Xmf\Module\Helper
 
     /**
      * @static function getInstance
-     * @param false|mixed $debug
+     * @param mixed $debug
      * @return Helper
      */
-    public static function getInstance(false|mixed $debug = false): Helper
+    public static function getInstance(mixed $debug = false): Helper
     {
         static $instance;
         if (null === $instance) {
@@ -79,9 +79,9 @@ class Helper extends \Xmf\Module\Helper
     /**
      * @static function getModule
      *
-     * @return string
+     * @return XoopsModule
      */
-    public function &getModule(): ?string
+    public function &getModule(): ?\XoopsModule
     {
         if ($this->module == null) {
             $this->initModule();

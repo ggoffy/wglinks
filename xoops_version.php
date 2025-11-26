@@ -44,7 +44,7 @@ $modversion['manual_file']         = \XOOPS_URL . '/modules/wglinks/docs/install
 $modversion['min_php']             = '8.4';
 $modversion['min_xoops']           = '2.5.12';
 $modversion['min_admin']           = '1.1';
-$modversion['min_db']              = ['mysql' => '5.0.7', 'mysqli' => '5.0.7'];
+$modversion['min_db']              = ['mysql' => '5.7.8'];
 $modversion['image']               = 'assets/images/wglinks_logo.png';
 $modversion['dirname']             = $moduleDirName;
 $modversion['dirmoduleadmin']      = 'Frameworks/moduleclasses/moduleadmin';
