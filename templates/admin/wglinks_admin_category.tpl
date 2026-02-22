@@ -2,7 +2,7 @@
 <{include file='db:wglinks_admin_header.tpl'}>
 
 <{if $categories_list|default:false}>
-    <table class='table table-bordered'>
+    <table class='outer'>
         <thead>
             <tr class="head">
                 <th class="center"><{$smarty.const._AM_WGLINKS_CAT_ID}></th>
