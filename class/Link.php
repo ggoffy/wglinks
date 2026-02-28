@@ -214,7 +214,7 @@ class Link extends \XoopsObject
         }
         $ret['tooltip'] = $this->getVar('link_tooltip');
         $ret['detail'] = $this->getVar('link_detail', 'n');
-        $ret['detail_truncated'] = $helper->truncateHtml($this->getVar('link_detail', 'n'), 50);
+        $ret['detail_truncated'] = $helper->truncateHtml((string)$this->getVar('link_detail', 'n'), 50);
         $ret['contact'] = $this->getVar('link_contact');
         $ret['email'] = $this->getVar('link_email');
         $ret['phone'] = $this->getVar('link_phone');
