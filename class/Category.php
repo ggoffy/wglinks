@@ -44,7 +44,7 @@ class Category extends \XoopsObject
     /**
      * @static function &getInstance
      */
-    public static function &getInstance(): void
+    public static function getInstance(): void
     {
         static $instance = false;
         if(!$instance) {
