@@ -203,11 +203,8 @@ class Link extends \XoopsObject
         $ret['catname'] = $categoriesObj->getVar('cat_name');
         $ret['name'] = $this->getVar('link_name');
         $ret['url'] = '';
-        if ( 'https://///' !== $this->getVar('link_url') && 'https://' !== $this->getVar('link_url') ) {
+        if ('https://' !== $this->getVar('link_url') ) {
             $ret['url'] = $this->getVar('link_url');
-            if (str_starts_with($this->getVar('link_url'), 'http:')) {
-                $ret['url_text'] = \substr($this->getVar('link_url'), 7);
-            }
             if (str_starts_with($this->getVar('link_url'), 'https:')) {
                 $ret['url_text'] = \substr($this->getVar('link_url'), 8);
             }

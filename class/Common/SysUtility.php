@@ -165,7 +165,7 @@ class SysUtility
      * @param array|null $options
      * @return \XoopsFormDhtmlTextArea|\XoopsFormEditor
      */
-    public static function getEditor(\Xmf\Module\Helper $helper = null, array $options = null): \XoopsFormDhtmlTextArea|\XoopsFormEditor
+    public static function getEditor(?\Xmf\Module\Helper $helper = null, ?array $options = null): \XoopsFormDhtmlTextArea|\XoopsFormEditor
     {
         /** @var Helper $helper */
         if (null === $options) {

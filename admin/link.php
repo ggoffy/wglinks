@@ -113,7 +113,7 @@ switch($op) {
             require_once \XOOPS_ROOT_PATH . '/class/uploader.php';
             $uploadFile0 = Request::getArray('xoops_upload_file')[0];
             $imgMimetype = $linkFile['type'];
-            $imgNameDef = preg_replace('/[^a-z0-9]+/', '-', Request::getString('link_name'));
+            $imgNameDef = trim(preg_replace('/[^a-z0-9]+/', '-', \strtolower(Request::getString('link_name'))));
             if ('' === $imgNameDef) {
                 $imgNameDef = 'image';
             }
@@ -137,16 +137,22 @@ switch($op) {
                         $result                    = $imgHandler->resizeImage();
                     }
                     // resize thumb image
-                    $maxwidth  = (int)$helper->getConfig('maxwidth_thumbs');
-                    $maxheight = (int)$helper->getConfig('maxheight_thumbs');
-                    $imgHandler                = new Resizer();
-                    $imgHandler->sourceFile    = \WGLINKS_UPLOAD_IMAGE_PATH . '/links/large/' . $savedFilename;
-                    $imgHandler->endFile       = \WGLINKS_UPLOAD_IMAGE_PATH . '/links/thumbs/' . $savedFilename;
-                    $imgHandler->imageMimetype = $imgMimetype;
-                    $imgHandler->maxWidth      = $maxwidth;
-                    $imgHandler->maxHeight     = $maxheight;
-                    $result                    = $imgHandler->resizeImage();
-                    
+                    $thumbFile = \WGLINKS_UPLOAD_IMAGE_PATH . '/links/thumbs/' . $savedFilename;
+                    $largeFile = \WGLINKS_UPLOAD_IMAGE_PATH . '/links/large/' . $savedFilename;
+                    if ($maxwidth > 0 && $maxheight > 0) {
+                            $imgHandler                = new Resizer();
+                            $imgHandler->sourceFile    = $largeFile;
+                            $imgHandler->endFile       = $thumbFile;
+                            $imgHandler->imageMimetype = $imgMimetype;
+                            $imgHandler->maxWidth      = $maxwidth;
+                            $imgHandler->maxHeight     = $maxheight;
+                            $result                    = $imgHandler->resizeImage();
+                            if ('copy' === $result) {
+                                \copy($largeFile, $thumbFile);
+                            }
+                    } else {
+                        \copy($largeFile, $thumbFile);
+                    }
                     $linksObj->setVar('link_logo', $savedFilename);
                 } else {
                     $uploaderErrors .= '<br>' . $uploader->getErrors();

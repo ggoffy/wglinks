@@ -24,7 +24,7 @@ $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
 // ------------------- Informations ------------------- //
 $modversion['name']                = \_MI_WGLINKS_NAME;
-$modversion['version']             = '1.2.';
+$modversion['version']             = '1.2.0';
 $modversion['module_status']       = 'Beta';
 $modversion['release']             = '2026-10-22';
 $modversion['release_date']        = '2026/10/22'; // format: yyyy/mm/dd
