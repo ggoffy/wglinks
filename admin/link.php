@@ -124,8 +124,8 @@ switch($op) {
                 $uploader->setPrefix($imgNameDef);
                 if ($uploader->upload()) {
                     $savedFilename = $uploader->getSavedFileName();
-                    $maxwidth  = (int)$helper->getConfig('maxwidth_image');
-                    $maxheight = (int)$helper->getConfig('maxheight_image');
+                    $maxwidth  = (int)$helper->getConfig('maxwidth_large');
+                    $maxheight = (int)$helper->getConfig('maxheight_large');
                     if ($maxwidth > 0 && $maxheight > 0) {
                         // resize large image
                         $imgHandler                = new Resizer();
@@ -137,7 +137,8 @@ switch($op) {
                         $result                    = $imgHandler->resizeImage();
                     }
                     // resize thumb image
-                    // resize large image
+                    $maxwidth  = (int)$helper->getConfig('maxwidth_thumbs');
+                    $maxheight = (int)$helper->getConfig('maxheight_thumbs');
                     $imgHandler                = new Resizer();
                     $imgHandler->sourceFile    = \WGLINKS_UPLOAD_IMAGE_PATH . '/links/large/' . $savedFilename;
                     $imgHandler->endFile       = \WGLINKS_UPLOAD_IMAGE_PATH . '/links/thumbs/' . $savedFilename;
