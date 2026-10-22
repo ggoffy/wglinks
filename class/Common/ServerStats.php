@@ -24,7 +24,7 @@ trait ServerStats
      *
      * @return string
      */
-    public static function getServerStats()
+    public static function getServerStats(): string
     {
         $moduleDirName      = \basename(\dirname(__DIR__, 2));
         $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
@@ -47,7 +47,7 @@ trait ServerStats
         $gdlib = \function_exists('gd_info') ? '<span style="color: #008000;">' . \constant('_CO_WGLINKS_GDON') . '</span>' : '<span style="color: #ff0000;">' . \constant('_CO_WGLINKS_GDOFF') . '</span>';
         $html  .= '<li>' . \constant('_CO_WGLINKS_GDLIBSTATUS') . $gdlib;
         if (\function_exists('gd_info')) {
-            if (true === ($gdlib = gd_info())) {
+            if (true == ($gdlib = gd_info())) {
                 $html .= '<li>' . \constant('_CO_WGLINKS_GDLIBVERSION') . '<b>' . $gdlib['GD Version'] . '</b>';
             }
         }

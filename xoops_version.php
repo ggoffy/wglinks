@@ -24,10 +24,10 @@ $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
 // ------------------- Informations ------------------- //
 $modversion['name']                = \_MI_WGLINKS_NAME;
-$modversion['version']             = '1.1.2';
+$modversion['version']             = '1.2.';
 $modversion['module_status']       = 'Beta';
-$modversion['release']             = '2025-11-16';
-$modversion['release_date']        = '2025/11/16'; // format: yyyy/mm/dd
+$modversion['release']             = '2026-10-22';
+$modversion['release_date']        = '2026/10/22'; // format: yyyy/mm/dd
 $modversion['description']         = \_MI_WGLINKS_DESC;
 $modversion['author']              = 'XOOPS on Wedega';
 $modversion['author_mail']         = 'webmaster@wedega.com';
@@ -42,7 +42,7 @@ $modversion['release_file']        = \XOOPS_URL . '/modules/wglinks/docs/release
 $modversion['manual']              = 'link to manual file';
 $modversion['manual_file']         = \XOOPS_URL . '/modules/wglinks/docs/install.txt';
 $modversion['min_php']             = '8.4';
-$modversion['min_xoops']           = '2.5.12';
+$modversion['min_xoops']           = '2.7.4';
 $modversion['min_admin']           = '1.1';
 $modversion['min_db']              = ['mysql' => '5.7.8'];
 $modversion['image']               = 'assets/images/wglinks_logo.png';

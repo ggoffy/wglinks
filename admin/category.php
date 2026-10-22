@@ -79,11 +79,19 @@ switch($op) {
             $categoriesObj = $categoriesHandler->create();
         }
         // Set Vars
-        $categoriesObj->setVar('cat_name', $_POST['cat_name']);
-        $categoriesObj->setVar('cat_desc', $_POST['cat_desc']);
-        $categoriesObj->setVar('cat_weight', $_POST['cat_weight'] ?? 0);
-        $categoriesObj->setVar('cat_submitter', $_POST['cat_submitter'] ?? 0);
-        $categoriesObj->setVar('cat_date_created', \strtotime($_POST['cat_date_created']));
+        $categoriesObj->setVar('cat_name', Request::getString('cat_name'));
+        $categoriesObj->setVar('cat_desc', Request::getText('cat_desc'));
+        $categoriesObj->setVar('cat_weight', Request::getInt('cat_weight') ?? 0);
+        $categoriesObj->setVar('cat_submitter', Request::getInt('cat_submitter') ?? 0);
+        $catDateCreated = Request::getString('date_showfrom');
+        if ('' !== $catDateCreated) {
+            $catDateCreatedObj = \DateTime::createFromFormat(\_SHORTDATESTRING, $catDateCreated);
+            if ($catDateCreatedObj === false) {
+                // invalid date
+                \redirect_header('event.php?op=list', 2, \_AM_WGHOLIDAY_INVALID_DATE);
+            }
+            $categoriesObj->setVar('cat_date_created', $catDateCreatedObj->getTimestamp());
+        }
         // Insert Data
         if($categoriesHandler->insert($categoriesObj)) {
             \redirect_header('category.php?op=list', 2, \_AM_WGLINKS_FORM_OK);
@@ -107,7 +115,7 @@ switch($op) {
     break;
     case 'delete':
         $categoriesObj = $categoriesHandler->get($catId);
-        if(isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
+        if(1 === Request::getInt('ok')) {
             if(!$GLOBALS['xoopsSecurity']->check()) {
                 \redirect_header('category.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
             }

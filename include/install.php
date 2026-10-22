@@ -40,7 +40,7 @@ function xoops_module_pre_install_wglinks(\XoopsModule $module): bool
     if (false !== $xoopsSuccess && false !== $phpSuccess) {
         $moduleTables = &$module->getInfo('tables');
         foreach ($moduleTables as $table) {
-            $GLOBALS['xoopsDB']->queryF('DROP TABLE IF EXISTS ' . $GLOBALS['xoopsDB']->prefix($table) . ';');
+            $GLOBALS['xoopsDB']->exec('DROP TABLE IF EXISTS ' . $GLOBALS['xoopsDB']->prefix($table) . ';');
         }
     }
 

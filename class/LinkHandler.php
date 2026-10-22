@@ -28,24 +28,18 @@ namespace XoopsModules\Wglinks;
 class LinkHandler extends \XoopsPersistableObjectHandler
 {
     /**
-     * @var mixed
-     */
-    private mixed $wglinks = null;
-
-    /**
-     * Constructor 
+     * Constructor
      *
-     * @param null|XoopsDatabase $db
+     * @param \XoopsDatabase|null $db
      */
     public function __construct(?\XoopsDatabase $db)
     {
         parent::__construct($db, 'wglinks_links', Link::class, 'link_id', 'link_url');
-        $this->wglinks = \XoopsModules\Wglinks\Helper::getInstance();
         $this->db = $db;
     }
 
     /**
-     * @param $isNew
+     * @param bool $isNew
      *
      * @return object
      */
@@ -57,7 +51,7 @@ class LinkHandler extends \XoopsPersistableObjectHandler
     /**
      * retrieve a field
      *
-     * @param $id field id
+     * @param $id
      * @param $fields
      * @return \XoopsObject|null reference to the {@link Get} object
      */

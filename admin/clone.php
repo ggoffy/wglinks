@@ -189,7 +189,6 @@ function createLogo($dirname): bool
     //imagecolortransparent($imageModule, $white);
 
     \imagepng($imageModule, $GLOBALS['xoops']->path('modules/' . $dirname . '/assets/images/logoModule.png'));
-    \imagedestroy($imageModule);
 
     return true;
 }

@@ -35,11 +35,11 @@ class Helper extends \Xmf\Module\Helper
      */
     protected $module = null;
     /**
-     * @var string
+     * @var string|null
      */
     protected ?string $handler = null;
     /**
-     * @var string
+     * @var string|null
      */
     protected ?string $config = null;
     /**
@@ -79,7 +79,7 @@ class Helper extends \Xmf\Module\Helper
     /**
      * @static function getModule
      *
-     * @return XoopsModule
+     * @return \XoopsModule|null
      */
     public function &getModule(): ?\XoopsModule
     {
@@ -97,7 +97,7 @@ class Helper extends \Xmf\Module\Helper
      * @return bool|\XoopsObjectHandler|\XoopsPersistableObjectHandler
      * @throws \Exception
      */
-    public function getHandler($name)
+    public function getHandler($name): \XoopsObjectHandler|bool|\XoopsPersistableObjectHandler
     {
         $class = __NAMESPACE__ . '\\' . \ucfirst($name) . 'Handler';
         if (!\class_exists($class)) {

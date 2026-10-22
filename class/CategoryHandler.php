@@ -28,19 +28,13 @@ namespace XoopsModules\Wglinks;
 class CategoryHandler extends \XoopsPersistableObjectHandler
 {
     /**
-     * @var mixed
-     */
-    private mixed $wgCategories = null;
-
-    /**
-     * Constructor 
+     * Constructor
      *
-     * @param null|XoopsDatabase $db
+     * @param \XoopsDatabase|null $db
      */
     public function __construct(?\XoopsDatabase $db)
     {
         parent::__construct($db, 'wglinks_categories', Category::class, 'cat_id', 'cat_name');
-        $this->wgCategories = \XoopsModules\Wglinks\Helper::getInstance();
         $this->db = $db;
     }
 

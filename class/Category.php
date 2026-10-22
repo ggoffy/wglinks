@@ -109,7 +109,7 @@ class Category extends \XoopsObject
         $ret = parent::getValues($keys, $format, $maxDepth);
         $ret['id'] = $this->getVar('cat_id');
         $ret['name'] = $this->getVar('cat_name');
-        if ( 'http://' !== $this->getVar('cat_desc') && 'https://' !== $this->getVar('cat_desc') ) {
+        if ( 'https://' !== $this->getVar('cat_desc') && 'https://' !== $this->getVar('cat_desc') ) {
             $ret['url'] = $this->getVar('cat_desc');
         }
         $ret['weight'] = $this->getVar('cat_weight');

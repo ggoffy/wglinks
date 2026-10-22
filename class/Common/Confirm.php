@@ -40,11 +40,11 @@ namespace XoopsModules\Wglinks\Common;
  */
 class Confirm
 {
-    private $hiddens = [];
-    private $action  = '';
-    private $title   = '';
-    private $label   = '';
-    private $object  = '';
+    private array $hiddens = [];
+    private string $action  = '';
+    private string $title   = '';
+    private string $label   = '';
+    private string $object  = '';
 
     /**
      * @public function constructor class
@@ -67,7 +67,7 @@ class Confirm
      * @public function getFormConfirm
      * @return \XoopsThemeForm
      */
-    public function getFormConfirm()
+    public function getFormConfirm(): \XoopsThemeForm
     {
         //in order to be accessable from user and admin area this should be place in language common.php
         if (!\defined('_CO_WGLINKS_DELETE_CONFIRM')) {
