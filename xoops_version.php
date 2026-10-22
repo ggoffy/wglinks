@@ -330,8 +330,8 @@ $modversion['config'][] = [
  */
 $modversion['config'][] = [
     'name'        => 'displaySampleButton',
-    'title'       => '_CO_MD_WGLINKS_SHOW_SAMPLE_BUTTON',
-    'description' => '_CO_MD_WGLINKS_SHOW_SAMPLE_BUTTON_DESC',
+    'title'       => '_CO_WGLINKS_SHOW_SAMPLE_BUTTON',
+    'description' => '_CO_WGLINKS_SHOW_SAMPLE_BUTTON_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => 1,
@@ -342,8 +342,8 @@ $modversion['config'][] = [
  */
 /* $modversion['config'][] = [
     'name'        => 'displayDeveloperTools',
-    'title'       => '_CO_MD_WGLINKS_SHOW_DEV_TOOLS',
-    'description' => '_CO_MD_WGLINKS_SHOW_DEV_TOOLS_DESC',
+    'title'       => '_CO_WGLINKS_SHOW_DEV_TOOLS',
+    'description' => '_CO_WGLINKS_SHOW_DEV_TOOLS_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => 0,

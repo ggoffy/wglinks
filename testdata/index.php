@@ -72,7 +72,7 @@ function loadSampleData(): void
         }
     }
 
-    \redirect_header('../admin/index.php', 1, \constant('_CO_MD_WGLINKS_SAMPLEDATA_SUCCESS'));
+    \redirect_header('../admin/index.php', 1, \constant('_CO_WGLINKS_SAMPLEDATA_SUCCESS'));
 }
 
 function saveSampleData(): void
@@ -92,7 +92,7 @@ function saveSampleData(): void
     \Xmf\Database\TableLoad::saveTableToYamlFile('group_permission', 'group_permission_' . date('Y-m-d H-i-s') . '.yml', $criteria, $skipColumns);
     unset($criteria);
 
-    \redirect_header('../admin/index.php', 1, \constant('_CO_MD_WGLINKS_SAMPLEDATA_SUCCESS'));
+    \redirect_header('../admin/index.php', 1, \constant('_CO_WGLINKS_SAMPLEDATA_SUCCESS'));
 }
 
 function exportSchema(): void
@@ -104,10 +104,10 @@ function exportSchema(): void
         $migrate = new \Xmf\Database\Migrate($moduleDirName);
         $migrate->saveCurrentSchema();
 
-        \redirect_header('../admin/index.php', 1, \constant('_CO_MD_WGLINKS_EXPORT_SCHEMA_SUCCESS'));
+        \redirect_header('../admin/index.php', 1, \constant('_CO_WGLINKS_EXPORT_SCHEMA_SUCCESS'));
     }
     catch (\Exception $e) {
-        exit(\constant('_CO_MD_WGLINKS_EXPORT_SCHEMA_ERROR'));
+        exit(\constant('_CO_WGLINKS_EXPORT_SCHEMA_ERROR'));
     }
 }
 
