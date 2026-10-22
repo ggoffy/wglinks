@@ -86,6 +86,9 @@ require_once __DIR__ . '/common.php';
 \define('_AM_WGLINKS_FORM_EDIT', 'Bearbeiten');
 \define('_AM_WGLINKS_FORM_DELETE', 'Löschen');
 \define('_AM_WGLINKS_FORM_UPLOAD_IMAGE_LINKS', 'Logo hochladen: <br>- max. %w x %h Pixel<br>- max. %b Bytes<br>');
+//Errors
+\define('_AM_WGLINKS_INVALID_PARAM', 'Ungültiger Parameter');
+\define('_AM_WGLINKS_INVALID_DATE', 'Ungültiges Datum');
 // ---------------- Admin Others ----------------
 \define('_AM_WGLINKS_MAINTAINEDBY', ' wird unterstützt von ');
 if (!\defined('_ER_UP_NOFILE')) {

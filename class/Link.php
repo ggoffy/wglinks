@@ -247,6 +247,15 @@ class Link extends \XoopsObject
     }
 
     /**
+     * The new inserted $Id
+     * @return int
+     */
+    public function getNewInsertedIdLink()
+    {
+        return $GLOBALS['xoopsDB']->getInsertId();
+    }
+
+    /**
      * Returns an array representation of the object
      *
      * @return array

@@ -91,3 +91,6 @@ require_once __DIR__ . '/common.php';
 if (!\defined('_ER_UP_NOFILE')) {
     \define('_ER_UP_NOFILE', 'No file for upload selected');
 }
+//Errors
+\define('_AM_WGLINKS_INVALID_PARAM', 'Invalid parameter');
+\define('_AM_WGLINKS_INVALID_DATE', 'Invalid date');

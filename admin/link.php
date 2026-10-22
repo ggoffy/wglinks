@@ -158,16 +158,29 @@ switch($op) {
                 $linksObj->setVar('link_logo', Request::getString('link_logo'));
             }
         } else {
-            $linksObj->setVar('image', Request::getString('image'));
+            $linksObj->setVar('link_logo', Request::getString('link_logo'));
         }
         $linksObj->setVar('link_state', Request::getInt('link_state'));
         $linksObj->setVar('link_type', Request::getInt('link_type'));
         $linksObj->setVar('link_target', Request::getString('link_target'));
         $linksObj->setVar('link_submitter', Request::getInt('link_submitter'));
-        $linksObj->setVar('link_date_created', \strtotime(Request::getString('link_date_created')));
+        $linkDateCreated = Request::getString('link_date_created');
+        if ('' !== $linkDateCreated) {
+            $linkDateCreatedObj = \DateTime::createFromFormat(\_SHORTDATESTRING, $linkDateCreated);
+            if ($linkDateCreatedObj === false) {
+                // invalid date
+                \redirect_header('link.php?op=list', 2, \_AM_WGHOLIDAY_INVALID_DATE);
+            }
+            $linksObj->setVar('link_date_created', $linkDateCreatedObj->getTimestamp());
+        }
         // Insert Data
         if($linksHandler->insert($linksObj)) {
-            \redirect_header('link.php?op=list', 2, \_AM_WGLINKS_FORM_OK);
+            $savedLinkId = $linkId > 0 ? $linkId : $linksObj->getNewInsertedIdLink();
+            if ('' !== $uploaderErrors) {
+                \redirect_header('link.php?op=edit&link_id=' . $savedLinkId, 5, $uploaderErrors);
+            } else {
+                \redirect_header('link.php?op=list', 3, \_AM_WGLINKS_FORM_OK);
+            }
         }
         // Get Form
         $GLOBALS['xoopsTpl']->assign('error', $linksObj->getHtmlErrors());

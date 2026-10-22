@@ -83,7 +83,7 @@ switch($op) {
         $categoriesObj->setVar('cat_desc', Request::getText('cat_desc'));
         $categoriesObj->setVar('cat_weight', Request::getInt('cat_weight') ?? 0);
         $categoriesObj->setVar('cat_submitter', Request::getInt('cat_submitter') ?? 0);
-        $catDateCreated = Request::getString('date_showfrom');
+        $catDateCreated = Request::getString('cat_date_created');
         if ('' !== $catDateCreated) {
             $catDateCreatedObj = \DateTime::createFromFormat(\_SHORTDATESTRING, $catDateCreated);
             if ($catDateCreatedObj === false) {
