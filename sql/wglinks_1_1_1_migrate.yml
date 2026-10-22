@@ -1,0 +1,83 @@
+wglinks_categories:
+    options: 'ENGINE=InnoDB'
+    columns: 
+        -
+            name: cat_id
+            attributes: ' INT(8) UNSIGNED NOT NULL AUTO_INCREMENT '
+        -
+            name: cat_name
+            attributes: ' VARCHAR(100) NOT NULL DEFAULT '''''''' '
+        -
+            name: cat_desc
+            attributes: ' TEXT NULL '
+        -
+            name: cat_weight
+            attributes: ' INT(8) NOT NULL DEFAULT ''0'' '
+        -
+            name: cat_submitter
+            attributes: ' INT(10) NOT NULL DEFAULT ''0'' '
+        -
+            name: cat_date_created
+            attributes: ' INT(10) NOT NULL DEFAULT ''0'' '
+    keys:
+        PRIMARY:
+            columns: cat_id
+            unique: true
+wglinks_links:
+    options: 'ENGINE=InnoDB'
+    columns: 
+        -
+            name: link_id
+            attributes: ' INT(8) UNSIGNED NOT NULL AUTO_INCREMENT '
+        -
+            name: link_catid
+            attributes: ' INT(10) NOT NULL DEFAULT ''0'' '
+        -
+            name: link_name
+            attributes: ' VARCHAR(100) NOT NULL DEFAULT '''''''' '
+        -
+            name: link_url
+            attributes: ' VARCHAR(200) NOT NULL DEFAULT '''''''' '
+        -
+            name: link_tooltip
+            attributes: ' VARCHAR(200) NULL DEFAULT '''''''' '
+        -
+            name: link_contact
+            attributes: ' VARCHAR(200) NULL DEFAULT '''''''' '
+        -
+            name: link_email
+            attributes: ' VARCHAR(200) NULL DEFAULT '''''''' '
+        -
+            name: link_phone
+            attributes: ' VARCHAR(100) NULL DEFAULT '''''''' '
+        -
+            name: link_address
+            attributes: ' VARCHAR(200) NULL DEFAULT '''''''' '
+        -
+            name: link_detail
+            attributes: ' TEXT NULL '
+        -
+            name: link_weight
+            attributes: ' INT(8) NOT NULL DEFAULT ''0'' '
+        -
+            name: link_logo
+            attributes: ' VARCHAR(100) NULL DEFAULT '''''''' '
+        -
+            name: link_state
+            attributes: ' INT(10) NOT NULL DEFAULT ''0'' '
+        -
+            name: link_type
+            attributes: ' INT(10) NOT NULL DEFAULT ''0'' '
+        -
+            name: link_target
+            attributes: ' VARCHAR(20) NOT NULL DEFAULT '''''''' '
+        -
+            name: link_submitter
+            attributes: ' INT(10) NOT NULL DEFAULT ''0'' '
+        -
+            name: link_date_created
+            attributes: ' INT(10) NOT NULL DEFAULT ''0'' '
+    keys:
+        PRIMARY:
+            columns: link_id
+            unique: true

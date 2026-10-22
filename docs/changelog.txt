@@ -1,0 +1,55 @@
+
+<h5>1.1.2 Beta</h5>  [2025/11/16]
+- moving to PHP 8.4 (goffy)
+- PHPStorm code inspection (goffy)
+
+<h5>1.1.1 Stable</h5>  [2025/06/07]
+- last stable version for PHP 7 (goffy)
+ 
+<h5>1.1.1 RC1</h5>  [2023/02/28]
+ - fixed bug with tpl file (goffy)
+ - fixed missing default value smarty (goffy)
+ - fixed bug in blocks when missing cats (goffy)
+ - update smarty3 (goffy)
+ - updates for XOOPS 2.5.11 Stable (goffy)
+ 
+<h5>1.1.0 Stable</h5>  [2023/02/28]
+ - moved to last stable with smarty 2 (goffy)
+
+<h5>1.1.0 RC 1  NOT RELEASED</h5>  [2021/../..]
+ - semantic versioning (goffy)
+ - update to php8 (goffy)
+ - replaced Common/XoopsConfirm by Common/Confirm (mamba/goffy)
+ - uninstall with bak-file creation (mamba/goffy)
+ - fixed bugs in image upload (goffy)
+ - added clone feature (goffy)
+ - added feedback feature (goffy)
+ - added new icon set (goffy)
+ - moved to singular table names - part 1 (goffy)
+ - added link type and target (goffy)
+ - adapted update due to new semantic versioning (goffy)
+ - fixed bug with target (goffy)
+
+<h5>1.07 RC 1  NOT RELEASED</h5>  [2019/../..]
+ - fixed bug with missing index.html (cesagonchu/goffy)
+ - replaced index.html by index.php (goffy)
+ - added missing smarty defaults (goffy)
+
+<h5>1.07 Beta 1  NOT RELEASED</h5>  [2019/../..]
+<hr>
+ - added namespaces (goffy)
+ - added sample data (goffy)
+ - updated usage module admin to xmf\admin (goffy)
+ - fixed bug with class name (goffy)
+ - cosmetics (goffy)
+ - added handle of specific cats called by the block (goffy)
+
+<h5>1.05 Beta 1  NOT RELEASED</h5>  [2019/../..]
+<hr>
+ - added new fields link_contact, link_phone, link_address, link_detail, link_img, link_email (goffy)
+ - fixed bug with upload very big jpg images (goffy) 
+
+==============================================================
+Change Log for wgLinks - 2016/03/20 15:20:15 Version 1.0
+==============================================================
+ - Original release wglinks (XOOPS on Wedega)

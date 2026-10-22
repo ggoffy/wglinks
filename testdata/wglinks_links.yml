@@ -1,0 +1,32 @@
+-
+    link_id: '1'
+    link_catid: '1'
+    link_name: XOOPS
+    link_url: 'https://xoops.org'
+    link_tooltip: ''
+    link_contact: ''
+    link_email: ''
+    link_phone: ''
+    link_address: ''
+    link_detail: 'This is main website of XOOPS community'
+    link_weight: '0'
+    link_logo: XOOPS.5debb39343caf.png
+    link_state: '1'
+    link_submitter: '1'
+    link_date_created: '1575417600'
+-
+    link_id: '2'
+    link_catid: '1'
+    link_name: 'XOOPS Germany'
+    link_url: 'https://myxoops.org'
+    link_tooltip: ''
+    link_contact: ''
+    link_email: ''
+    link_phone: ''
+    link_address: ''
+    link_detail: 'Die Webseite der deutschen XOOPS-Community'
+    link_weight: '0'
+    link_logo: XOOPSGermany.5debb1f3eedee.png
+    link_state: '1'
+    link_submitter: '1'
+    link_date_created: '1575417600'

@@ -1,0 +1,40 @@
+includes:
+    - vendor/phpstan/phpstan/conf/bleedingEdge.neon
+
+parameters:
+    level: 6
+
+    paths:
+        - wglinks/class
+        - wglinks/include
+        - wglinks/admin
+        - wglinks/plugins
+        - wglinks/preloads
+
+    autoload_directories:
+        - wglinks/class
+        - wglinks/include
+
+    scanDirectories:
+        - wglinks
+        - vendor
+
+    checkMissingIterableValueType: false
+
+    ignoreErrors:
+        # XOOPS: dynamische Properties
+        - '#Access to an undefined property.*#'
+
+        # XOOPS: global $xoopsDB, $xoopsUser etc.
+        - '#Undefined variable\: \$xoops(DB|User|Module|Tpl)#'
+
+        # XOOPS Request-API
+        - '#Call to static method get(Var)? on an unknown class XOOPSRequest#'
+
+        # XOOPS: Legacy-Handler erzeugt unbekannte Klassen
+        - '#Instantiated class .* not found.#'
+
+        # XOOPS: Sprachkonstanten kommen aus globalen defines
+        - '#Constant .* not found.#'
+
+    reportUnmatchedIgnoredErrors: false

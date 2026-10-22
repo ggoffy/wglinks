@@ -1,0 +1,59 @@
+@charset "UTF-8";/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+
+/**
+ * wgLinks module for xoops
+ *
+ * @copyright      module for xoops
+ * @license        GPL 2.0 or later
+ * @package        wglinks
+ * @since          1.0
+ * @min_xoops      2.5.7
+ * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
+ * @version        $Id: 1.0 style.css 13070 Sun 2016-03-20 15:20:15Z XOOPS Development Team $
+ */
+
+.wglinks-header {
+}
+.wglinks-info {
+    border-bottom: 1px solid #000000;
+}
+.wglinks-link {
+    text-align:center;
+    padding:10px;
+    border-bottom: 1px solid #000000;
+}
+.wglinks-link-img-block {
+    margin-right: 10px;
+    height:30px;
+}
+.wglinks-table, .wglinks-table tr, .wglinks-table thead tr th, .wglinks-table tbody tr td {
+   border: 0;
+}
+.wglinks-table tr {
+   height: 10px;
+}
+.wglinks-link-panel {
+    margin:0;
+    padding:10px;
+}
+.wglinks-link-card {
+    border:1px solid #cccccc;
+    margin:0;
+    padding:10px;
+    background-color:#fff;
+}
+.wglinks-link-icon {
+   text-align:right;
+}
+.wglinks-block-more {
+   text-align:center;
+   margin:10px;
+}
