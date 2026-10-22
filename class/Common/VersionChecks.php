@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace XoopsModules\Wglinks\Common;
 
@@ -14,7 +14,7 @@ namespace XoopsModules\Wglinks\Common;
 
 /**
  * @copyright   XOOPS Project (https://xoops.org)
- * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
+ * @license     https://www.fsf.org/copyleft/gpl.html GNU public license
  * @author      mamba <mambax7@gmail.com>
  */
 trait VersionChecks
@@ -24,10 +24,10 @@ trait VersionChecks
      * @static
      *
      * @param \XoopsModule|null $module
-     * @param string|null $requiredVer
+     * @param null|string $requiredVer
      * @return bool true if meets requirements, false if not
      */
-    public static function checkVerXoops(\XoopsModule $module = null, string $requiredVer = null): bool
+    public static function checkVerXoops(\XoopsModule $module = null, $requiredVer = null)
     {
         $moduleDirName      = \basename(\dirname(__DIR__, 2));
         $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
@@ -46,7 +46,7 @@ trait VersionChecks
 
         if ($module->versionCompare($currentVer, $requiredVer)) {
             $success = false;
-            $module->setErrors(\sprintf(\constant('CO_' . $moduleDirNameUpper . '_ERROR_BAD_XOOPS'), $requiredVer, $currentVer));
+            $module->setErrors(\sprintf(\constant('_CO_WGLINKS_ERROR_BAD_XOOPS'), $requiredVer, $currentVer));
         }
 
         return $success;
@@ -59,7 +59,7 @@ trait VersionChecks
      * @param \XoopsModule|null $module
      * @return bool true if meets requirements, false if not
      */
-    public static function checkVerPhp(\XoopsModule $module = null): bool
+    public static function checkVerPhp(\XoopsModule $module = null)
     {
         $moduleDirName      = \basename(\dirname(__DIR__, 2));
         $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
@@ -75,7 +75,7 @@ trait VersionChecks
 
         if (false !== $reqVer && '' !== $reqVer) {
             if (\version_compare($verNum, $reqVer, '<')) {
-                $module->setErrors(\sprintf(\constant('CO_' . $moduleDirNameUpper . '_ERROR_BAD_PHP'), $reqVer, $verNum));
+                $module->setErrors(\sprintf(\constant('_CO_WGLINKS_ERROR_BAD_PHP'), $reqVer, $verNum));
                 $success = false;
             }
         }
@@ -110,7 +110,7 @@ trait VersionChecks
                 $curlReturn = \curl_exec($curlHandle);
                 if (false === $curlReturn) {
                     \trigger_error(\curl_error($curlHandle));
-                } elseif (\mb_strpos($curlReturn, 'Not Found')) {
+                } elseif (mb_strpos($curlReturn, 'Not Found')) {
                     \trigger_error('Repository Not Found: ' . $infoReleasesUrl);
                 } else {
                     $file              = \json_decode($curlReturn, false);
@@ -118,11 +118,11 @@ trait VersionChecks
                     $latestVersion     = $file[0]->tag_name;
                     $prerelease        = $file[0]->prerelease;
                     if ('master' !== $latestVersionLink) {
-                        $update = \constant('CO_' . $moduleDirNameUpper . '_' . 'NEW_VERSION') . $latestVersion;
+                        $update = \constant('_CO_WGLINKS_NEW_VERSION') . $latestVersion;
                     }
                     //"PHP-standardized" version
                     $latestVersion = \mb_strtolower($latestVersion);
-                    if (false !== \mb_strpos($latestVersion, 'final')) {
+                    if (false !== mb_strpos($latestVersion, 'final')) {
                         $latestVersion = \str_replace('_', '', \mb_strtolower($latestVersion));
                         $latestVersion = \str_replace('final', '', \mb_strtolower($latestVersion));
                     }

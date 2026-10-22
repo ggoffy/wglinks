@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace XoopsModules\Wglinks\Common;
 
@@ -16,28 +16,30 @@ namespace XoopsModules\Wglinks\Common;
  * Image resizer class for xoops
  *
  * @copyright      module for xoops
- * @license        GPL 2.0 or later
- * @package        XOOPS common
+ * @license         GNU GPL 2.0 or later (https://www.gnu.org/licenses/gpl-2.0.html)
+ * @since          1.0
+ * @min_xoops      2.5.9
  * @author         Goffy - Wedega - Email:<webmaster@wedega.com> - Website:<https://wedega.com>
+ * @version        $Id: 1.0 Resizer.php 1 Mon 2019-02-09 10:04:49Z XOOPS Project (www.xoops.org) $
  */
 class Resizer
 {
-    public string $sourceFile    = '';
-    public string $endFile       = '';
-    public int $maxWidth      = 0;
-    public int $maxHeight     = 0;
-    public string $imageMimetype = '';
-    public int $jpgQuality    = 90;
-    public int $mergeType     = 0;
-    public int $mergePos      = 0;
-    public int $degrees       = 0;
-    public string $error         = '';
+    public $sourceFile    = '';
+    public $endFile       = '';
+    public $maxWidth      = 0;
+    public $maxHeight     = 0;
+    public $imageMimetype = '';
+    public $jpgQuality    = 90;
+    public $mergeType     = 0;
+    public $mergePos      = 0;
+    public $degrees       = 0;
+    public $error         = '';
 
     /**
      * resize image if size exceed given width/height
      * @return string|bool
      */
-    public function resizeImage(): bool|string
+    public function resizeImage()
     {
         // check file extension
         switch ($this->imageMimetype) {
@@ -47,7 +49,7 @@ class Resizer
             case 'image/jpeg':
                 $img = \imagecreatefromjpeg($this->sourceFile);
                 if (!$img) {
-                    $img = \imagecreatefromstring(\file_get_contents($this->sourceFile));
+                    $img = \imagecreatefromstring(file_get_contents($this->sourceFile));
                 }
                 break;
             case 'image/gif':
@@ -115,7 +117,7 @@ class Resizer
     /**
      * @return bool|string
      */
-    public function resizeAndCrop(): bool|string
+    public function resizeAndCrop()
     {
         // check file extension
         switch ($this->imageMimetype) {
@@ -242,7 +244,7 @@ class Resizer
     /**
      * @return bool|string
      */
-    public function rotateImage(): bool|string
+    public function rotateImage()
     {
         // check file extension
         switch ($this->imageMimetype) {

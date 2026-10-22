@@ -17,8 +17,8 @@
                 <th class="center"><{$smarty.const._AM_WGLINKS_LINK_ADDRESS}></th>              
                 <th class="center"><{$smarty.const._AM_WGLINKS_LINK_LOGO}></th>
                 <th class="center"><{$smarty.const._AM_WGLINKS_LINK_STATE}></th>
-                <th class="center"><{$smarty.const._MA_WGLINKS_LINK_TYPE}></th>
-                <th class="center"><{$smarty.const._MA_WGLINKS_LINK_TARGET}></th>
+                <th class="center"><{$smarty.const._MD_WGLINKS_LINK_TYPE}></th>
+                <th class="center"><{$smarty.const._MD_WGLINKS_LINK_TARGET}></th>
                 <th class="center"><{$smarty.const._AM_WGLINKS_SUBMITTER}></th>
                 <th class="center"><{$smarty.const._AM_WGLINKS_DATE_CREATED}></th>
                 <th class="center width5"><{$smarty.const._AM_WGLINKS_FORM_ACTION}></th>
@@ -52,13 +52,13 @@
                         </td>
                         <td class="center">
                             <{if $link.state|default:0 == 0}>
-                                <a href='link.php?op=change_state&amp;link_state=1&amp;link_id=<{$link.id}>&amp;start=<{$start}>&amp;limit=<{$limit}>' title='<{$smarty.const._MA_WGLINKS_STATE_ONLINE}>'>
-                                    <img src='<{$wglinks_url}>/assets/icons/16/state0.png' alt='<{$smarty.const._MA_WGLINKS_STATE_ONLINE}>' />
+                                <a href='link.php?op=change_state&amp;link_state=1&amp;link_id=<{$link.id}>&amp;start=<{$start}>&amp;limit=<{$limit}>' title='<{$smarty.const._MD_WGLINKS_STATE_ONLINE}>'>
+                                    <img src='<{$wglinks_url}>/assets/icons/16/state0.png' alt='<{$smarty.const._MD_WGLINKS_STATE_ONLINE}>' />
                                 </a>
                             <{/if}>
                             <{if $link.state|default:0 == 1}>
-                                <a href='link.php?op=change_state&amp;link_state=0&amp;link_id=<{$link.id}>&amp;start=<{$start}>&amp;limit=<{$limit}>' title='<{$smarty.const._MA_WGLINKS_STATE_OFFLINE}>'>
-                                    <img src='<{$wglinks_url}>/assets/icons/16/state1.png' alt='<{$smarty.const._MA_WGLINKS_STATE_OFFLINE}>' />
+                                <a href='link.php?op=change_state&amp;link_state=0&amp;link_id=<{$link.id}>&amp;start=<{$start}>&amp;limit=<{$limit}>' title='<{$smarty.const._MD_WGLINKS_STATE_OFFLINE}>'>
+                                    <img src='<{$wglinks_url}>/assets/icons/16/state1.png' alt='<{$smarty.const._MD_WGLINKS_STATE_OFFLINE}>' />
                                 </a>
                             <{/if}>
                         </td>

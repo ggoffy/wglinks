@@ -14,11 +14,11 @@
             <{if $link.contact|default:false}>
                 <div class='row'>
                     <{if $title_style|default:'' == 'glyphicons'}>
-                        <div class='col-xs-2 col-sm-2 wglinks-link-icon'><span class="glyphicon glyphicon-user" title="<{$smarty.const._MA_WGLINKS_LINK_CONTACT}>"></span></div>
+                        <div class='col-xs-2 col-sm-2 wglinks-link-icon'><span class="glyphicon glyphicon-user" title="<{$smarty.const._MD_WGLINKS_LINK_CONTACT}>"></span></div>
                         <div class='col-xs-10 col-sm-10 wglinks-link-contact'>
                     <{else}>
                         <div class='col-xs-12 col-sm-12 wglinks-link-contact'>
-                            <{$smarty.const._MA_WGLINKS_LINK_CONTACT}>:&nbsp;
+                            <{$smarty.const._MD_WGLINKS_LINK_CONTACT}>:&nbsp;
                     <{/if}>
                         <{$link.contact}>
                     </div>
@@ -27,11 +27,11 @@
             <{if $link.email|default:false}>
                 <div class='row'>
                     <{if $title_style|default:'' == 'glyphicons'}>
-                        <div class='col-xs-2 col-sm-2 wglinks-link-icon'><span class="glyphicon glyphicon-envelope" title="<{$smarty.const._MA_WGLINKS_LINK_EMAIL}>"></span></div>
+                        <div class='col-xs-2 col-sm-2 wglinks-link-icon'><span class="glyphicon glyphicon-envelope" title="<{$smarty.const._MD_WGLINKS_LINK_EMAIL}>"></span></div>
                         <div class='col-xs-10 col-sm-10 wglinks-link-email'>
                     <{else}>
                         <div class='col-xs-12 col-sm-12 wglinks-link-email'>
-                            <{$smarty.const._MA_WGLINKS_LINK_EMAIL}>:&nbsp;
+                            <{$smarty.const._MD_WGLINKS_LINK_EMAIL}>:&nbsp;
                     <{/if}>
                         <{$link.email}>
                     </div>
@@ -40,11 +40,11 @@
             <{if $link.phone|default:false}>
                 <div class='row'>                
                     <{if $title_style|default:'' == 'glyphicons'}>
-                        <div class='col-xs-2 col-sm-2 wglinks-link-icon'><span class="glyphicon glyphicon-phone" title="<{$smarty.const._MA_WGLINKS_LINK_PHONE}>"></span></div>
+                        <div class='col-xs-2 col-sm-2 wglinks-link-icon'><span class="glyphicon glyphicon-phone" title="<{$smarty.const._MD_WGLINKS_LINK_PHONE}>"></span></div>
                         <div class='col-xs-10 col-sm-10 wglinks-link-phone'>
                     <{else}>
                         <div class='col-xs-12 col-sm-12 wglinks-link-phone'>
-                            <{$smarty.const._MA_WGLINKS_LINK_PHONE}>:&nbsp;
+                            <{$smarty.const._MD_WGLINKS_LINK_PHONE}>:&nbsp;
                     <{/if}>
                         <{$link.phone}>
                     </div>
@@ -53,11 +53,11 @@
             <{if $link.address|default:false}>
                 <div class='row'>
                     <{if $title_style|default:'' == 'glyphicons'}>
-                        <div class='col-xs-2 col-sm-2 wglinks-link-icon'><span class="glyphicon glyphicon-map-marker" title="<{$smarty.const._MA_WGLINKS_LINK_ADDRESS}>"></span></div>
+                        <div class='col-xs-2 col-sm-2 wglinks-link-icon'><span class="glyphicon glyphicon-map-marker" title="<{$smarty.const._MD_WGLINKS_LINK_ADDRESS}>"></span></div>
                         <div class='col-xs-10 col-sm-10 wglinks-link-address'>
                     <{else}>
                         <div class='col-xs-12 col-sm-12 wglinks-link-address'>
-                            <{$smarty.const._MA_WGLINKS_LINK_ADDRESS}>:&nbsp;
+                            <{$smarty.const._MD_WGLINKS_LINK_ADDRESS}>:&nbsp;
                     <{/if}>
                         <{$link.address}>
                     </div>
@@ -66,11 +66,11 @@
             <{if $link.url|default:false}>
                 <div class='row'>
                     <{if $title_style|default:'' == 'glyphicons'}>
-                        <div class='col-xs-2 col-sm-2 wglinks-link-icon'><span class="glyphicon glyphicon-globe" title="<{$smarty.const._MA_WGLINKS_LINK_URL}>"></span></div>
+                        <div class='col-xs-2 col-sm-2 wglinks-link-icon'><span class="glyphicon glyphicon-globe" title="<{$smarty.const._MD_WGLINKS_LINK_URL}>"></span></div>
                         <div class='col-xs-10 col-sm-10 wglinks-link-url'>
                     <{else}>
                         <div class='col-xs-12 col-sm-12 wglinks-link-url'>
-                            <{$smarty.const._MA_WGLINKS_LINK_URL}>:&nbsp;
+                            <{$smarty.const._MD_WGLINKS_LINK_URL}>:&nbsp;
                     <{/if}>
                         <a href="<{$link.url}>" title="<{$link.tooltip|default:''}>" target="_blank"><{$link.url_text}></a>
                     </div>

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace XoopsModules\Wglinks\Common;
 
@@ -20,13 +20,12 @@ use XoopsModules\Wglinks\Common;
  * @category  Migrate
  * @author    Richard Griffith <richard@geekwright.com>
  * @copyright 2016 XOOPS Project (https://xoops.org)
- * @license   GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
+ * @license   GNU GPL 2.0 or later (https://www.gnu.org/licenses/gpl-2.0.html)
  * @link      https://xoops.org
  */
-
 class Migrate extends \Xmf\Database\Migrate
 {
-    private mixed $renameTables;
+    private $renameTables;
 
     /**
      * @param \XoopsModules\Wglinks\Common\Configurator|null $configurator
@@ -59,7 +58,7 @@ class Migrate extends \Xmf\Database\Migrate
      * @param string $tableName  table to convert
      * @param string $columnName column with IP address
      */
-    private function convertIPAddresses(string $tableName, string $columnName): void
+    private function convertIPAddresses($tableName, $columnName): void
     {
         if ($this->tableHandler->useTable($tableName)) {
             $attributes = $this->tableHandler->getColumnAttributes($tableName, $columnName);
@@ -101,7 +100,7 @@ class Migrate extends \Xmf\Database\Migrate
      *   table and column renames
      *   data conversions
      */
-    protected function preSyncActions()
+    protected function preSyncActions(): void
     {
         /*
         // change 'bb' table prefix to 'newbb'

@@ -34,7 +34,7 @@ include_once 'main.php';
 \define('_MB_WGLINKS_LINKS_BSTYLE_4CARDS', '4 Cards');
 \define('_MB_WGLINKS_LINKS_BSTYLE_6CARDS', '6 Cards');
 \define('_MB_WGLINKS_LINKS_BSTYLE_12CARDS', '12 Cards');
-\define('_MB_WGLINKS_BTN_SHOW_MORE', "Shwo button '" . \_MA_WGLINKS_SHOW_MORE . "'");
+\define('_MB_WGLINKS_BTN_SHOW_MORE', "Shwo button '" . \_MD_WGLINKS_SHOW_MORE . "'");
 // Link
 \define('_MB_WGLINKS_ALL_LINKS', 'All links');
 \define('_MB_WGLINKS_LINKS_TO_DISPLAY', 'Link categories to display');

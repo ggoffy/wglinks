@@ -19,31 +19,31 @@
  */
 
 // ---------------- Main ----------------
-\define('_MA_WGLINKS_INDEX', 'Übersicht');
-\define('_MA_WGLINKS_TITLE', 'wgLinks');
-\define('_MA_WGLINKS_DESC', 'Dieses Modul stellt eine Liste von Link bereit');
-\define('_MA_WGLINKS_INDEX_DESC', '');
-\define('_MA_WGLINKS_SHOW_MORE', 'Weitere anzeigen');
+\define('_MD_WGLINKS_INDEX', 'Übersicht');
+\define('_MD_WGLINKS_TITLE', 'wgLinks');
+\define('_MD_WGLINKS_DESC', 'Dieses Modul stellt eine Liste von Link bereit');
+\define('_MD_WGLINKS_INDEX_DESC', '');
+\define('_MD_WGLINKS_SHOW_MORE', 'Weitere anzeigen');
 //Constants
-\define('_MA_WGLINKS_STATE_OFFLINE', 'Offline');
-\define('_MA_WGLINKS_STATE_ONLINE', 'Online');
+\define('_MD_WGLINKS_STATE_OFFLINE', 'Offline');
+\define('_MD_WGLINKS_STATE_ONLINE', 'Online');
 // ---------------- Contents ----------------
 // Link
-\define('_MA_WGLINKS_LINK', 'Link');
-\define('_MA_WGLINKS_LINKS', 'Link');
-\define('_MA_WGLINKS_LINK_URL', 'Webseite');
-\define('_MA_WGLINKS_LINK_CONTACT', 'Kontakt');
-\define('_MA_WGLINKS_LINK_EMAIL', 'e-Mail');
-\define('_MA_WGLINKS_LINK_PHONE', 'Telefon');
-\define('_MA_WGLINKS_LINK_ADDRESS', 'Adresse');
-\define('_MA_WGLINKS_LINK_TYPE', 'Art');
-\define('_MA_WGLINKS_LINK_TARGET', 'Ziel');
-\define('_MA_WGLINKS_LINK_TYPE_CONTENT', 'Inhalt in wgLinks anzeigen');
-\define('_MA_WGLINKS_LINK_TYPE_DIRECT', 'Link direkt öffnen');
-\define('_MA_WGLINKS_LINK_TARGET_SELF', 'Gleicher Tab');
-\define('_MA_WGLINKS_LINK_TARGET_BLANK', 'Neuer Tab');
-\define('_MA_WGLINKS_LINK_TARGET_PARENT', 'Elternfenster');
-\define('_MA_WGLINKS_LINK_TARGET_TOP', 'Neues Fenster');
+\define('_MD_WGLINKS_LINK', 'Link');
+\define('_MD_WGLINKS_LINKS', 'Link');
+\define('_MD_WGLINKS_LINK_URL', 'Webseite');
+\define('_MD_WGLINKS_LINK_CONTACT', 'Kontakt');
+\define('_MD_WGLINKS_LINK_EMAIL', 'e-Mail');
+\define('_MD_WGLINKS_LINK_PHONE', 'Telefon');
+\define('_MD_WGLINKS_LINK_ADDRESS', 'Adresse');
+\define('_MD_WGLINKS_LINK_TYPE', 'Art');
+\define('_MD_WGLINKS_LINK_TARGET', 'Ziel');
+\define('_MD_WGLINKS_LINK_TYPE_CONTENT', 'Inhalt in wgLinks anzeigen');
+\define('_MD_WGLINKS_LINK_TYPE_DIRECT', 'Link direkt öffnen');
+\define('_MD_WGLINKS_LINK_TARGET_SELF', 'Gleicher Tab');
+\define('_MD_WGLINKS_LINK_TARGET_BLANK', 'Neuer Tab');
+\define('_MD_WGLINKS_LINK_TARGET_PARENT', 'Elternfenster');
+\define('_MD_WGLINKS_LINK_TARGET_TOP', 'Neues Fenster');
 // Admin link
-\define('_MA_WGLINKS_ADMIN', 'Admininistration');
+\define('_MD_WGLINKS_ADMIN', 'Admininistration');
 // ---------------- End ----------------

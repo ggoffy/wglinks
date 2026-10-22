@@ -83,7 +83,7 @@ unset($links);
 unset($count);
 // Breadcrumbs
 if ($helper->getConfig('show_breadcrumbs')) {
-    $xoBreadcrumbs[] = ['title' => \_MA_WGLINKS_INDEX];
+    $xoBreadcrumbs[] = ['title' => \_MD_WGLINKS_INDEX];
     $GLOBALS['xoopsTpl']->assign('show_breadcrumbs', true);
 }
 
@@ -91,7 +91,7 @@ if ($helper->getConfig('show_breadcrumbs')) {
 wglinksMetaKeywords($helper->getConfig('keywords').', '. \implode(',', $keywords));
 unset($keywords);
 // Description
-wglinksMetaDescription(\_MA_WGLINKS_INDEX_DESC);
+wglinksMetaDescription(\_MD_WGLINKS_INDEX_DESC);
 $GLOBALS['xoopsTpl']->assign('xoops_mpageurl', \WGLINKS_URL.'/index.php');
 $GLOBALS['xoopsTpl']->assign('xoops_icons32_url', XOOPS_ICONS32_URL);
 $GLOBALS['xoopsTpl']->assign('wglinks_upload_url', \WGLINKS_UPLOAD_URL);

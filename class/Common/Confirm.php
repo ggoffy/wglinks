@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace XoopsModules\Wglinks\Common;
 
@@ -17,7 +17,9 @@ namespace XoopsModules\Wglinks\Common;
  *
  * @copyright     2020 XOOPS Project (https://xoops.org)
  * @license        GPL 2.0 or later
- * @package        general
+ * @package        Wglinks
+ * @since          1.0
+ * @min_xoops      2.5.9
  * @author         Goffy - Email:<goffy@myxoops.org> - Website:<https://xoops.org>
  *
  *
@@ -25,8 +27,8 @@ namespace XoopsModules\Wglinks\Common;
     $customConfirm = new Common\Confirm(
         ['ok' => 1, 'item_id' => $itemId, 'op' => 'delete'],
         $_SERVER['REQUEST_URI'],
-        \sprintf(\_MA_MYMODULE_FORM_SURE_DELETE,
-        $itemObj->getCaption()));
+        \sprintf(\_MD_MYMODULE_FORM_SURE_DELETE,
+        $itemsObj->getCaption()));
     $form = $customConfirm->getFormConfirm();
     $GLOBALS['xoopsTpl']->assign('form', $form->render());
  */
@@ -38,21 +40,21 @@ namespace XoopsModules\Wglinks\Common;
  */
 class Confirm
 {
-    private array $hiddens = [];
-    private string $action  = '';
-    private string $title   = '';
-    private string $label   = '';
-    private string $object  = '';
+    private $hiddens = [];
+    private $action  = '';
+    private $title   = '';
+    private $label   = '';
+    private $object  = '';
 
     /**
      * @public function constructor class
-     * @param        $hiddens
-     * @param        $action
-     * @param        $object
+     * @param array  $hiddens
+     * @param string $action
+     * @param string $object
      * @param string $title
      * @param string $label
      */
-    public function __construct($hiddens, $action, $object, string $title = '', string $label = '')
+    public function __construct(array $hiddens, string $action, string $object, string $title = '', string $label = '')
     {
         $this->hiddens = $hiddens;
         $this->action  = $action;
@@ -65,14 +67,12 @@ class Confirm
      * @public function getFormConfirm
      * @return \XoopsThemeForm
      */
-    public function getFormConfirm(): \XoopsThemeForm
+    public function getFormConfirm()
     {
-        $moduleDirName      = \basename(__DIR__);
-        $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
         //in order to be accessable from user and admin area this should be place in language common.php
-        if (!\defined('CO_' . $moduleDirNameUpper . '_DELETE_CONFIRM')) {
-            \define('CO_' . $moduleDirNameUpper . '_DELETE_CONFIRM', 'Confirm delete');
-            \define('CO_' . $moduleDirNameUpper . '_DELETE_LABEL', 'Do you really want to delete:');
+        if (!\defined('_CO_WGLINKS_DELETE_CONFIRM')) {
+            \define('_CO_WGLINKS_DELETE_CONFIRM', 'Confirm delete');
+            \define('_CO_WGLINKS_DELETE_LABEL', 'Do you really want to delete:');
         }
 
         // Get Theme Form
@@ -80,11 +80,10 @@ class Confirm
             $this->action = \Xmf\Request::getString('REQUEST_URI', '', 'SERVER');
         }
         if ('' === $this->title) {
-            $this->title = \constant('CO_' . $moduleDirNameUpper . '_DELETE_CONFIRM');
+            $this->title = \constant('_CO_WGLINKS_DELETE_CONFIRM');
         }
         if ('' === $this->label) {
-
-            $this->label = \constant('CO_' . $moduleDirNameUpper . '_DELETE_LABEL');
+            $this->label = \constant('_CO_WGLINKS_DELETE_LABEL');
         }
 
         \xoops_load('XoopsFormLoader');
@@ -102,6 +101,7 @@ class Confirm
         $buttonBack->setExtra('onclick="history.go(-1);return true;"');
         $buttonTray->addElement($buttonBack);
         $form->addElement($buttonTray);
+
         return $form;
     }
 }

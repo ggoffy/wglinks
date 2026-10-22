@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace XoopsModules\Wglinks\Common;
 
@@ -16,17 +16,17 @@ namespace XoopsModules\Wglinks\Common;
  * Feedback plugin for xoops modules
  *
  * @copyright      XOOPS Project  (https://xoops.org)
- * @license        GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
- * @author         Michael Beck <mambax7@gmailc.com>
+ * @license        GNU GPL 2.0 or later (https://www.gnu.org/licenses/gpl-2.0.html)
+ * @author         Michael Beck <mambax7@gmail.com>
  */
 trait ModuleStats
 {
     /**
      * @param \XoopsModules\Wglinks\Common\Configurator $configurator
-     * @param array $moduleStats
+     * @param array                                           $moduleStats
      * @return array
      */
-    public static function getModuleStats(Configurator $configurator, array $moduleStats): array
+    public static function getModuleStats($configurator, $moduleStats)
     {
         if (\count($configurator->moduleStats) > 0) {
             foreach (\array_keys($configurator->moduleStats) as $i) {

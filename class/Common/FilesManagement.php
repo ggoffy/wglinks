@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace XoopsModules\Wglinks\Common;
 
@@ -14,7 +14,7 @@ namespace XoopsModules\Wglinks\Common;
 
 /**
  * @copyright   XOOPS Project (https://xoops.org)
- * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
+ * @license     https://www.fsf.org/copyleft/gpl.html GNU public license
  * @author      mamba <mambax7@gmail.com>
  */
 trait FilesManagement
@@ -27,10 +27,10 @@ trait FilesManagement
      * @return void
      * @throws \RuntimeException
      */
-    public static function createFolder(string $folder): void
+    public static function createFolder($folder): void
     {
         try {
-            if (!\is_dir($folder)) {
+            if (!\file_exists($folder)) {
                 if (!\is_dir($folder) && !\mkdir($folder) && !\is_dir($folder)) {
                     throw new \RuntimeException(\sprintf('Unable to create the %s directory', $folder));
                 }
@@ -43,11 +43,11 @@ trait FilesManagement
     }
 
     /**
-     * @param $file
-     * @param $folder
+     * @param string $file
+     * @param string $folder
      * @return bool
      */
-    public static function copyFile($file, $folder): bool
+    public static function copyFile(string $file, string $folder): bool
     {
         return \copy($file, $folder);
     }
@@ -82,9 +82,9 @@ trait FilesManagement
      * @return      bool     Returns true on success, false on failure
      * @author      Aidan Lister <aidan@php.net>
      * @version     1.0.1
-     * @link        http://aidanlister.com/2004/04/recursively-copying-directories-in-php/
+     * @link        https://aidanlister.com/2004/04/recursively-copying-directories-in-php/
      */
-    public static function xcopy(string $source, string $dest): bool
+    public static function xcopy($source, $dest)
     {
         // Check for symlinks
         if (\is_link($source)) {
@@ -131,7 +131,7 @@ trait FilesManagement
      *
      * @uses \Xmf\Module\Helper::getHelper()
      */
-    public static function deleteDirectory(string $src): bool
+    public static function deleteDirectory($src)
     {
         // Only continue if user is a 'global' Admin
         if (!($GLOBALS['xoopsUser'] instanceof \XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
@@ -179,7 +179,7 @@ trait FilesManagement
      *
      * @return bool true on success
      */
-    public static function rrmdir(string $src): bool
+    public static function rrmdir($src)
     {
         // Only continue if user is a 'global' Admin
         if (!($GLOBALS['xoopsUser'] instanceof \XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
@@ -208,6 +208,7 @@ trait FilesManagement
             }
         }
         $iterator = null;   // clear iterator Obj to close file/directory
+
         return \rmdir($src); // remove the directory & return results
     }
 
@@ -219,7 +220,7 @@ trait FilesManagement
      *
      * @return bool true on success
      */
-    public static function rmove(string $src, string $dest): bool
+    public static function rmove($src, $dest)
     {
         // Only continue if user is a 'global' Admin
         if (!($GLOBALS['xoopsUser'] instanceof \XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
@@ -248,6 +249,7 @@ trait FilesManagement
             }
         }
         $iterator = null;   // clear iterator Obj to close file/directory
+
         return \rmdir($src); // remove the directory & return results
     }
 
@@ -262,7 +264,7 @@ trait FilesManagement
      *
      * @uses \Xmf\Module\Helper::getHelper()
      */
-    public static function rcopy(string $src, string $dest): bool
+    public static function rcopy($src, $dest)
     {
         // Only continue if user is a 'global' Admin
         if (!($GLOBALS['xoopsUser'] instanceof \XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
