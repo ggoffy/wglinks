@@ -41,7 +41,5 @@ interface Constants
     // Constants for link target
     public const string TARGET_SELF   = '_self';
     public const string TARGET_BLANK  = '_blank';
-    public const string TARGET_PARENT = '_parent';
-    public const string TARGET_TOP    = '_top';
 
 }

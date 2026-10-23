@@ -90,9 +90,9 @@ class Link extends \XoopsObject
         $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
         // Form Table categories
-        $categoriesHandler = $helper->getHandler('Category');
+        $categoryHandler = $helper->getHandler('Category');
         $imgCatidSelect = new \XoopsFormSelect( \_AM_WGLINKS_CAT, 'link_catid', $this->getVar('link_catid'));
-        $imgCatidSelect->addOptionArray($categoriesHandler->getList());
+        $imgCatidSelect->addOptionArray($categoryHandler->getList());
         $form->addElement($imgCatidSelect, true);
         // Form Text LinkName
         $form->addElement(new \XoopsFormText( \_AM_WGLINKS_LINK_NAME, 'link_name', 50, 255, $this->getVar('link_name') ), true);
@@ -169,14 +169,12 @@ class Link extends \XoopsObject
         $linkTargetSelect = new \XoopsFormRadio( \_MD_WGLINKS_LINK_TARGET, 'link_target', $linkTarget);
         $linkTargetSelect->addOption(Constants::TARGET_SELF, \_MD_WGLINKS_LINK_TARGET_SELF);
         $linkTargetSelect->addOption(Constants::TARGET_BLANK, \_MD_WGLINKS_LINK_TARGET_BLANK);
-        $linkTargetSelect->addOption(Constants::TARGET_PARENT, \_MD_WGLINKS_LINK_TARGET_PARENT);
-        $linkTargetSelect->addOption(Constants::TARGET_TOP, \_MD_WGLINKS_LINK_TARGET_TOP);
         $form->addElement($linkTargetSelect);
         // Form Select User
         $linkSubmitter = $this->isNew() ? $GLOBALS['xoopsUser']->getVar('uid') : $this->getVar('link_submitter');
         $form->addElement(new \XoopsFormSelectUser( \_AM_WGLINKS_SUBMITTER, 'link_submitter', false, $linkSubmitter ), true);
         // Form Text Date Select
-        $linkDate_created = $this->isNew() ? 0 : $this->getVar('link_date_created');
+        $linkDate_created = $this->isNew() ? time() : $this->getVar('link_date_created');
         $form->addElement(new \XoopsFormTextDateSelect( \_AM_WGLINKS_DATE_CREATED, 'link_date_created', '', $linkDate_created ), true);
         // To Save
         $form->addElement(new \XoopsFormHidden('op', 'save'));
@@ -198,8 +196,8 @@ class Link extends \XoopsObject
         $ret = parent::getValues($keys, $format, $maxDepth);
         $ret['id'] = $this->getVar('link_id');
         $ret['catid'] = $this->getVar('link_catid');
-        $categoriesHandler = $helper->getHandler('Category');
-        $categoriesObj = $categoriesHandler->get($this->getVar('link_catid'));
+        $categoryHandler = $helper->getHandler('Category');
+        $categoriesObj = $categoryHandler->get($this->getVar('link_catid'));
         $ret['catname'] = $categoriesObj->getVar('cat_name');
         $ret['name'] = $this->getVar('link_name');
         $ret['url'] = '';
@@ -234,8 +232,6 @@ class Link extends \XoopsObject
         }
         $ret['target_text'] = match ($this->getVar('link_target')) {
             Constants::TARGET_BLANK => \_MD_WGLINKS_LINK_TARGET_BLANK,
-            Constants::TARGET_PARENT => \_MD_WGLINKS_LINK_TARGET_PARENT,
-            Constants::TARGET_TOP => \_MD_WGLINKS_LINK_TARGET_TOP,
             default => \_MD_WGLINKS_LINK_TARGET_SELF,
         };
         $ret['submitter'] = \XoopsUser::getUnameFromId($this->getVar('link_submitter'));

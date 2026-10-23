@@ -89,7 +89,7 @@ class Category extends \XoopsObject
         $catSubmitter = $this->isNew() ? $GLOBALS['xoopsUser']->getVar('uid') : $this->getVar('cat_submitter');
         $form->addElement(new \XoopsFormSelectUser( \_AM_WGLINKS_SUBMITTER, 'cat_submitter', false, $catSubmitter ), true);
         // Form Text Date Select
-        $catDate_created = $this->isNew() ? 0 : $this->getVar('cat_date_created');
+        $catDate_created = $this->isNew() ? time() : $this->getVar('cat_date_created');
         $form->addElement(new \XoopsFormTextDateSelect( \_AM_WGLINKS_DATE_CREATED, 'cat_date_created', '', $catDate_created ), true);
         // To Save
         $form->addElement(new \XoopsFormHidden('op', 'save'));

@@ -2,13 +2,13 @@
 <{include file='db:wglinks_admin_header.tpl'}>
 
 <{if $categories_list|default:false}>
-    <table class='outer'>
+    <table class='outer' id='sortable'>
         <thead>
             <tr class="head">
+                <th class="center">&nbsp;</th>
                 <th class="center"><{$smarty.const._AM_WGLINKS_CAT_ID}></th>
                 <th class="center"><{$smarty.const._AM_WGLINKS_CAT_NAME}></th>
                 <th class="center"><{$smarty.const._AM_WGLINKS_CAT_DESC}></th>
-                <th class="center"><{$smarty.const._AM_WGLINKS_WEIGHT}></th>
                 <th class="center"><{$smarty.const._AM_WGLINKS_SUBMITTER}></th>
                 <th class="center"><{$smarty.const._AM_WGLINKS_DATE_CREATED}></th>
                 <th class="center width5"><{$smarty.const._AM_WGLINKS_FORM_ACTION}></th>
@@ -16,11 +16,11 @@
         </thead>
         <{if $categories_count|default:0}>
             <tbody><{foreach item=category from=$categories_list}>
-                <tr class="<{cycle values="odd, even"}>">
+                <tr class="<{cycle values="odd, even"}>" id="corder_<{$category.id}>">
+                    <td class="center"><img src="<{$wglinks_url}>/assets/icons/16/up_down.png" alt="drag&drop" class="icon-sortable"/></td>
                     <td class='center'><{$category.id}></td>
                     <td class="center"><{$category.name}></td>
                     <td class="center"><{$category.desc|default:''}></td>
-                    <td class="center"><{$category.weight}></td>
                     <td class="center"><{$category.submitter}></td>
                     <td class="center"><{$category.date_created}></td>
                     <td class="center  width5">

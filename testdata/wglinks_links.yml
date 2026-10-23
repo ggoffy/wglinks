@@ -9,11 +9,13 @@
     link_phone: ''
     link_address: ''
     link_detail: 'This is main website of XOOPS community'
-    link_weight: '0'
+    link_weight: '1'
     link_logo: XOOPS.5debb39343caf.png
     link_state: '1'
+    link_type: '0'
+    link_target: _self
     link_submitter: '1'
-    link_date_created: '1575417600'
+    link_date_created: '1575481343'
 -
     link_id: '2'
     link_catid: '1'
@@ -25,8 +27,10 @@
     link_phone: ''
     link_address: ''
     link_detail: 'Die Webseite der deutschen XOOPS-Community'
-    link_weight: '0'
+    link_weight: '2'
     link_logo: XOOPSGermany.5debb1f3eedee.png
     link_state: '1'
+    link_type: '0'
+    link_target: _blank
     link_submitter: '1'
-    link_date_created: '1575417600'
+    link_date_created: '1575481333'

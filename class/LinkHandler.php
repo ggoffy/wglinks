@@ -117,4 +117,29 @@ class LinkHandler extends \XoopsPersistableObjectHandler
         $criteriaLinks->setOrder( $order );
         return $criteriaLinks;
     }
+
+    /**
+     * Get max value of link weight
+     *
+     * @return int
+     */
+    public function getMaxLinkWeight()
+    {
+        global $xoopsDB;
+
+        $sql = 'SELECT max(link_weight) FROM ' . $xoopsDB->prefix('wglinks_links');
+
+        $result = $xoopsDB->query($sql);
+        if (!$xoopsDB->isResultSet($result) || !($result instanceof \mysqli_result)) {
+            throw new \RuntimeException(
+                \sprintf(_DB_QUERY_ERROR, $sql) . $xoopsDB->error(),
+                E_USER_ERROR,
+            );
+        }
+        while (false !== ($row = $xoopsDB->fetchRow($result))) {
+            return (int)$row[0];
+        }
+
+        return 0;
+    }
 }

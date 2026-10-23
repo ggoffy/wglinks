@@ -22,8 +22,8 @@ use XoopsModules\Wglinks\Common;
 
 include __DIR__ . '/header.php';
 // Count elements
-$countCategories = $categoriesHandler->getCount();
-$countLinks = $linksHandler->getCount();
+$countCategories = $categoryHandler->getCount();
+$countLinks = $linkHandler->getCount();
 // Template Index
 $templateMain = 'wglinks_admin_index.tpl';
 // InfoBox Statistics

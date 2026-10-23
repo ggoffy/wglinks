@@ -28,14 +28,17 @@ $catId = Request::getInt('cat_id');
 switch($op) {
     case 'list':
     default:
+        $GLOBALS['xoTheme']->addScript(\WGLINKS_URL . '/assets/js/jquery.js');
+        $GLOBALS['xoTheme']->addScript(\WGLINKS_URL . '/assets/js/jquery-ui.js');
+        $GLOBALS['xoTheme']->addScript(\WGLINKS_URL . '/assets/js/sortable-categories.js');
         $start = Request::getInt('start');
         $limit = Request::getInt('limit', $helper->getConfig('adminpager'));
         $templateMain = 'wglinks_admin_category.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('category.php'));
         $adminObject->addItemButton(\_AM_WGLINKS_ADD_CAT, 'category.php?op=new');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
-        $categoriesCount = $categoriesHandler->getCountCategories();
-        $categoriesAll = $categoriesHandler->getAllCategories($start, $limit);
+        $categoriesCount = $categoryHandler->getCountCategories();
+        $categoriesAll = $categoryHandler->getAllCategories($start, $limit);
         $GLOBALS['xoopsTpl']->assign('categories_count', $categoriesCount);
         $GLOBALS['xoopsTpl']->assign('wglinks_url', \WGLINKS_URL);
         $GLOBALS['xoopsTpl']->assign('wglinks_upload_url', \WGLINKS_UPLOAD_URL);
@@ -55,33 +58,35 @@ switch($op) {
         } else {
             $GLOBALS['xoopsTpl']->assign('error', \_AM_WGLINKS_THEREARENT_CATS);
         }
-
-    break;
+        break;
     case 'new':
         $templateMain = 'wglinks_admin_category.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('category.php'));
         $adminObject->addItemButton(\_AM_WGLINKS_CATS_LIST, 'category.php', 'list');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
         // Get Form
-        $categoriesObj = $categoriesHandler->create();
+        $categoriesObj = $categoryHandler->create();
         $form = $categoriesObj->getFormCategories();
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
-
-    break;
+        break;
     case 'save':
         // Security Check
         if(!$GLOBALS['xoopsSecurity']->check()) {
             \redirect_header('category.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
         }
         if(0 < $catId) {
-            $categoriesObj = $categoriesHandler->get($catId);
+            $categoriesObj = $categoryHandler->get($catId);
         } else {
-            $categoriesObj = $categoriesHandler->create();
+            $categoriesObj = $categoryHandler->create();
         }
         // Set Vars
         $categoriesObj->setVar('cat_name', Request::getString('cat_name'));
         $categoriesObj->setVar('cat_desc', Request::getText('cat_desc'));
-        $categoriesObj->setVar('cat_weight', Request::getInt('cat_weight') ?? 0);
+        $catWeight = Request::getInt('cat_weight');
+        if (0 === $catWeight) {
+            $catWeight = $categoryHandler->getMaxCategoryWeight() + 1;
+        }
+        $categoriesObj->setVar('cat_weight', $catWeight);
         $categoriesObj->setVar('cat_submitter', Request::getInt('cat_submitter') ?? 0);
         $catDateCreated = Request::getString('cat_date_created');
         if ('' !== $catDateCreated) {
@@ -93,15 +98,14 @@ switch($op) {
             $categoriesObj->setVar('cat_date_created', $catDateCreatedObj->getTimestamp());
         }
         // Insert Data
-        if($categoriesHandler->insert($categoriesObj)) {
+        if($categoryHandler->insert($categoriesObj)) {
             \redirect_header('category.php?op=list', 2, \_AM_WGLINKS_FORM_OK);
         }
         // Get Form
         $GLOBALS['xoopsTpl']->assign('error', $categoriesObj->getHtmlErrors());
         $form = $categoriesObj->getFormCategories();
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
-
-    break;
+        break;
     case 'edit':
         $templateMain = 'wglinks_admin_category.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('category.php'));
@@ -109,17 +113,17 @@ switch($op) {
         $adminObject->addItemButton(\_AM_WGLINKS_CATS_LIST, 'category.php', 'list');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
         // Get Form
-        $categoriesObj = $categoriesHandler->get($catId);
+        $categoriesObj = $categoryHandler->get($catId);
         $form = $categoriesObj->getFormCategories();
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
-    break;
+        break;
     case 'delete':
-        $categoriesObj = $categoriesHandler->get($catId);
+        $categoriesObj = $categoryHandler->get($catId);
         if(1 === Request::getInt('ok')) {
             if(!$GLOBALS['xoopsSecurity']->check()) {
                 \redirect_header('category.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
             }
-            if($categoriesHandler->delete($categoriesObj)) {
+            if($categoryHandler->delete($categoriesObj)) {
                 \redirect_header('category.php', 3, \_AM_WGLINKS_FORM_DELETE_OK);
             } else {
                 $GLOBALS['xoopsTpl']->assign('error', $categoriesObj->getHtmlErrors());
@@ -127,7 +131,17 @@ switch($op) {
         } else {
             xoops_confirm(['ok' => 1, 'cat_id' => $catId, 'op' => 'delete'], $_SERVER['REQUEST_URI'], \sprintf(\_AM_WGLINKS_FORM_SURE_DELETE, $categoriesObj->getVar('cat_name')));
         }
-
-    break;
+        break;
+    case 'order':
+        $corder = Request::getArray('corder');
+        $counter = 0;
+        for ($i = 0, $iMax = \count($corder); $i < $iMax; $i++){
+            $counter++;
+            $categoriesObj = $categoryHandler->get($corder[$i]);
+            $categoriesObj->setVar('cat_weight',$counter);
+            $categoryHandler->insert($categoriesObj);
+            unset($categoriesObj);
+        }
+        break;
 }
 include __DIR__ . '/footer.php';

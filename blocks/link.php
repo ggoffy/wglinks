@@ -38,7 +38,7 @@ function b_wglinks_links_show($options): array
     if (0 < $logoHeight) {
         $GLOBALS['xoopsTpl']->assign('imgheight', $logoHeight . 'px');
     }
-    $linksHandler = $wglinks->getHandler('Link');
+    $linkHandler = $wglinks->getHandler('Link');
     \array_shift($options);
     \array_shift($options);
     \array_shift($options);
@@ -74,7 +74,7 @@ function b_wglinks_links_show($options): array
     if ($limit > 0) {
         $crLinks->setLimit($limit);
     }
-    $linksAll = $linksHandler->getAll($crLinks);
+    $linksAll = $linkHandler->getAll($crLinks);
     unset($crLinks);
     foreach(\array_keys($linksAll) as $i)
     {
@@ -94,7 +94,7 @@ function b_wglinks_links_edit($options): string
 {
     include_once \XOOPS_ROOT_PATH.'/modules/wglinks/class/Link.php';
     $wglinks = \XoopsModules\Wglinks\Helper::getInstance();
-    $categoriesHandler = $wglinks->getHandler('Category');
+    $categoryHandler = $wglinks->getHandler('Category');
     $GLOBALS['xoopsTpl']->assign('wglinks_upload_url', \WGLINKS_UPLOAD_URL);
 
     $form = "<input type='hidden' name='options[0]' size='5' maxlength='255' value='".$options[0]."' />";
@@ -136,7 +136,7 @@ function b_wglinks_links_edit($options): string
     $crCats = new \CriteriaCompo();
     $crCats->setSort('cat_weight ASC, cat_id');
     $crCats->setOrder('ASC');
-    $categoriesAll = $categoriesHandler->getAll($crCats);
+    $categoriesAll = $categoryHandler->getAll($crCats);
     unset($crCats);
     $form .= \_MB_WGLINKS_LINKS_TO_DISPLAY.":<br><select name='options[]' multiple='multiple' size='5'>";
     $form .= "<option value='0' " . (\in_array(0, $options) === false ? '' : "selected='selected'") . '>' . \_MB_WGLINKS_ALL_CATS . '</option>';

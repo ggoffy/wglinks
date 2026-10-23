@@ -78,7 +78,7 @@ class CategoryHandler extends \XoopsPersistableObjectHandler
      * @param string $order
      * @return int
      */
-    public function getCountCategories(int $start = 0, int $limit = 0, string $sort = 'cat_id ASC, cat_desc', string $order = 'ASC'): int
+    public function getCountCategories(int $start = 0, int $limit = 0, string $sort = 'cat_weight ASC, cat_id', string $order = 'ASC'): int
     {
         $criteriaCountCategories = new \CriteriaCompo();
         $criteriaCountCategories = $this->getCategoriesCriteria($criteriaCountCategories, $start, $limit, $sort, $order);
@@ -93,7 +93,7 @@ class CategoryHandler extends \XoopsPersistableObjectHandler
      * @param null|string $order
      * @return array
      */
-    public function getAllCategories(int $start = 0, int $limit = 0, null|string $sort = 'cat_id ASC, cat_desc', null|string $order = 'ASC'): array
+    public function getAllCategories(int $start = 0, int $limit = 0, null|string $sort = 'cat_weight ASC, cat_id', null|string $order = 'ASC'): array
     {
         $criteriaAllCategories = new \CriteriaCompo();
         $criteriaAllCategories = $this->getCategoriesCriteria($criteriaAllCategories, $start, $limit, $sort, $order);
@@ -116,5 +116,30 @@ class CategoryHandler extends \XoopsPersistableObjectHandler
         $criteriaCategories->setSort( $sort );
         $criteriaCategories->setOrder( $order );
         return $criteriaCategories;
+    }
+
+    /**
+     * Get max value of category weight
+     *
+     * @return int
+     */
+    public function getMaxCategoryWeight()
+    {
+        global $xoopsDB;
+
+        $sql = 'SELECT max(cat_weight) FROM ' . $xoopsDB->prefix('wglinks_categories');
+
+        $result = $xoopsDB->query($sql);
+        if (!$xoopsDB->isResultSet($result) || !($result instanceof \mysqli_result)) {
+            throw new \RuntimeException(
+                \sprintf(_DB_QUERY_ERROR, $sql) . $xoopsDB->error(),
+                E_USER_ERROR,
+            );
+        }
+        while (false !== ($row = $xoopsDB->fetchRow($result))) {
+            return (int)$row[0];
+        }
+
+        return 0;
     }
 }

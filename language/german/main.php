@@ -42,8 +42,6 @@
 \define('_MD_WGLINKS_LINK_TYPE_DIRECT', 'Link direkt öffnen');
 \define('_MD_WGLINKS_LINK_TARGET_SELF', 'Gleicher Tab');
 \define('_MD_WGLINKS_LINK_TARGET_BLANK', 'Neuer Tab');
-\define('_MD_WGLINKS_LINK_TARGET_PARENT', 'Elternfenster');
-\define('_MD_WGLINKS_LINK_TARGET_TOP', 'Neues Fenster');
 // Admin link
 \define('_MD_WGLINKS_ADMIN', 'Admininistration');
 // ---------------- End ----------------

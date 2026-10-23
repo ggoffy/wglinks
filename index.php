@@ -58,13 +58,13 @@ $crLinks->setStart( $start );
 $crLinks->setLimit( $limit );
 $crLinks->setSort('link_catid ASC, link_weight ASC, link_id');
 $crLinks->setOrder('ASC');
-$linksCount = $linksHandler->getCount($crLinks);
+$linksCount = $linkHandler->getCount($crLinks);
 
 $keywords = [];
 $links    = [];
 
 if($linksCount > 0) {
-    $linksAll = $linksHandler->getAll($crLinks);
+    $linksAll = $linkHandler->getAll($crLinks);
     // Get All Link
     foreach(\array_keys($linksAll) as $i) {
         $links[] = $linksAll[$i]->getValuesLinks();

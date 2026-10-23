@@ -41,8 +41,6 @@
 \define('_MD_WGLINKS_LINK_TARGET', 'Target');
 \define('_MD_WGLINKS_LINK_TARGET_SELF', 'Same Tab');
 \define('_MD_WGLINKS_LINK_TARGET_BLANK', 'New Tab');
-\define('_MD_WGLINKS_LINK_TARGET_PARENT', 'Parent window');
-\define('_MD_WGLINKS_LINK_TARGET_TOP', 'New window');
 // Admin link
 \define('_MD_WGLINKS_ADMIN', 'Admin');
 // ---------------- End ----------------

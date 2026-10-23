@@ -1,27 +1,502 @@
+<style>
+:root {
+        --primary: #2d6cdf;
+        --primary-dark: #1f4fa8;
+        --secondary: #f4f7fb;
+        --border: #dfe5ee;
+        --text: #263238;
+        --muted: #687582;
+        --success: #2e8b57;
+        --warning: #c98200;
+        --white: #ffffff;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background: var(--secondary);
+        color: var(--text);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.65;
+    }
+
+    .hero {
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        color: var(--white);
+        border-radius: 14px;
+        padding: 45px 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 8px 25px rgba(31, 79, 168, 0.18);
+    }
+
+    .hero h2 {
+        margin: 0 0 10px;
+        font-size: 38px;
+        line-height: 1.2;
+    }
+
+    .hero p {
+        margin: 8px 0;
+        font-size: 17px;
+        opacity: 0.94;
+    }
+
+    .badge {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 5px 12px;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.18);
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 28px 30px;
+        margin-bottom: 22px;
+        box-shadow: 0 3px 12px rgba(30, 50, 80, 0.05);
+    }
+
+    h2 {
+        margin-top: 0;
+        color: var(--text-primary);
+        font-size: 25px;
+    }
+
+    h3 {
+        color: var(--primary);
+        margin-top: 26px;
+    }
+    h4 {
+        color: var(--primary);
+    }
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+
+    a {
+        color: var(--primary);
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .toc {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .toc a {
+        display: block;
+        background: var(--secondary);
+        border: 1px solid var(--border);
+        padding: 11px 14px;
+        border-radius: 8px;
+        font-weight: 600;
+    }
+
+    .toc a:hover {
+        background: #eaf1ff;
+        text-decoration: none;
+    }
+
+    ul, ol {
+        padding-left: 24px;
+    }
+
+    li {
+        margin-bottom: 7px;
+    }
+
+    .info,
+    .success,
+    .warning {
+        padding: 15px 18px;
+        border-radius: 8px;
+        margin: 18px 0;
+    }
+
+    .info {
+        background: #eef5ff;
+        border-left: 4px solid var(--primary);
+    }
+
+    .success {
+        background: #eef9f2;
+        border-left: 4px solid var(--success);
+    }
+
+    .warning {
+        background: #fff7e8;
+        border-left: 4px solid var(--warning);
+    }
+
+    .steps {
+        counter-reset: steps;
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .steps li {
+        counter-increment: steps;
+        position: relative;
+        padding: 14px 16px 14px 55px;
+        margin-bottom: 10px;
+        background: var(--secondary);
+        border-radius: 8px;
+    }
+
+    .steps li::before {
+        content: counter(steps);
+        position: absolute;
+        left: 15px;
+        top: 12px;
+        width: 28px;
+        height: 28px;
+        line-height: 28px;
+        text-align: center;
+        border-radius: 50%;
+        background: var(--primary);
+        color: var(--white);
+        font-weight: 700;
+    }
+
+    code {
+        padding: 2px 6px;
+        border-radius: 4px;
+        background: #eef1f5;
+        font-family: Consolas, Monaco, monospace;
+        font-size: 0.92em;
+    }
+
+    .table-wrapper {
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+    }
+
+    th,
+    td {
+        padding: 11px 13px;
+        border: 1px solid var(--border);
+        text-align: left;
+        vertical-align: top;
+    }
+
+    th {
+        background: var(--secondary);
+        font-weight: 700;
+    }
+
+    .footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 13px;
+        margin-top: 35px;
+    }
+
+    @media (max-width: 600px) {
+        .wrapper {
+            padding: 15px 12px 40px;
+        }
+
+        .hero {
+            padding: 30px 24px;
+        }
+
+        .hero h1 {
+            font-size: 30px;
+        }
+
+        .card {
+            padding: 22px 20px;
+        }
+    }
+</style>
+
 <div id="help-template" class="outer">
     <h1 class="head">Help:
         <a class="ui-corner-all tooltip" href="<{$xoops_url}>/modules/wglinks/admin/index.php"
            title="Back to the administration of wgLinks"> wgLinks <img src="<{xoAdminIcons 'home.png'}>"
-                                                                       alt="Back to the Administration of wgLinks"/>
-        </a></h1>
-    <!-- -----Help Content ---------- -->
-    <h4 class="odd">Description</h4>
-    <p class="even">
-        The wgLinks module can be used to modules in XOOPS<br /><br />
-    </p>
-    <h4 class="odd">Install/uninstall</h4>
-    <p class="even">
-No special measures necessary, follow the standard installation process and extract the wglinks folder into the ../modules directory. Install the module through Admin -> System Module -> Modules. <br /><br />
-Detailed instructions on installing modules are available in the <a href="https://goo.gl/adT2i">XOOPS Operations Manual</a>
-    </p>
-    <h4 class="odd">Features</h4>
-    <p class="even">
-        The TDMCreate module continues to expand, to get to the conditions to create modules, more and more sophisticated.<br />
-        For this reason, I invite all developers to report and send in svn any changes or additions to this module, so that we can jointly contribute to the development <br /><br />
-    </p>
-    <h4 class="odd">Tutorial</h4>
-    <p class="even">
-        You can find a more detailed to this Video Tutorial <a href="https://www.youtube.com/watch?v=dg7zGFCopxY" rel="external">here</a>
-    </p>
-    <!-- -----Help Content ---------- -->
+                                                                        alt="Back to the Administration of wgLinks">
+        </a>
+    </h1>
+
+    <div class="wrapper">
+        <header class="hero">
+            <h2>wgLinks</h2>
+            <p>Link collections for XOOPS</p>
+            <p>
+                Create and organize collections of useful website links with categories
+                and display them to visitors using the templates provided by the module.
+            </p>
+            <span class="badge">XOOPS 2.7.4+ · PHP 8.4+</span>
+        </header>
+
+        <section class="card">
+            <h3>Welcome</h3>
+            <p>
+                Welcome to the <strong>wgLinks</strong> help page. This module provides
+                a simple way to publish and organize link collections on your XOOPS website.
+            </p>
+            <p>
+                Categories help group related resources together. The front-end appearance
+                depends on the templates and options available in your installed version.
+            </p>
+            <div class="info">
+                Most user-side templates are responsive. The project recommends using a
+                Bootstrap-based theme for proper display.
+            </div>
+            <div class="success">
+                <strong>Tip:</strong>
+                Keep link titles descriptive, place each link in the most suitable category,
+                and periodically check that external URLs are still valid.
+            </div>
+        </section>
+
+        <section class="card">
+            <h3>Contents</h3>
+            <div class="toc">
+                <a href="#requirements">Installation &amp; Requirements</a>
+                <a href="#getting-started">Getting Started</a>
+                <a href="#categories">Categories</a>
+                <a href="#links">Managing Links</a>
+                <a href="#templates">Templates and Theme</a>
+                <a href="#permissions">Permissions</a>
+                <a href="#troubleshooting">Troubleshooting</a>
+                <a href="#support">Support</a>
+            </div>
+        </section>
+
+        <section class="card" id="requirements">
+            <h3>Installation &amp; Requirements</h3>
+            <p>
+                Install wgLinks using the standard XOOPS module administration workflow.
+                Before upgrading, back up your database and the current module files.
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Requirement</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>XOOPS CMS</td>
+                        <td>2.7.4 or higher</td>
+                    </tr>
+                    <tr>
+                        <td>XOOPS Admin</td>
+                        <td>1.2</td>
+                    </tr>
+                    <tr>
+                        <td>PHP</td>
+                        <td>8.4 or higher</td>
+                    </tr>
+                    <tr>
+                        <td>MySQL</td>
+                        <td>5.7.8 or higher; 8.4.5 or higher recommended</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <ol class="steps">
+                <li>Download and extract the module package.</li>
+                <li>Upload the module directory to your XOOPS <code>modules</code> directory.</li>
+                <li>Install or update the module through XOOPS module administration.</li>
+                <li>Open wgLinks administration and verify the configuration.</li>
+            </ol>
+            <div class="warning">
+                <strong>Before upgrading:</strong>
+                Back up the database and module directory, and follow any version-specific
+                instructions included in the release.
+            </div>
+        </section>
+
+        <section class="card" id="getting-started">
+            <h3>Getting Started</h3>
+            <p>
+                After installing wgLinks, open the module from the XOOPS administration area.
+                The exact names and available actions may vary between module versions.
+            </p>
+            <ol class="steps">
+                <li>Open <strong>Administration → Modules</strong>.</li>
+                <li>Open <strong>wgLinks</strong>.</li>
+                <li>Create categories to organize your link collection.</li>
+                <li>Sort the categories by drag&drop.</li>
+                <li>Add links and assign them to the appropriate categories.</li>
+                <li>Sort the links by drag&drop.</li>
+                <li>Open the public-facing module page and check the result.</li>
+            </ol>
+            <div class="success">
+                <strong>Recommended workflow:</strong>
+                Create your category structure first, then add links with clear titles,
+                correct destination URLs, and useful descriptions where supported.
+            </div>
+        </section>
+
+        <section class="card" id="categories">
+            <h3>Managing Categories</h3>
+            <p>
+                Categories are the main way to organize links in wgLinks. Use them to group
+                related websites, services, organizations, or other online resources.
+            </p>
+            <h4>Recommended practices</h4>
+            <ul>
+                <li>Choose short, meaningful category names.</li>
+                <li>Keep the category structure easy for visitors to understand.</li>
+                <li>Avoid creating several categories that serve the same purpose.</li>
+                <li>Review category assignments when a link changes topic or purpose.</li>
+            </ul>
+            <div class="info">
+                The repository identifies category support as a core feature. Refer to the
+                administration screens in your installed version for the available category
+                fields and actions.
+            </div>
+        </section>
+
+        <section class="card" id="links">
+            <h3>Managing Links</h3>
+            <p>
+                Use the module's administration area to maintain the links in your collection.
+                Available fields and actions depend on the installed version.
+            </p>
+            <h4>When adding or editing a link</h4>
+            <ul>
+                <li><strong>Title:</strong> use a concise name that clearly identifies the destination.</li>
+                <li><strong>URL:</strong> enter and test the complete destination address.</li>
+                <li><strong>Category:</strong> select the category that best matches the resource.</li>
+                <li><strong>Description:</strong> if available, explain briefly what visitors will find there.</li>
+            </ul>
+            <h4>Maintaining the collection</h4>
+            <ul>
+                <li>Correct URLs that have changed.</li>
+                <li>Remove links that are no longer relevant or available.</li>
+                <li>Update titles and descriptions when a website changes.</li>
+                <li>Check external links periodically; other websites may move or go offline.</li>
+            </ul>
+            <div class="warning">
+                <strong>Important:</strong>
+                Test destination URLs before publishing them. A link can be syntactically valid
+                but still lead to a missing page or an unexpected destination.
+            </div>
+        </section>
+
+        <section class="card" id="templates">
+            <h3>Templates and Theme</h3>
+            <p>
+                The module's public pages are rendered using XOOPS templates. Most user-side
+                templates are responsive, but the project recommends a Bootstrap theme for
+                correct presentation.
+            </p>
+            <h4>If the display does not look right</h4>
+            <ul>
+                <li>Check that the active XOOPS theme is compatible with Bootstrap.</li>
+                <li>Review the module's available template options.</li>
+                <li>After changing templates or theme files, clear the relevant XOOPS caches.</li>
+                <li>Check the page at desktop and mobile widths.</li>
+            </ul>
+        </section>
+
+        <section class="card" id="permissions">
+            <h3>Permissions</h3>
+            <p>
+                Configure access through the XOOPS group and module permission controls
+                available in your installation.
+            </p>
+            <ul>
+                <li>Give module administration access only to trusted groups.</li>
+                <li>Check permissions when an administrator or visitor cannot see expected content.</li>
+                <li>After changing permissions, test the module while logged in as a member of the relevant group.</li>
+            </ul>
+            <div class="warning">
+                <strong>Security recommendation:</strong>
+                Grant editing and deletion rights only to users who are responsible for
+                maintaining the link collection.
+            </div>
+        </section>
+
+        <section class="card" id="troubleshooting">
+            <h3>Troubleshooting</h3>
+            <h4>The module page does not display correctly</h4>
+            <ul>
+                <li>Check whether the active theme is Bootstrap-compatible.</li>
+                <li>Check the selected template and its available options.</li>
+                <li>Clear the XOOPS cache and reload the page.</li>
+            </ul>
+            <h4>A link is missing</h4>
+            <ul>
+                <li>Confirm that the link was saved successfully.</li>
+                <li>Check its category and any visibility or access controls available in your version.</li>
+                <li>Review XOOPS group permissions.</li>
+            </ul>
+            <h4>A destination URL does not work</h4>
+            <ul>
+                <li>Copy the URL into a browser and test it directly.</li>
+                <li>Check for typing errors, redirects, or an obsolete address.</li>
+                <li>Update or remove the link if the destination is no longer available.</li>
+            </ul>
+            <h4>Installation or update problems</h4>
+            <ul>
+                <li>Verify that the server meets the requirements listed below.</li>
+                <li>Check the XOOPS and PHP error logs for details.</li>
+                <li>Consult the README and release notes for the version you installed.</li>
+            </ul>
+        </section>
+
+        <section class="card" id="support">
+            <h3>Support &amp; Development</h3>
+            <p>
+                wgLinks is a XOOPS module for managing link collections.
+                For version-specific details, check the project repository and XOOPS community.
+            </p>
+            <p>
+                <strong>Project:</strong>
+                <a href="https://github.com/XoopsModules27x/wglinks" target="_blank" rel="noopener">GitHub – XoopsModules27x/wglinks</a>
+            </p>
+            <p>
+                <strong>XOOPS:</strong>
+                <a href="https://xoops.org" target="_blank" rel="noopener">xoops.org</a>
+            </p>
+            <p>
+                <strong>Demo sites:</strong>
+            <ol class="">
+                <li><a href="https://skiclub-schardenberg.at/modules/wglinks/" target="_blank" rel="noopener">Ski Club Schardenberg</a></li>
+                <li><a href="https://naturfreunde-hochburg-ach.at/modules/wglinks/index.php?cat_ids=1" target="_blank" rel="noopener">Naturfreunde Hochburg-Ach</a></li>
+            </ol>
+            </p>
+        </section>
+
+        <section class="card">
+            <h3>License</h3>
+            <p>
+                wgLinks is distributed under the GNU General Public License (GPL).
+                Refer to the license file included with the module package for the complete terms.
+            </p>
+        </section>
+
+        <footer class="footer">
+            <p>wgLinks · Link Collections for XOOPS</p>
+            <p>Documentation based on the module repository description</p>
+        </footer>
+    </div>
 </div>
