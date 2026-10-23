@@ -15,17 +15,7 @@
         box-sizing: border-box;
     }
 
-    body {
-        margin: 0;
-        padding: 0;
-        background: var(--secondary);
-        color: var(--text);
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Roboto, Helvetica, Arial, sans-serif;
-        line-height: 1.65;
-    }
-
-    .hero {
+    .help-hero {
         background: linear-gradient(135deg, var(--primary), var(--primary-dark));
         color: var(--white);
         border-radius: 14px;
@@ -34,19 +24,19 @@
         box-shadow: 0 8px 25px rgba(31, 79, 168, 0.18);
     }
 
-    .hero h2 {
+    .help-hero h2 {
         margin: 0 0 10px;
         font-size: 38px;
         line-height: 1.2;
     }
 
-    .hero p {
+    .help-hero p {
         margin: 8px 0;
         font-size: 17px;
         opacity: 0.94;
     }
 
-    .badge {
+    .help-badge {
         display: inline-block;
         margin-top: 15px;
         padding: 5px 12px;
@@ -56,7 +46,7 @@
         font-weight: 600;
     }
 
-    .card {
+    .help-card {
         background: var(--white);
         border: 1px solid var(--border);
         border-radius: 12px;
@@ -65,42 +55,42 @@
         box-shadow: 0 3px 12px rgba(30, 50, 80, 0.05);
     }
 
-    h2 {
+    .help-card h2 {
         margin-top: 0;
         color: var(--text-primary);
         font-size: 25px;
     }
 
-    h3 {
+    .help-card h3 {
         color: var(--primary);
         margin-top: 26px;
     }
 
-    h4 {
+    .help-card h4 {
         color: var(--primary);
     }
 
-    p:last-child {
+    .help-card p:last-child {
         margin-bottom: 0;
     }
 
-    a {
+    .help-card a {
         color: var(--primary);
         text-decoration: none;
     }
 
-    a:hover {
+    .help-card a:hover {
         text-decoration: underline;
     }
 
-    .toc {
+    .help-toc {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
         gap: 10px;
         margin-top: 20px;
     }
 
-    .toc a {
+    .help-toc a {
         display: block;
         background: var(--secondary);
         border: 1px solid var(--border);
@@ -109,49 +99,49 @@
         font-weight: 600;
     }
 
-    .toc a:hover {
+    .help-toc a:hover {
         background: #eaf1ff;
         text-decoration: none;
     }
 
-    ul, ol {
+    .help-card ul, .help-card ol {
         padding-left: 24px;
     }
 
-    li {
+    .help-card li {
         margin-bottom: 7px;
     }
 
-    .info,
-    .success,
-    .warning {
+    .help-info,
+    .help-success,
+    .help-warning {
         padding: 15px 18px;
         border-radius: 8px;
         margin: 18px 0;
     }
 
-    .info {
+    .help-info {
         background: #eef5ff;
         border-left: 4px solid var(--primary);
     }
 
-    .success {
+    .help-success {
         background: #eef9f2;
         border-left: 4px solid var(--success);
     }
 
-    .warning {
+    .help-warning {
         background: #fff7e8;
         border-left: 4px solid var(--warning);
     }
 
-    .steps {
+    .help-steps {
         counter-reset: steps;
         list-style: none;
         padding-left: 0;
     }
 
-    .steps li {
+    .help-steps li {
         counter-increment: steps;
         position: relative;
         padding: 14px 16px 14px 55px;
@@ -160,7 +150,7 @@
         border-radius: 8px;
     }
 
-    .steps li::before {
+    .help-steps li::before {
         content: counter(steps);
         position: absolute;
         left: 15px;
@@ -175,7 +165,7 @@
         font-weight: 700;
     }
 
-    code {
+    .help-code {
         padding: 2px 6px;
         border-radius: 4px;
         background: #eef1f5;
@@ -183,30 +173,30 @@
         font-size: 0.92em;
     }
 
-    .table-wrapper {
+    .help-table-wrapper {
         overflow-x: auto;
     }
 
-    table {
+    .help-table-wrapper table {
         width: 100%;
         border-collapse: collapse;
         margin: 15px 0;
     }
 
-    th,
-    td {
+    .help-table-wrapper table th,
+    .help-table-wrapper table td {
         padding: 11px 13px;
         border: 1px solid var(--border);
         text-align: left;
         vertical-align: top;
     }
 
-    th {
+    .help-table-wrapper table th {
         background: var(--secondary);
         font-weight: 700;
     }
 
-    .footer {
+    .help-footer {
         text-align: center;
         color: var(--muted);
         font-size: 13px;
@@ -214,19 +204,19 @@
     }
 
     @media (max-width: 600px) {
-        .wrapper {
+        .help-wrapper {
             padding: 15px 12px 40px;
         }
 
-        .hero {
+        .help-hero {
             padding: 30px 24px;
         }
 
-        .hero h1 {
+        .help-hero h1 {
             font-size: 30px;
         }
 
-        .card {
+        .help-card {
             padding: 22px 20px;
         }
     }
@@ -240,8 +230,8 @@
         </a>
     </h1>
 
-    <div class="wrapper">
-        <header class="hero">
+    <div class="help-wrapper">
+        <header class="help-hero">
             <h2>wgLinks</h2>
             <p>Linksammlungen für XOOPS</p>
             <p>
@@ -249,10 +239,10 @@
                 mithilfe von Kategorien und präsentieren Sie diese Ihren Besuchern
                 mit den vom Modul bereitgestellten Vorlagen.
             </p>
-            <span class="badge">XOOPS 2.7.4+ · PHP 8.4+</span>
+            <span class="help-badge">XOOPS 2.7.4+ · PHP 8.4+</span>
         </header>
 
-        <section class="card">
+        <section class="help-card">
             <h3>Willkommen</h3>
             <p>
                 Willkommen auf der Hilfeseite von <strong>wgLinks</strong>.
@@ -264,12 +254,12 @@
                 gruppiert werden. Das Erscheinungsbild im Frontend hängt von den
                 Vorlagen und Optionen ab, die in Ihrer installierten Version verfügbar sind.
             </p>
-            <div class="info">
+            <div class="help-info">
                 Die meisten Vorlagen für die Benutzeroberfläche sind responsiv.
                 Für eine korrekte Darstellung empfiehlt das Projekt die Verwendung
                 eines auf Bootstrap basierenden Themes.
             </div>
-            <div class="success">
+            <div class="help-success">
                 <strong>Tipp:</strong>
                 Verwenden Sie aussagekräftige Linktitel, ordnen Sie jeden Link der
                 passendsten Kategorie zu und überprüfen Sie regelmäßig, ob externe
@@ -277,9 +267,9 @@
             </div>
         </section>
 
-        <section class="card">
+        <section class="help-card">
             <h3>Inhaltsverzeichnis</h3>
-            <div class="toc">
+            <div class="help-toc">
                 <a href="#requirements">Installation und Voraussetzungen</a>
                 <a href="#getting-started">Erste Schritte</a>
                 <a href="#categories">Kategorien</a>
@@ -291,14 +281,14 @@
             </div>
         </section>
 
-        <section class="card" id="requirements">
+        <section class="help-card" id="requirements">
             <h3>Installation und Voraussetzungen</h3>
             <p>
                 Installieren Sie wgLinks über die standardmäßige Modulverwaltung
                 von XOOPS. Erstellen Sie vor einem Upgrade eine Sicherungskopie
                 Ihrer Datenbank und der aktuellen Moduldateien.
             </p>
-            <div class="table-wrapper">
+            <div class="help-table-wrapper">
                 <table>
                     <thead>
                     <tr>
@@ -326,13 +316,13 @@
                     </tbody>
                 </table>
             </div>
-            <ol class="steps">
+            <ol class="help-steps">
                 <li>Laden Sie das Modulpaket herunter und entpacken Sie es.</li>
-                <li>Laden Sie das Modulverzeichnis in das Verzeichnis <code>modules</code> Ihrer XOOPS-Installation hoch.</li>
+                <li>Laden Sie das Modulverzeichnis in das Verzeichnis <code class="help-code">modules</code> Ihrer XOOPS-Installation hoch.</li>
                 <li>Installieren oder aktualisieren Sie das Modul über die XOOPS-Modulverwaltung.</li>
                 <li>Öffnen Sie die Administration von wgLinks und überprüfen Sie die Konfiguration.</li>
             </ol>
-            <div class="warning">
+            <div class="help-warning">
                 <strong>Vor einem Upgrade:</strong>
                 Sichern Sie die Datenbank und das Modulverzeichnis und beachten Sie
                 alle versionsspezifischen Hinweise, die der jeweiligen Veröffentlichung
@@ -340,14 +330,14 @@
             </div>
         </section>
 
-        <section class="card" id="getting-started">
+        <section class="help-card" id="getting-started">
             <h3>Erste Schritte</h3>
             <p>
                 Öffnen Sie nach der Installation von wgLinks das Modul im
                 Administrationsbereich von XOOPS. Die genauen Bezeichnungen und
                 verfügbaren Aktionen können je nach Modulversion variieren.
             </p>
-            <ol class="steps">
+            <ol class="help-steps">
                 <li>Öffnen Sie <strong>Administration → Module</strong>.</li>
                 <li>Öffnen Sie <strong>wgLinks</strong>.</li>
                 <li>Erstellen Sie Kategorien, um Ihre Linksammlung zu organisieren.</li>
@@ -356,7 +346,7 @@
                 <li>Sortieren Sie die Links per Drag-and-drop.</li>
                 <li>Öffnen Sie die öffentliche Modulansicht und überprüfen Sie das Ergebnis.</li>
             </ol>
-            <div class="success">
+            <div class="help-success">
                 <strong>Empfohlene Vorgehensweise:</strong>
                 Erstellen Sie zunächst die Kategorienstruktur. Fügen Sie anschließend
                 Links mit aussagekräftigen Titeln, korrekten Ziel-URLs und – sofern
@@ -364,7 +354,7 @@
             </div>
         </section>
 
-        <section class="card" id="categories">
+        <section class="help-card" id="categories">
             <h3>Kategorien verwalten</h3>
             <p>
                 Kategorien sind das wichtigste Mittel, um Links in wgLinks zu organisieren.
@@ -378,14 +368,14 @@
                 <li>Vermeiden Sie mehrere Kategorien mit demselben Zweck.</li>
                 <li>Überprüfen Sie die Kategoriezuordnung, wenn sich das Thema oder der Zweck eines Links ändert.</li>
             </ul>
-            <div class="info">
+            <div class="help-info">
                 Die Projektbeschreibung nennt die Unterstützung von Kategorien als
                 Kernfunktion. Welche Kategorienfelder und Aktionen verfügbar sind,
                 erfahren Sie in den Administrationsansichten Ihrer installierten Version.
             </div>
         </section>
 
-        <section class="card" id="links">
+        <section class="help-card" id="links">
             <h3>Links verwalten</h3>
             <p>
                 Verwenden Sie den Administrationsbereich des Moduls, um die Links
@@ -406,7 +396,7 @@
                 <li>Aktualisieren Sie Titel und Beschreibungen, wenn sich eine Website verändert.</li>
                 <li>Überprüfen Sie externe Links regelmäßig, da andere Websites umziehen oder offline gehen können.</li>
             </ul>
-            <div class="warning">
+            <div class="help-warning">
                 <strong>Wichtig:</strong>
                 Überprüfen Sie Ziel-URLs, bevor Sie sie veröffentlichen.
                 Ein Link kann syntaktisch korrekt sein und dennoch zu einer
@@ -414,7 +404,7 @@
             </div>
         </section>
 
-        <section class="card" id="templates">
+        <section class="help-card" id="templates">
             <h3>Vorlagen und Theme</h3>
             <p>
                 Die öffentlichen Seiten des Moduls werden mithilfe von XOOPS-Vorlagen
@@ -431,7 +421,7 @@
             </ul>
         </section>
 
-        <section class="card" id="permissions">
+        <section class="help-card" id="permissions">
             <h3>Berechtigungen</h3>
             <p>
                 Konfigurieren Sie den Zugriff über die XOOPS-Gruppenverwaltung
@@ -442,15 +432,16 @@
                 <li>Überprüfen Sie die Berechtigungen, wenn Administratoren oder Besucher erwartete Inhalte nicht sehen können.</li>
                 <li>Testen Sie das Modul nach einer Änderung der Berechtigungen mit einem Benutzerkonto, das der betreffenden Gruppe angehört.</li>
             </ul>
-            <div class="warning">
+            <div class="help-warning">
                 <strong>Sicherheitsempfehlung:</strong>
                 Gewähren Sie Bearbeitungs- und Löschrechte nur Benutzern, die für
                 die Pflege der Linksammlung verantwortlich sind.
             </div>
         </section>
 
-        <section class="card" id="troubleshooting">
+        <section class="help-card" id="troubleshooting">
             <h3>Fehlerbehebung</h3>
+
             <h4>Die Modulseite wird nicht korrekt angezeigt</h4>
             <ul>
                 <li>Prüfen Sie, ob das aktive Theme mit Bootstrap kompatibel ist.</li>
@@ -480,7 +471,7 @@
             </ul>
         </section>
 
-        <section class="card" id="support">
+        <section class="help-card" id="support">
             <h3>Support und Entwicklung</h3>
             <p>
                 wgLinks ist ein XOOPS-Modul zur Verwaltung von Linksammlungen.
@@ -495,16 +486,14 @@
                 <strong>XOOPS:</strong>
                 <a href="https://xoops.org" target="_blank" rel="noopener">xoops.org</a>
             </p>
-            <p>
-                <strong>Demo-Websites:</strong>
-            </p>
+            <p><strong>Demo-Websites:</strong></p>
             <ol>
                 <li><a href="https://skiclub-schardenberg.at/modules/wglinks/" target="_blank" rel="noopener">Skiclub Schardenberg</a></li>
                 <li><a href="https://naturfreunde-hochburg-ach.at/modules/wglinks/index.php?cat_ids=1" target="_blank" rel="noopener">Naturfreunde Hochburg-Ach</a></li>
             </ol>
         </section>
 
-        <section class="card">
+        <section class="help-card">
             <h3>Lizenz</h3>
             <p>
                 wgLinks wird unter der GNU General Public License (GPL) veröffentlicht.
@@ -513,7 +502,7 @@
             </p>
         </section>
 
-        <footer class="footer">
+        <footer class="help-footer">
             <p>wgLinks · Linksammlungen für XOOPS</p>
             <p>Dokumentation auf Grundlage der Modulbeschreibung im Projekt-Repository</p>
         </footer>

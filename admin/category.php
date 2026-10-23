@@ -134,11 +134,9 @@ switch($op) {
         break;
     case 'order':
         $corder = Request::getArray('corder');
-        $counter = 0;
         for ($i = 0, $iMax = \count($corder); $i < $iMax; $i++){
-            $counter++;
             $categoriesObj = $categoryHandler->get($corder[$i]);
-            $categoriesObj->setVar('cat_weight',$counter);
+            $categoriesObj->setVar('cat_weight',$i + 1);
             $categoryHandler->insert($categoriesObj);
             unset($categoriesObj);
         }

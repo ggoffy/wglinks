@@ -228,11 +228,9 @@ switch($op) {
     break;
     case 'order':
         $lorder = Request::getArray('lorder');
-        $counter = 0;
         for ($i = 0, $iMax = \count($lorder); $i < $iMax; $i++){
-            $counter++;
             $linksObj = $linkHandler->get($lorder[$i]);
-            $linksObj->setVar('link_weight',$counter);
+            $linksObj->setVar('link_weight',$i + 1);
             $linkHandler->insert($linksObj);
             unset($linksObj);
         }
