@@ -5,3 +5,10 @@
     cat_weight: '1'
     cat_submitter: '1'
     cat_date_created: '1575481079'
+-
+    cat_id: '2'
+    cat_name: 'Other links'
+    cat_desc: ''
+    cat_weight: '2'
+    cat_submitter: '1'
+    cat_date_created: '1792882832'

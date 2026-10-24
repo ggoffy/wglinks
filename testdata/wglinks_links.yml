@@ -34,3 +34,39 @@
     link_target: _blank
     link_submitter: '1'
     link_date_created: '1575481333'
+-
+    link_id: '3'
+    link_catid: '2'
+    link_name: 'Webdesign Gabor'
+    link_url: 'https://wedega.com'
+    link_tooltip: ''
+    link_contact: ''
+    link_email: ''
+    link_phone: ''
+    link_address: ''
+    link_detail: ''
+    link_weight: '3'
+    link_logo: webdesign-gabor6add39c50690e7.41959422.png
+    link_state: '1'
+    link_type: '0'
+    link_target: _self
+    link_submitter: '1'
+    link_date_created: '1792883141'
+-
+    link_id: '4'
+    link_catid: '2'
+    link_name: 'dummy invalid link'
+    link_url: 'https://example.com'
+    link_tooltip: ''
+    link_contact: ''
+    link_email: ''
+    link_phone: ''
+    link_address: ''
+    link_detail: ''
+    link_weight: '4'
+    link_logo: blank.gif
+    link_state: '0'
+    link_type: '0'
+    link_target: _self
+    link_submitter: '1'
+    link_date_created: '1792882946'
