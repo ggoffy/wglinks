@@ -30,9 +30,6 @@ require_once __DIR__ . '/common.php';
 \define('_MI_WGLINKS_ADMENU20', 'Clone');
 \define('_MI_WGLINKS_ADMENU21', 'Feedback');
 \define('_MI_WGLINKS_ABOUT', 'About');
-// ---------------- Admin Nav ----------------
-\define('_MI_WGLINKS_ADMIN_PAGER', 'List items admin pages');
-\define('_MI_WGLINKS_ADMIN_PAGER_DESC', 'Define the number of list items in the admin area');
 // User
 \define('_MI_WGLINKS_USER_PAGER', 'List items user pages');
 \define('_MI_WGLINKS_USER_PAGER_DESC', 'Define the number of list items in the user area');
@@ -43,6 +40,11 @@ require_once __DIR__ . '/common.php';
 \define('_MI_WGLINKS_BLINKS_LOGOCHAIN', 'Logo chain block');
 \define('_MI_WGLINKS_BLINKS_LOGOCHAIN_DESC', 'Show block with all logos of registered links as a chain');
 // Config
+\define('_MI_WGLINKS_GROUP_GENERAL', 'General preferences');
+\define('_MI_WGLINKS_GROUP_UPLOAD', 'Upload preferences');
+\define('_MI_WGLINKS_GROUP_DISPLAY', 'Display preferences');
+\define('_MI_WGLINKS_GROUP_UI', 'UI preferences');
+\define('_MI_WGLINKS_GROUP_OTHERS', 'Misc preferences');
 \define('_MI_WGLINKS_EDITOR', 'Editor');
 \define('_MI_WGLINKS_EDITOR_DESC', 'Select the Editor Desc to use');
 \define('_MI_WGLINKS_MIMETYPES', 'Mime Types');
@@ -79,4 +81,5 @@ require_once __DIR__ . '/common.php';
 \define('_MI_WGLINKS_TITLESTYLE_TEXT', 'as Text');
 \define('_MI_WGLINKS_TITLESTYLE_GLYPH', 'as glyphicons');
 \define('_MI_WGLINKS_MAINTAINEDBY', ' is maintained by ');
-// ---------------- End ----------------
+\define('_MI_WGLINKS_SSL_VERIFYPEER', 'Use SSL_VERIFYPEER');
+\define('_MI_WGLINKS_SSL_VERIFYPEER_DESC', 'If SSL_VERIFYPEER is activated your website must have a valid SSL certificate, otherwise the links validation can fail. If you deactivate SSL_VERIFYPEER the check can be a security issue! Deactivate only if you know that all links refers to reliable websites!');

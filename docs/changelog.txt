@@ -4,6 +4,7 @@
  - change language CO_ to _CO_ (goffy)
  - change language _MA_ to _MD_ (goffy)
  - made categories sortable (goffy)
+ - added link checker (goffy)
 
 <h5>1.1.2 Beta</h5>  [2025/11/16]
 - moving to PHP 8.4 (goffy)

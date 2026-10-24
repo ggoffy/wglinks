@@ -31,21 +31,31 @@ $limit  = Request::getInt('limit');
 
 switch($op) {
     case 'list':
+    case 'check_urls':
     default:
         $GLOBALS['xoTheme']->addScript(\WGLINKS_URL . '/assets/js/jquery.js');
         $GLOBALS['xoTheme']->addScript(\WGLINKS_URL . '/assets/js/jquery-ui.js');
         $GLOBALS['xoTheme']->addScript(\WGLINKS_URL . '/assets/js/sortable-links.js');
-        $start = Request::getInt('start');
-        $limit = Request::getInt('limit', $helper->getConfig('adminpager'));
+        $GLOBALS['xoTheme']->addStylesheet( \WGLINKS_URL . '/assets/css/admin/style.css', null );
         $templateMain = 'wglinks_admin_link.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('link.php'));
-        $adminObject->addItemButton(\_AM_WGLINKS_ADD_LINK, 'link.php?op=new');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
         $linksCount = $linkHandler->getCountLinks();
-        $linksAll = $linkHandler->getAllLinks($start, $limit);
+        $linksAll = $linkHandler->getAllLinks();
         $GLOBALS['xoopsTpl']->assign('links_count', $linksCount);
         $GLOBALS['xoopsTpl']->assign('wglinks_url', \WGLINKS_URL);
         $GLOBALS['xoopsTpl']->assign('wglinks_upload_url', \WGLINKS_UPLOAD_URL);
+        //check_urls
+        $checkResults = [];
+        $checksTotal  = 0;
+        $checksOk     = 0;
+        $checksFailed = 0;
+        $sslVerifyPeer = false;
+        if ('check_urls' === $op) {
+            set_time_limit(0);
+            $GLOBALS['xoopsTpl']->assign('links_listcheck', true);
+            $sslVerifyPeer = (bool)$helper->getConfig('ssl_verifypeer');
+        }
         // Table view links
         if($linksCount > 0) {
             $cat_id_prev = 0;
@@ -57,22 +67,50 @@ switch($op) {
                     $link['new_cat'] = 1;
                     $cat_id_prev = $link['catid'];
                 }
+                $url = trim((string) $link['url']);
+                if ('check_urls' === $op && $url != '') {
+                    if (!filter_var($url, FILTER_VALIDATE_URL)
+                        || !in_array(strtolower((string) parse_url($url, PHP_URL_SCHEME)), ['http', 'https'], true)) {
+                        $link['check_icon'] = 'warning';
+                        $link['check_result'] = \_AM_WGLINKS_CHECK_INVALID_URL;
+                        $link['check_status'] = 0;
+                        $checksFailed++;
+                        $checksTotal++;
+                        continue;
+                    }
+
+                    $check = checkUrl($url, $sslVerifyPeer);
+                    $status = $check['status'];
+
+                    // HTTP 2xx und 3xx gelten als erreichbar.
+                    if ($status >= 200 && $status < 400) {
+                        $link['check_icon'] = 'ok';
+                        $link['check_result'] = \_AM_WGLINKS_CHECK_OK;
+                        $link['check_status'] = $status;
+                        $checksOk++;
+                    } elseif ($status > 0) {
+                        $link['check_icon'] = 'warning';
+                        $link['check_result'] = \_AM_WGLINKS_CHECK_ERROR;
+                        $link['check_status'] = $status;
+                        $checksFailed++;
+                    } else {
+                        $responseText = $check['error'] ?: \_AM_WGLINKS_CHECK_NO_RESPONSE;
+                        $link['check_icon'] = 'warning';
+                        $link['check_result'] = \_AM_WGLINKS_CHECK_NO_CONNECTION . ': ' . $responseText;
+                        $link['check_status'] = $status;
+                        $checksFailed++;
+                    }
+                    $checksTotal++;
+                }
                 $GLOBALS['xoopsTpl']->append('links_list', $link);
                 unset($link);
             }
             $GLOBALS['xoopsTpl']->assign('start', $start);
             $GLOBALS['xoopsTpl']->assign('limit', $limit);
-            // Display Navigation
-            if($linksCount > $limit) {
-                include_once \XOOPS_ROOT_PATH .'/class/pagenav.php';
-                $pagenav = new \XoopsPageNav($linksCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
-                $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav());
-            }
         } else {
             $GLOBALS['xoopsTpl']->assign('error', \_AM_WGLINKS_THEREARENT_LINKS);
         }
-
-    break;
+        break;
     case 'new':
         $templateMain = 'wglinks_admin_link.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('link.php'));
@@ -82,8 +120,7 @@ switch($op) {
         $linksObj = $linkHandler->create();
         $form = $linksObj->getFormLinks();
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
-
-    break;
+        break;
     case 'save':
         // Security Check
         if(!$GLOBALS['xoopsSecurity']->check()) {
@@ -196,8 +233,7 @@ switch($op) {
         $GLOBALS['xoopsTpl']->assign('error', $linksObj->getHtmlErrors());
         $form = $linksObj->getFormLinks();
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
-
-    break;
+        break;
     case 'edit':
         $templateMain = 'wglinks_admin_link.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('link.php'));
@@ -208,8 +244,7 @@ switch($op) {
         $linksObj = $linkHandler->get($linkId);
         $form = $linksObj->getFormLinks();
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
-
-    break;
+        break;
     case 'delete':
         $linksObj = $linkHandler->get($linkId);
         if(1 === Request::getInt('ok')) {
@@ -224,8 +259,7 @@ switch($op) {
         } else {
             xoops_confirm(['ok' => 1, 'link_id' => $linkId, 'op' => 'delete'], $_SERVER['REQUEST_URI'], \sprintf(\_AM_WGLINKS_FORM_SURE_DELETE, $linksObj->getVar('link_name')));
         }
-
-    break;
+        break;
     case 'order':
         $lorder = Request::getArray('lorder');
         for ($i = 0, $iMax = \count($lorder); $i < $iMax; $i++){
@@ -251,7 +285,7 @@ switch($op) {
             unset($linksObj);
             unset($link);
             }
-    break;
+        break;
     case 'change_state':
         if(isset($linkId)) {
             $linksObj = $linkHandler->get($linkId);
@@ -264,6 +298,63 @@ switch($op) {
             // Get Form
             $GLOBALS['xoopsTpl']->assign('error', $linksObj->getHtmlErrors());
         }
-    break;
+        break;
 }
 include __DIR__ . '/footer.php';
+
+/** function to check url validity
+ *
+ * @param string $url
+ * @param bool   $sslVerifyPeer
+ * @return array
+ */
+function checkUrl(string $url, bool $sslVerifyPeer): array
+{
+    $ch = curl_init($url);
+    curl_setopt_array($ch, [
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_MAXREDIRS      => 5,
+        CURLOPT_CONNECTTIMEOUT => 5,
+        CURLOPT_TIMEOUT        => 15,
+        CURLOPT_USERAGENT      => 'XOOPS-wgLinks-URL-Checker/1.0',
+        CURLOPT_SSL_VERIFYPEER => $sslVerifyPeer,
+        CURLOPT_SSL_VERIFYHOST => 2,
+        CURLOPT_NOBODY         => true,
+    ]);
+
+    $response = curl_exec($ch);
+    $httpCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $finalUrl = (string) curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
+    $error = curl_error($ch);
+
+    // some server doesn't support HEAD request
+    // try with GET request
+    if ($httpCode === 405 || $httpCode === 501) {
+        $ch = curl_init($url);
+
+        curl_setopt_array($ch, [
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_MAXREDIRS      => 5,
+            CURLOPT_CONNECTTIMEOUT => 5,
+            CURLOPT_TIMEOUT        => 15,
+            CURLOPT_USERAGENT      => 'XOOPS-wgLinks-URL-Checker/1.0',
+            CURLOPT_SSL_VERIFYPEER => $sslVerifyPeer,
+            CURLOPT_SSL_VERIFYHOST => 2,
+            CURLOPT_RANGE          => '0-0',
+        ]);
+
+        curl_exec($ch);
+
+        $httpCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $finalUrl = (string) curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
+        $error = curl_error($ch);
+    }
+
+    return [
+        'status'   => $httpCode,
+        'finalUrl' => $finalUrl,
+        'error'    => $error,
+    ];
+}

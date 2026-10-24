@@ -18,7 +18,7 @@
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  */
 
-use XoopsModules\Wglinks;
+use XoopsModules\Wglinks\Helper;
 
 include \dirname(__DIR__) . '/preloads/autoloader.php';
 include \dirname(__DIR__, 3) . '/include/cp_header.php';
@@ -30,8 +30,7 @@ $pathModuleAdmin  = $GLOBALS['xoopsModule']->getInfo('dirmoduleadmin');
 $modPathIcon16  = $GLOBALS['xoopsModule']->getInfo('modicons16');
 $modPathIcon32  = $GLOBALS['xoopsModule']->getInfo('modicons32');
 // Get instance of module
-$helper = \XoopsModules\Wglinks\Helper::getInstance();
-$utility = new \XoopsModules\Wglinks\Utility();
+$helper = Helper::getInstance();
 $categoryHandler = $helper->getHandler('Category');
 $linkHandler = $helper->getHandler('Link');
 $myts = MyTextSanitizer::getInstance();

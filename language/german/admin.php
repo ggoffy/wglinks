@@ -37,6 +37,7 @@ require_once __DIR__ . '/common.php';
 // Buttons
 \define('_AM_WGLINKS_ADD_CAT', 'Neue Kategorie hinzufügen');
 \define('_AM_WGLINKS_ADD_LINK', 'Neuen Link hinzufügen');
+\define('_AM_WGLINKS_VALIDATE_LINK', 'Alle Links überprüfen');
 // Lists
 \define('_AM_WGLINKS_CATS_LIST', 'Liste der Kategorien');
 \define('_AM_WGLINKS_LINKS_LIST', 'Liste der Links');
@@ -89,6 +90,18 @@ require_once __DIR__ . '/common.php';
 //Errors
 \define('_AM_WGLINKS_INVALID_PARAM', 'Ungültiger Parameter');
 \define('_AM_WGLINKS_INVALID_DATE', 'Ungültiges Datum');
+// Checking links
+\define('_AM_WGLINKS_CHECK_RESULT', 'Ergebnis der Link-Überprüfung');
+\define('_AM_WGLINKS_CHECK_OK', 'OK');
+\define('_AM_WGLINKS_CHECK_INVALID_URL', 'Ungültiger URL');
+\define('_AM_WGLINKS_CHECK_ERROR', 'FEHLER');
+\define('_AM_WGLINKS_CHECK_NO_CONNECTION', 'Verbindungsfehler');
+\define('_AM_WGLINKS_CHECK_NO_RESPONSE', 'Keine HTTP Antwort');
+\define('_AM_WGLINKS_CHECK_TOTAL', 'Überprüfungen gesamt');
+\define('_AM_WGLINKS_CHECK_REACHED', 'Webseiten erreichbar');
+\define('_AM_WGLINKS_CHECK_VERIFY', 'Zu überprüfende Webseiten');
+\define('_AM_WGLINKS_CHECK_RESULT_STATUS', 'Antwort Status');
+\define('_AM_WGLINKS_CHECK_RESULT_TEXT', 'Info');
 // ---------------- Admin Others ----------------
 \define('_AM_WGLINKS_MAINTAINEDBY', ' wird unterstützt von ');
 if (!\defined('_ER_UP_NOFILE')) {

@@ -30,9 +30,6 @@ require_once __DIR__ . '/common.php';
 \define('_MI_WGLINKS_ADMENU20', 'Klonen');
 \define('_MI_WGLINKS_ADMENU21', 'Feedback');
 \define('_MI_WGLINKS_ABOUT', 'Über');
-// ---------------- Admin Nav ----------------
-\define('_MI_WGLINKS_ADMIN_PAGER', 'Listeneinträge Adminseite');
-\define('_MI_WGLINKS_ADMIN_PAGER_DESC', 'Definieren Sie die Anzahl der Einträge pro Liste im Administrations-Bereich');
 // User
 \define('_MI_WGLINKS_USER_PAGER', 'Listeneinträge Benutzerseite');
 \define('_MI_WGLINKS_USER_PAGER_DESC', 'Definieren Sie die Anzahl der Einträge pro Liste im Benutzer-Bereich');
@@ -43,6 +40,11 @@ require_once __DIR__ . '/common.php';
 \define('_MI_WGLINKS_BLINKS_LOGOCHAIN', 'Logo chain block');
 \define('_MI_WGLINKS_BLINKS_LOGOCHAIN_DESC', 'Show block with all logos of registered links as a chain');
 // Config
+\define('_MI_WGLINKS_GROUP_GENERAL', 'Allgemeine Einstellungen');
+\define('_MI_WGLINKS_GROUP_UPLOAD', 'Upload Einstellungen');
+\define('_MI_WGLINKS_GROUP_DISPLAY', 'Anzeigeeinstellungen');
+\define('_MI_WGLINKS_GROUP_UI', 'UI Einstellungen');
+\define('_MI_WGLINKS_GROUP_OTHERS', 'Sonstige Einstellungen');
 \define('_MI_WGLINKS_EDITOR', 'Editor');
 \define('_MI_WGLINKS_EDITOR_DESC', 'Bitte den zu verwendenden Editor wählen');
 \define('_MI_WGLINKS_MIMETYPES', 'Mime Types');
@@ -79,4 +81,5 @@ require_once __DIR__ . '/common.php';
 \define('_MI_WGLINKS_TITLESTYLE_TEXT', 'als Text');
 \define('_MI_WGLINKS_TITLESTYLE_GLYPH', 'als Glyphicons');
 \define('_MI_WGLINKS_MAINTAINEDBY', ' wird unterstützt von ');
-// ---------------- End ----------------
+\define('_MI_WGLINKS_SSL_VERIFYPEER', 'Verwende SSL_VERIFYPEER');
+\define('_MI_WGLINKS_SSL_VERIFYPEER_DESC', 'Wenn SSL_VERIFYPEER aktiviert ist, muss Ihre Website über ein gültiges SSL-Zertifikat verfügen; andernfalls kann die Überprüfung der Links fehlschlagen. Wenn Sie SSL_VERIFYPEER deaktivieren, kann dies ein Sicherheitsrisiko darstellen! Deaktivieren Sie es nur, wenn Sie sicher sind, dass alle Links auf vertrauenswürdige Websites verweisen!');

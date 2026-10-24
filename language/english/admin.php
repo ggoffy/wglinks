@@ -37,6 +37,7 @@ require_once __DIR__ . '/common.php';
 // Buttons
 \define('_AM_WGLINKS_ADD_CAT', 'Add New Category');
 \define('_AM_WGLINKS_ADD_LINK', 'Add New Link');
+\define('_AM_WGLINKS_VALIDATE_LINK', 'Validate All Links');
 // Lists
 \define('_AM_WGLINKS_CATS_LIST', 'List of Categorie');
 \define('_AM_WGLINKS_LINKS_LIST', 'List of Links');
@@ -86,6 +87,19 @@ require_once __DIR__ . '/common.php';
 \define('_AM_WGLINKS_FORM_EDIT', 'Modification');
 \define('_AM_WGLINKS_FORM_DELETE', 'Clear');
 \define('_AM_WGLINKS_FORM_UPLOAD_IMAGE_LINKS', 'Upload Logo:<br>- max. %w x %h pixels<br>- max. %b bytes<br>');
+// Checking links
+\define('_AM_WGLINKS_CHECK_RESULT', 'Result of checking links');
+\define('_AM_WGLINKS_CHECK_OK', 'OK');
+\define('_AM_WGLINKS_CHECK_WARNING', 'WARNING');
+\define('_AM_WGLINKS_CHECK_INVALID_URL', 'Invalid URL');
+\define('_AM_WGLINKS_CHECK_ERROR', 'ERROR');
+\define('_AM_WGLINKS_CHECK_NO_CONNECTION', 'Connection error');
+\define('_AM_WGLINKS_CHECK_NO_RESPONSE', 'No HTTP response');
+\define('_AM_WGLINKS_CHECK_TOTAL', 'Checks total');
+\define('_AM_WGLINKS_CHECK_REACHED', 'Reached');
+\define('_AM_WGLINKS_CHECK_VERIFY', 'To verify');
+\define('_AM_WGLINKS_CHECK_RESULT_STATUS', 'Response status');
+\define('_AM_WGLINKS_CHECK_RESULT_TEXT', 'Info');
 // ---------------- Admin Others ----------------
 \define('_AM_WGLINKS_MAINTAINEDBY', ' is maintained by ');
 if (!\defined('_ER_UP_NOFILE')) {

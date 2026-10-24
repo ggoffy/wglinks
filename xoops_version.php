@@ -112,6 +112,16 @@ $modversion['blocks'][] = [
 
 // ------------------- Config ------------------- /
 // Editor desc
+// ------------------- Group header: General ------------------- //
+$modversion['config'][] = [
+    'name'        => 'group_general',
+    'title'       => '_MI_WGLINKS_GROUP_GENERAL',
+    'description' => '',
+    'formtype'    => 'line_break',
+    'valuetype'   => 'textbox',
+    'default'     => 'even',
+    'category'    => 'group_header',
+];
 \xoops_load('xoopseditorhandler');
 $editorHandlerDesc      = \XoopsEditorHandler::getInstance();
 $modversion['config'][] = [
@@ -122,6 +132,16 @@ $modversion['config'][] = [
     'valuetype'   => 'text',
     'default'     => 'dhtml',
     'options'     => \array_flip($editorHandlerDesc->getList())
+];
+// ------------------- Group header: upload ------------------- //
+$modversion['config'][] = [
+    'name'        => 'group_general',
+    'title'       => '_MI_WGLINKS_GROUP_UPLOAD',
+    'description' => '',
+    'formtype'    => 'line_break',
+    'valuetype'   => 'textbox',
+    'default'     => 'even',
+    'category'    => 'group_header',
 ];
 // Uploads : mimetypes of image
 $modversion['config'][] = [
@@ -233,14 +253,15 @@ $modversion['config'][] = [
     'valuetype'   => 'int',
     'default'     => 200,
 ];
-// Admin pager
+// ------------------- Group header: UI ------------------- //
 $modversion['config'][] = [
-    'name'        => 'adminpager',
-    'title'       => '\_MI_WGLINKS_ADMIN_PAGER',
-    'description' => '\_MI_WGLINKS_ADMIN_PAGER_DESC',
-    'formtype'    => 'textbox',
-    'valuetype'   => 'int',
-    'default'     => 10,
+    'name'        => 'group_ui',
+    'title'       => '_MI_WGLINKS_GROUP_UI',
+    'description' => '',
+    'formtype'    => 'line_break',
+    'valuetype'   => 'textbox',
+    'default'     => 'even',
+    'category'    => 'group_header',
 ];
 // User pager
 $modversion['config'][] = [
@@ -250,42 +271,6 @@ $modversion['config'][] = [
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 10,
-];
-// Show breadcrumb
-$modversion['config'][] = [
-    'name'        => 'show_breadcrumbs',
-    'title'       => '\_MI_WGLINKS_SHOWBCRUMBS',
-    'description' => '\_MI_WGLINKS_SHOWBCRUMBS_DESC',
-    'formtype'    => 'yesno',
-    'valuetype'   => 'int',
-    'default'     => 1,
-];
-// Show module name
-$modversion['config'][] = [
-    'name'        => 'show_bcrumb_mname',
-    'title'       => '\_MI_WGLINKS_SHOWBCRUMBS_MNAME',
-    'description' => '\_MI_WGLINKS_SHOWBCRUMBS_MNAME_DESC',
-    'formtype'    => 'yesno',
-    'valuetype'   => 'int',
-    'default'     => 1,
-];
-// Maintained by
-$modversion['config'][] = [
-    'name'        => 'maintainedby',
-    'title'       => '\_MI_WGLINKS_MAINTAINEDBY',
-    'description' => '',
-    'formtype'    => 'textbox',
-    'valuetype'   => 'text',
-    'default'     => 'https://xoops.wedega.com',
-];
-// Show copyright
-$modversion['config'][] = [
-    'name'        => 'show_copyright',
-    'title'       => '\_MI_WGLINKS_SHOWCOPYRIGHT',
-    'description' => '\_MI_WGLINKS_SHOWCOPYRIGHT_DESC',
-    'formtype'    => 'yesno',
-    'valuetype'   => 'int',
-    'default'     => 1,
 ];
 // text for header index page
 $modversion['config'][] = [
@@ -325,9 +310,64 @@ $modversion['config'][] = [
     'default'     => 'text',
     'options'    => [\_MI_WGLINKS_TITLESTYLE_TEXT => 'text', \_MI_WGLINKS_TITLESTYLE_GLYPH => 'glyphicons'],
 ];
-/**
- * Make Sample button visible?
- */
+// ------------------- Group header: display ------------------- //
+$modversion['config'][] = [
+    'name'        => 'group_display',
+    'title'       => '_MI_WGLINKS_GROUP_DISPLAY',
+    'description' => '',
+    'formtype'    => 'line_break',
+    'valuetype'   => 'textbox',
+    'default'     => 'even',
+    'category'    => 'group_header',
+];
+// Show breadcrumb
+$modversion['config'][] = [
+    'name'        => 'show_breadcrumbs',
+    'title'       => '\_MI_WGLINKS_SHOWBCRUMBS',
+    'description' => '\_MI_WGLINKS_SHOWBCRUMBS_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+];
+// Show module name
+$modversion['config'][] = [
+    'name'        => 'show_bcrumb_mname',
+    'title'       => '\_MI_WGLINKS_SHOWBCRUMBS_MNAME',
+    'description' => '\_MI_WGLINKS_SHOWBCRUMBS_MNAME_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+];
+// Show copyright
+$modversion['config'][] = [
+    'name'        => 'show_copyright',
+    'title'       => '\_MI_WGLINKS_SHOWCOPYRIGHT',
+    'description' => '\_MI_WGLINKS_SHOWCOPYRIGHT_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+];
+// ------------------- Group header: others ------------------- //
+
+$modversion['config'][] = [
+    'name'        => 'group_others',
+    'title'       => '_MI_WGLINKS_GROUP_OTHERS',
+    'description' => '',
+    'formtype'    => 'line_break',
+    'valuetype'   => 'textbox',
+    'default'     => 'even',
+    'category'    => 'group_header',
+];
+// Make Sample button visible?
+$modversion['config'][] = [
+    'name'        => 'ssl_verifypeer',
+    'title'       => '_MI_WGLINKS_SSL_VERIFYPEER',
+    'description' => '_MI_WGLINKS_SSL_VERIFYPEER_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+];
+// Make Sample button visible?
 $modversion['config'][] = [
     'name'        => 'displaySampleButton',
     'title'       => '_CO_WGLINKS_SHOW_SAMPLE_BUTTON',
@@ -336,15 +376,12 @@ $modversion['config'][] = [
     'valuetype'   => 'int',
     'default'     => 1,
 ];
-
-/**
- * Show Developer Tools?
- */
-/* $modversion['config'][] = [
-    'name'        => 'displayDeveloperTools',
-    'title'       => '_CO_WGLINKS_SHOW_DEV_TOOLS',
-    'description' => '_CO_WGLINKS_SHOW_DEV_TOOLS_DESC',
-    'formtype'    => 'yesno',
-    'valuetype'   => 'int',
-    'default'     => 0,
-]; */
+// Maintained by
+$modversion['config'][] = [
+    'name'        => 'maintainedby',
+    'title'       => '\_MI_WGLINKS_MAINTAINEDBY',
+    'description' => '',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => 'https://xoops.wedega.com',
+];

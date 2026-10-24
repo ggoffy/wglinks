@@ -17,10 +17,10 @@
         <{if $categories_count|default:0}>
             <tbody><{foreach item=category from=$categories_list}>
                 <tr class="<{cycle values="odd, even"}>" id="corder_<{$category.id}>">
-                    <td class="center"><img src="<{$wglinks_url}>/assets/icons/16/up_down.png" alt="drag&drop" class="icon-sortable"/></td>
+                    <td class="center"><i class='fa fa-up-down wglinks-icon-sortable'></i></td>
                     <td class='center'><{$category.id}></td>
-                    <td class="center"><{$category.name}></td>
-                    <td class="center"><{$category.desc|default:''}></td>
+                    <td class=""><{$category.name}></td>
+                    <td class=""><{$category.desc|default:''}></td>
                     <td class="center"><{$category.submitter}></td>
                     <td class="center"><{$category.date_created}></td>
                     <td class="center  width5">
@@ -31,11 +31,6 @@
             <{/foreach}></tbody>
         <{/if}>
     </table>
-
-    <div class="clear">&nbsp;</div>
-    <{if $pagenav|default:''|default:''}>
-        <div class="xo-pagenav floatright"><{$pagenav}></div><div class="clear spacer"></div>
-    <{/if}>
 <{/if}>
 
 <{if $form|default:false}>

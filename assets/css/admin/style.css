@@ -1,0 +1,49 @@
+@charset "UTF-8";/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+
+/**
+ * wgLinks module for xoops
+ *
+ * @copyright      module for xoops
+ * @license        GPL 2.0 or later
+ * @package        wglinks
+ * @since          1.0
+ * @min_xoops      2.5.7
+ * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
+ * @version        $Id: 1.0 style.css 13070 Sun 2016-03-20 15:20:15Z XOOPS Development Team $
+ */
+
+.wglinks-i {
+    margin-right: 5px;
+}
+.wglinks-icon-sortable {
+    margin: 5px;
+    padding:5px;
+    background-color: var(--primary);
+    color: white;
+    font-size:150%;
+    border-radius: 5px;
+}
+.wglinks-i-success{
+    margin: 5px;
+    padding:5px;
+    background-color: green;
+    color: white;
+    font-size:150%;
+    border-radius: 5px;
+}
+.wglinks-i-warning {
+    margin: 5px;
+    padding:5px;
+    background-color: #ff4b00;
+    color: white;
+    font-size:150%;
+    border-radius: 5px;
+}

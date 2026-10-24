@@ -1,11 +1,22 @@
 <!-- Header -->
 <{include file='db:wglinks_admin_header.tpl'}>
 
+<div class="floatleft">
+    <div class="xo-buttons">
+        <a class="ui-corner-all tooltip" href="link.php?op=new" title="<{$smarty.const._AM_WGLINKS_ADD_LINK}>"><i class='fa fa-plus-square wglinks-i'></i><{$smarty.const._AM_WGLINKS_ADD_LINK}></a>
+        &nbsp;
+        <a class="ui-corner-all tooltip" href="link.php?op=check_urls" title="<{$smarty.const._AM_WGLINKS_VALIDATE_LINK}>"><i class='fa fa-list-check wglinks-i'></i><{$smarty.const._AM_WGLINKS_VALIDATE_LINK}></a>
+    </div>
+</div>
+
 <{if $links_list|default:false}>
     <table class='outer' id='sortable'>
         <thead>
             <tr class="head">
                 <th class="center">&nbsp;</th>
+                <{if $links_listcheck|default:false}>
+                    <th class="center"><{$smarty.const._AM_WGLINKS_CHECK_RESULT}></th>
+                <{/if}>
                 <th class="center"><{$smarty.const._AM_WGLINKS_LINK_ID}></th>
                 <th class="center"><{$smarty.const._AM_WGLINKS_LINK_NAME}></th>
                 <th class="center"><{$smarty.const._AM_WGLINKS_LINK_TOOLTIP}></th>
@@ -29,57 +40,64 @@
             <tbody>
                 <{foreach item=link from=$links_list}>
                     <{if $link.new_cat|default:0 > 0}>
-                        <tr class="odd">
-                            <td class="left" colspan="16"><{$link.catname|default:''}></td>
+                        <tr class="even">
+                            <td class="left" colspan="<{if $link.check_icon|default:''}>18<{else}>17<{/if}>"><{$link.catname|default:''}></td>
                         </tr>
                     <{/if}>
                     <tr class="<{cycle values="odd, even"}>"  id="lorder_<{$link.id}>">
-                        <td class="center"><img src="<{$wglinks_url}>/assets/icons/16/up_down.png" alt="drag&drop" class="icon-sortable"/></td>
+                        <td class="center"><i class='fa fa-up-down wglinks-icon-sortable'></i></td>
+                        <{if $links_listcheck|default:false}>
+                            <td class='center'>
+                                <{if $link.check_icon|default:false}>
+                                    <{if $link.check_icon|default:'' == 'ok'}>
+                                        <i class="fa-regular fa-circle-check wglinks-i-success"></i>
+                                    <{else}>
+                                        <i class="fa-solid fa-triangle-exclamation wglinks-i-warning"></i>
+                                    <{/if}>
+                                    <{$smarty.const._AM_WGLINKS_CHECK_RESULT_STATUS}>: <{$link.check_status}><br>
+                                    <{$smarty.const._AM_WGLINKS_CHECK_RESULT_TEXT}>: <{$link.check_result}><br>
+                                <{/if}>
+                            </td>
+                        <{/if}>
                         <td class='center'><{$link.id}></td>
-                        <td class="center"><{$link.name|default:''}></td>
-                        <td class="center"><{$link.tooltip|default:''}></td>
-                        <td class="center"><{$link.detail_truncated|default:''}></td>
-                        <td class="center"><{$link.url|default:''}></td>
-                        <td class="center"><{$link.contact|default:''}></td>
-                        <td class="center"><{$link.email|default:''}></td>
-                        <td class="center"><{$link.phone|default:''}></td>
-                        <td class="center"><{$link.address|default:''}></td>
+                        <td class=""><{$link.name|default:''}></td>
+                        <td class=""><{$link.tooltip|default:''}></td>
+                        <td class=""><{$link.detail_truncated|default:''}></td>
+                        <td class=""><{$link.url|default:''}></td>
+                        <td class=""><{$link.contact|default:''}></td>
+                        <td class=""><{$link.email|default:''}></td>
+                        <td class=""><{$link.phone|default:''}></td>
+                        <td class=""><{$link.address|default:''}></td>
                        
                         <td class="center">
                             <{if $link.logo|default:''}>
                                 <img src="<{$wglinks_upload_url}>/images/links/thumbs/<{$link.logo|default:''}>" alt="<{$link.name|default:''}>" style="height:50px" />
                             <{/if}>
                         </td>
-                        <td class="center">
+                        <td class="center xo-buttons">
                             <{if $link.state|default:0 == 0}>
                                 <a href='link.php?op=change_state&amp;link_state=1&amp;link_id=<{$link.id}>&amp;start=<{$start}>&amp;limit=<{$limit}>' title='<{$smarty.const._MD_WGLINKS_STATE_ONLINE}>'>
-                                    <img src='<{$wglinks_url}>/assets/icons/16/state0.png' alt='<{$smarty.const._MD_WGLINKS_STATE_ONLINE}>' />
-                                </a>
+                                    <i class="fa-solid fa-eye-slash"></i></a>
                             <{/if}>
                             <{if $link.state|default:0 == 1}>
                                 <a href='link.php?op=change_state&amp;link_state=0&amp;link_id=<{$link.id}>&amp;start=<{$start}>&amp;limit=<{$limit}>' title='<{$smarty.const._MD_WGLINKS_STATE_OFFLINE}>'>
-                                    <img src='<{$wglinks_url}>/assets/icons/16/state1.png' alt='<{$smarty.const._MD_WGLINKS_STATE_OFFLINE}>' />
-                                </a>
+                                    <i class="fa-solid fa-eye"></i></a>
+
                             <{/if}>
                         </td>
                         <td class="center"><{$link.type_text}></td>
                         <td class="center"><{$link.target_text}></td>
                         <td class="center"><{$link.submitter}></td>
                         <td class="center"><{$link.date_created}></td>
-                        <td class="center  width5">
-                        <a href="link.php?op=edit&amp;link_id=<{$link.id}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 'edit.png'}>" alt="links" /></a>
-                        <a href="link.php?op=delete&amp;link_id=<{$link.id}>" title="<{$smarty.const._DELETE}>"><img src="<{xoModuleIcons16 'delete.png'}>" alt="links" /></a>
+                        <td class="center width5 xo-buttons">
+                        <a href="link.php?op=edit&amp;link_id=<{$link.id}>" title="<{$smarty.const._EDIT}>"><i class='fa fa-edit'></i></a>
+                        <a href="link.php?op=delete&amp;link_id=<{$link.id}>" title="<{$smarty.const._DELETE}>"><i class='fa fa-trash'></i></a>
                         </td>
                     </tr>
                 <{/foreach}>
             </tbody>
         <{/if}>
     </table>
-
-    <div class="clear">&nbsp;</div>
-    <{if $pagenav|default:''|default:false}>
-        <div class="xo-pagenav floatright"><{$pagenav}></div><div class="clear spacer"></div>
-    <{/if}>
 <{/if}>
 
 <{if $form|default:false}>

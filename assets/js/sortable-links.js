@@ -8,11 +8,11 @@ $(document).ready( function(){
 			cursor: "move",
 			update: function(event, ui) {
 				var list = $(this).sortable("serialize");
-				$.post("links.php?op=order", list );
+				$.post("link.php?op=order", list );
 			},
 			receive: function(event, ui) {
 				var list = $(this).sortable("serialize");                    
-				$.post("links.php?op=order", list );                      
+				$.post("link.php?op=order", list );
 			}  
     }).disableSelection();
 });

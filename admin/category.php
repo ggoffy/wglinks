@@ -31,14 +31,13 @@ switch($op) {
         $GLOBALS['xoTheme']->addScript(\WGLINKS_URL . '/assets/js/jquery.js');
         $GLOBALS['xoTheme']->addScript(\WGLINKS_URL . '/assets/js/jquery-ui.js');
         $GLOBALS['xoTheme']->addScript(\WGLINKS_URL . '/assets/js/sortable-categories.js');
-        $start = Request::getInt('start');
-        $limit = Request::getInt('limit', $helper->getConfig('adminpager'));
+        $GLOBALS['xoTheme']->addStylesheet( \WGLINKS_URL . '/assets/css/admin/style.css', null );
         $templateMain = 'wglinks_admin_category.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('category.php'));
         $adminObject->addItemButton(\_AM_WGLINKS_ADD_CAT, 'category.php?op=new');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
         $categoriesCount = $categoryHandler->getCountCategories();
-        $categoriesAll = $categoryHandler->getAllCategories($start, $limit);
+        $categoriesAll = $categoryHandler->getAllCategories();
         $GLOBALS['xoopsTpl']->assign('categories_count', $categoriesCount);
         $GLOBALS['xoopsTpl']->assign('wglinks_url', \WGLINKS_URL);
         $GLOBALS['xoopsTpl']->assign('wglinks_upload_url', \WGLINKS_UPLOAD_URL);
@@ -48,12 +47,6 @@ switch($op) {
                 $link = $categoriesAll[$i]->getValuesCategories();
                 $GLOBALS['xoopsTpl']->append('categories_list', $link);
                 unset($link);
-            }
-            // Display Navigation
-            if($categoriesCount > $limit) {
-                include_once \XOOPS_ROOT_PATH .'/class/pagenav.php';
-                $pagenav = new \XoopsPageNav($categoriesCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
-                $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav());
             }
         } else {
             $GLOBALS['xoopsTpl']->assign('error', \_AM_WGLINKS_THEREARENT_CATS);
