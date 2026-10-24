@@ -2,10 +2,12 @@
 <{include file='db:wglinks_admin_header.tpl'}>
 
 <{if $categories_list|default:false}>
-    <table class='outer' id='sortable'>
+    <table class='outer' id='<{if $categories_count|default:0 > 1}>sortable<{/if}>'>
         <thead>
             <tr class="head">
-                <th class="center">&nbsp;</th>
+                <{if $categories_count|default:0 > 1}>
+                    <th class="center">&nbsp;</th>
+                <{/if}>
                 <th class="center"><{$smarty.const._AM_WGLINKS_CAT_ID}></th>
                 <th class="center"><{$smarty.const._AM_WGLINKS_CAT_NAME}></th>
                 <th class="center"><{$smarty.const._AM_WGLINKS_CAT_DESC}></th>
@@ -17,7 +19,9 @@
         <{if $categories_count|default:0}>
             <tbody><{foreach item=category from=$categories_list}>
                 <tr class="<{cycle values="odd, even"}>" id="corder_<{$category.id}>">
-                    <td class="center"><i class='fa fa-up-down wglinks-icon-sortable'></i></td>
+                    <{if $categories_count|default:0 > 1}>
+                        <td class="center"><i class='fa fa-up-down wglinks-icon-sortable'></i></td>
+                    <{/if}>
                     <td class='center'><{$category.id}></td>
                     <td class=""><{$category.name}></td>
                     <td class=""><{$category.desc|default:''}></td>

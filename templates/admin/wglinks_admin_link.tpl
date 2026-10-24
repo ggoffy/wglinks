@@ -13,7 +13,9 @@
     <table class='outer' id='sortable'>
         <thead>
             <tr class="head">
-                <th class="center">&nbsp;</th>
+                <{if $links_count|default:0 > 1}>
+                    <th class="center">&nbsp;</th>
+                <{/if}>
                 <{if $links_listcheck|default:false}>
                     <th class="center"><{$smarty.const._AM_WGLINKS_CHECK_RESULT}></th>
                 <{/if}>
@@ -45,7 +47,9 @@
                         </tr>
                     <{/if}>
                     <tr class="<{cycle values="odd, even"}>"  id="lorder_<{$link.id}>">
-                        <td class="center"><i class='fa fa-up-down wglinks-icon-sortable'></i></td>
+                        <{if $links_count|default:0 > 1}>
+                            <td class="center"><i class='fa fa-up-down wglinks-icon-sortable'></i></td>
+                        <{/if}>
                         <{if $links_listcheck|default:false}>
                             <td class='center'>
                                 <{if $link.check_icon|default:false}>
