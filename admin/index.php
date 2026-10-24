@@ -41,6 +41,13 @@ if ($configurator->uploadFolders) {
     }
 }
 // Uploads Folders Created
+$curlCheck = '<span style="color : red;"><img src="http://localhost/Xoops27Test/htdocs/Frameworks/moduleclasses/icons/16/0.png">'
+    . \_AM_WGLINKS_CURL_DONOTEXIST_1 . ' ' . _AM_WGLINKS_CURL_DONOTEXIST_2 .'</span>';
+if (function_exists('curl_init')) {
+    $curlCheck = '<span style="color : green;"><img src="http://localhost/Xoops27Test/htdocs/Frameworks/moduleclasses/icons/16/1.png">' . \_AM_WGLINKS_CURL_EXIST . '</span>';
+}
+$adminObject->addConfigBoxLine($curlCheck);
+
 foreach (\array_keys($folder) as $i) {
     $adminObject->addConfigBoxLine($folder[$i], 'folder');
     $adminObject->addConfigBoxLine([$folder[$i], '777'], 'chmod');

@@ -103,6 +103,9 @@ require_once __DIR__ . '/common.php';
 \define('_AM_WGLINKS_CHECK_VERIFY', 'To verify');
 \define('_AM_WGLINKS_CHECK_RESULT_STATUS', 'Response status');
 \define('_AM_WGLINKS_CHECK_RESULT_TEXT', 'Info');
+\define('_AM_WGLINKS_CURL_EXIST', 'PHP cURL extension is available');
+\define('_AM_WGLINKS_CURL_DONOTEXIST_1', 'PHP cURL extension is not available!');
+\define('_AM_WGLINKS_CURL_DONOTEXIST_2', "Feature 'Validating links' will not work!");
 // ---------------- Admin Others ----------------
 \define('_AM_WGLINKS_MAINTAINEDBY', ' is maintained by ');
 if (!\defined('_ER_UP_NOFILE')) {

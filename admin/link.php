@@ -310,10 +310,18 @@ include __DIR__ . '/footer.php';
  */
 function checkUrl(string $url, bool $sslVerifyPeer): array
 {
+    if (!function_exists('curl_init')) {
+        return [
+            'status'   => 0,
+            'finalUrl' => $url,
+            'error'    => \_AM_WGLINKS_CURL_DONOTEXIST_1,
+        ];
+    }
+
     $ch = curl_init($url);
     curl_setopt_array($ch, [
         CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_FOLLOWLOCATION => false,
         CURLOPT_MAXREDIRS      => 5,
         CURLOPT_CONNECTTIMEOUT => 5,
         CURLOPT_TIMEOUT        => 15,
@@ -329,13 +337,13 @@ function checkUrl(string $url, bool $sslVerifyPeer): array
     $error = curl_error($ch);
 
     // some server doesn't support HEAD request
-    // try with GET request
-    if ($httpCode === 405 || $httpCode === 501) {
+    // retry with GET request
+    if (in_array($httpCode, [403, 405, 501], true)) {
         $ch = curl_init($url);
 
         curl_setopt_array($ch, [
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_FOLLOWLOCATION => false,
             CURLOPT_MAXREDIRS      => 5,
             CURLOPT_CONNECTTIMEOUT => 5,
             CURLOPT_TIMEOUT        => 15,

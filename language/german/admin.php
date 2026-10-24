@@ -102,6 +102,9 @@ require_once __DIR__ . '/common.php';
 \define('_AM_WGLINKS_CHECK_VERIFY', 'Zu überprüfende Webseiten');
 \define('_AM_WGLINKS_CHECK_RESULT_STATUS', 'Antwort Status');
 \define('_AM_WGLINKS_CHECK_RESULT_TEXT', 'Info');
+\define('_AM_WGLINKS_CURL_EXIST', 'PHP cURL Extension ist verfügbar');
+\define('_AM_WGLINKS_CURL_DONOTEXIST_1', 'PHP cURL Extension ist verfügbar!');
+\define('_AM_WGLINKS_CURL_DONOTEXIST_2', "Feature 'Überprüfung Links' wird nicht funktionieren!");
 // ---------------- Admin Others ----------------
 \define('_AM_WGLINKS_MAINTAINEDBY', ' wird unterstützt von ');
 if (!\defined('_ER_UP_NOFILE')) {
