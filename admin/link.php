@@ -50,7 +50,7 @@ switch($op) {
         $checksTotal  = 0;
         $checksOk     = 0;
         $checksFailed = 0;
-        $sslVerifyPeer = false;
+        $sslVerifyPeer = true;
         if ('check_urls' === $op) {
             set_time_limit(0);
             $GLOBALS['xoopsTpl']->assign('links_listcheck', true);
@@ -77,29 +77,28 @@ switch($op) {
                         $link['check_status'] = 0;
                         $checksFailed++;
                         $checksTotal++;
-                        continue;
-                    }
-
-                    $check = checkUrl($url, $sslVerifyPeer);
-                    $status = $check['status'];
-
-                    // HTTP 2xx und 3xx gelten als erreichbar.
-                    if ($status >= 200 && $status < 400) {
-                        $link['check_icon'] = 'ok';
-                        $link['check_result'] = \_AM_WGLINKS_CHECK_OK;
-                        $link['check_status'] = $status;
-                        $checksOk++;
-                    } elseif ($status > 0) {
-                        $link['check_icon'] = 'warning';
-                        $link['check_result'] = \_AM_WGLINKS_CHECK_ERROR;
-                        $link['check_status'] = $status;
-                        $checksFailed++;
                     } else {
-                        $responseText = $check['error'] ?: \_AM_WGLINKS_CHECK_NO_RESPONSE;
-                        $link['check_icon'] = 'warning';
-                        $link['check_result'] = \_AM_WGLINKS_CHECK_NO_CONNECTION . ': ' . $responseText;
-                        $link['check_status'] = $status;
-                        $checksFailed++;
+                        $check = checkUrl($url, $sslVerifyPeer);
+                        $status = $check['status'];
+
+                        // HTTP 2xx and 3xx are reachable
+                        if ($status >= 200 && $status < 400) {
+                            $link['check_icon'] = 'ok';
+                            $link['check_result'] = \_AM_WGLINKS_CHECK_OK;
+                            $link['check_status'] = $status;
+                            $checksOk++;
+                        } elseif ($status > 0) {
+                            $link['check_icon'] = 'warning';
+                            $link['check_result'] = \_AM_WGLINKS_CHECK_ERROR;
+                            $link['check_status'] = $status;
+                            $checksFailed++;
+                        } else {
+                            $responseText = $check['error'] ?: \_AM_WGLINKS_CHECK_NO_RESPONSE;
+                            $link['check_icon'] = 'warning';
+                            $link['check_result'] = \_AM_WGLINKS_CHECK_NO_CONNECTION . ': ' . $responseText;
+                            $link['check_status'] = $status;
+                            $checksFailed++;
+                        }
                     }
                     $checksTotal++;
                 }

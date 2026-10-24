@@ -135,7 +135,7 @@ $modversion['config'][] = [
 ];
 // ------------------- Group header: upload ------------------- //
 $modversion['config'][] = [
-    'name'        => 'group_general',
+    'name'        => 'group_upload',
     'title'       => '_MI_WGLINKS_GROUP_UPLOAD',
     'description' => '',
     'formtype'    => 'line_break',
