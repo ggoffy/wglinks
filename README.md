@@ -19,7 +19,7 @@ Whether you want to share useful websites, provide links to partner organization
 - **Category management:** Organize links into meaningful categories to make collections easier to navigate.
 - **Flexible presentation:** Display link collections using the templates provided by the module.
 - **Responsive layouts:** Most front-end templates are designed to adapt to different screen sizes.
-- **Template options:** Depending on the selected template, configure presentation options such as slideshow types, autoplay, and playback speed.
+- **Template options:** Different templates are included (e.g. Bootstrap Cards).
 - **Bootstrap compatibility:** Use a Bootstrap-based XOOPS theme for proper front-end presentation.
 - **Centralized administration:** Manage your link collections through the XOOPS administration interface.
 
