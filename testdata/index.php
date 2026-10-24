@@ -63,7 +63,7 @@ function loadSampleData(): void
     loadTableFromArrayWithReplace($table, $tabledata, 'gperm_modid', $mid);
 
     //  ---  COPY test folder files ---------------
-    if (\is_array($configurator->copyTestFolders) && \count($configurator->copyTestFolders) > 0) {
+    if (\count($configurator->copyTestFolders) > 0) {
         //        $file =  \dirname(__DIR__) . '/testdata/images/';
         foreach (\array_keys($configurator->copyTestFolders) as $i) {
             $src  = $configurator->copyTestFolders[$i][0];

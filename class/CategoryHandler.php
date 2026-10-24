@@ -123,7 +123,7 @@ class CategoryHandler extends \XoopsPersistableObjectHandler
      *
      * @return int
      */
-    public function getMaxCategoryWeight()
+    public function getMaxCategoryWeight(): int
     {
         global $xoopsDB;
 
@@ -136,10 +136,26 @@ class CategoryHandler extends \XoopsPersistableObjectHandler
                 E_USER_ERROR,
             );
         }
-        while (false !== ($row = $xoopsDB->fetchRow($result))) {
+        if (false !== ($row = $xoopsDB->fetchRow($result))) {
             return (int)$row[0];
         }
 
         return 0;
+    }
+
+    /**
+     * Get list of categories
+     *
+     * @return array
+     */
+    public function getCategoryList(): array
+    {
+        $categoryList = [];
+        $categoriesAll = $this->getAll();
+        foreach(\array_keys($categoriesAll) as $i) {
+            $categoryList[$i] = $categoriesAll[$i]->getVar('cat_name');
+        }
+
+        return $categoryList;
     }
 }

@@ -38,22 +38,20 @@ class FileChecker
 {
     /**
      * @param string $file_path
-     * @param string      $redirectFile
+     * @param string $redirectFile
      * @param string|null $original_file_path
  * @return bool|string
      */
-    public static function getFileStatus(string $file_path, $redirectFile, string $original_file_path = null): bool|string
+    public static function getFileStatus(string $file_path, string $redirectFile, ?string $original_file_path = null): bool|string
     {
         $pathIcon16 = \Xmf\Module\Admin::iconUrl('', '16');
 
         if (empty($file_path)) {
             return false;
         }
-        if (null === $redirectFile) {
+        if ('' === $redirectFile) {
             $redirectFile = $_SERVER['SCRIPT_NAME'];
         }
-        $moduleDirName      = \basename(\dirname(__DIR__, 2));
-        $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
         if (null === $original_file_path) {
             if (self::fileExists($file_path)) {
                 $path_status = "<img src='$pathIcon16/1.png' >";
@@ -139,7 +137,7 @@ class FileChecker
     {
         $target = \str_replace('..', '', $target);
 
-        return @\chmod($target, (int)$mode);
+        return @\chmod($target, $mode);
     }
 }
 

@@ -181,15 +181,13 @@ if ($maxSize <= 100 * 1048576) {
 if ($maxSize <= 50 * 1048576) {
     $increment = 1;
 }
-if ($maxSize <= 25 * 1048576) {
-    $increment = 0.5;
-}
 $optionMaxsize = [];
 $i = $increment;
 while ($i * 1048576 <= $maxSize) {
     $optionMaxsize[$i . ' ' . \_MI_WGLINKS_MAXSIZE_MB] = $i * 1048576;
     $i += $increment;
 }
+
 $modversion['config'][] = [
     'name'        => 'maxsize',
     'title'       => '\_MI_WGLINKS_MAXSIZE',

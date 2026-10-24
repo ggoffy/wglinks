@@ -65,9 +65,10 @@ $links    = [];
 
 if($linksCount > 0) {
     $linksAll = $linkHandler->getAll($crLinks);
+    $categoryList = $categoryHandler->getCategoryList();
     // Get All Link
     foreach(\array_keys($linksAll) as $i) {
-        $links[] = $linksAll[$i]->getValuesLinks();
+        $links[] = $linksAll[$i]->getValuesLinks($categoryList);
         $keywords[] = $linksAll[$i]->getVar('link_name');
     }
     // Display Navigation

@@ -59,8 +59,9 @@ switch($op) {
         // Table view links
         if($linksCount > 0) {
             $cat_id_prev = 0;
+            $categoryList = $categoryHandler->getCategoryList();
             foreach(\array_keys($linksAll) as $i) {
-                $link = $linksAll[$i]->getValuesLinks();
+                $link = $linksAll[$i]->getValuesLinks($categoryList);
                 if ($cat_id_prev == $link['catid']) {
                     $link['new_cat'] = 0;
                 } else {

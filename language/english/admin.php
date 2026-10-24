@@ -87,6 +87,9 @@ require_once __DIR__ . '/common.php';
 \define('_AM_WGLINKS_FORM_EDIT', 'Modification');
 \define('_AM_WGLINKS_FORM_DELETE', 'Clear');
 \define('_AM_WGLINKS_FORM_UPLOAD_IMAGE_LINKS', 'Upload Logo:<br>- max. %w x %h pixels<br>- max. %b bytes<br>');
+//Errors
+\define('_AM_WGLINKS_INVALID_PARAM', 'Invalid parameter');
+\define('_AM_WGLINKS_INVALID_DATE', 'Invalid date');
 // Checking links
 \define('_AM_WGLINKS_CHECK_RESULT', 'Result of checking links');
 \define('_AM_WGLINKS_CHECK_OK', 'OK');
@@ -105,6 +108,4 @@ require_once __DIR__ . '/common.php';
 if (!\defined('_ER_UP_NOFILE')) {
     \define('_ER_UP_NOFILE', 'No file for upload selected');
 }
-//Errors
-\define('_AM_WGLINKS_INVALID_PARAM', 'Invalid parameter');
-\define('_AM_WGLINKS_INVALID_DATE', 'Invalid date');
+

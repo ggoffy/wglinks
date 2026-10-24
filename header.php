@@ -24,7 +24,8 @@ $moduleDirNameUpper = \mb_strtoupper($dirname);
 
 // Get instance of module
 $helper = \XoopsModules\Wglinks\Helper::getInstance();
-$linkHandler = $helper->getHandler('Link');
+$linkHandler     = $helper->getHandler('Link');
+$categoryHandler = $helper->getHandler('Category');
 // Breadcrumbs
 $xoBreadcrumbs = [];
 if ($helper->getConfig('show_breadcrumbs') && $helper->getConfig('show_bcrumb_mname')) {

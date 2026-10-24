@@ -35,7 +35,7 @@ $adminObject->addInfoBoxLine(\sprintf('<label>' . \_AM_WGLINKS_THEREARE_LINKS . 
 // Upload Folders
 $folder = [];
 $configurator = new Common\Configurator();
-if ($configurator->uploadFolders && \is_array($configurator->uploadFolders)) {
+if ($configurator->uploadFolders) {
     foreach (\array_keys($configurator->uploadFolders) as $i) {
         $folder[] = $configurator->uploadFolders[$i];
     }

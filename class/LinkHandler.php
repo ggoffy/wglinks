@@ -123,7 +123,7 @@ class LinkHandler extends \XoopsPersistableObjectHandler
      *
      * @return int
      */
-    public function getMaxLinkWeight()
+    public function getMaxLinkWeight(): int
     {
         global $xoopsDB;
 
@@ -136,7 +136,7 @@ class LinkHandler extends \XoopsPersistableObjectHandler
                 E_USER_ERROR,
             );
         }
-        while (false !== ($row = $xoopsDB->fetchRow($result))) {
+        if (false !== ($row = $xoopsDB->fetchRow($result))) {
             return (int)$row[0];
         }
 

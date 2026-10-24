@@ -184,21 +184,19 @@ class Link extends \XoopsObject
 
     /**
      * Get Values
-     * @param null $keys
-     * @param null $format
-     * @param null $maxDepth
+     * @param array $categoryList
      * @return array
      * @throws \Exception
      */
-    public function getValuesLinks($keys = null, $format = null, $maxDepth = null): array
+    public function getValuesLinks(array $categoryList): array
     {
         $helper = \XoopsModules\Wglinks\Helper::getInstance();
-        $ret = parent::getValues($keys, $format, $maxDepth);
+        $ret = parent::getValues(null, null, null);
         $ret['id'] = $this->getVar('link_id');
-        $ret['catid'] = $this->getVar('link_catid');
-        $categoryHandler = $helper->getHandler('Category');
-        $categoriesObj = $categoryHandler->get($this->getVar('link_catid'));
-        $ret['catname'] = $categoriesObj->getVar('cat_name');
+        $catId = (int)$this->getVar('link_catid');
+        $ret['catid'] = $catId;
+        $catName = (string)($categoryList[$catId] ?? 'Invalid category');
+        $ret['catname'] = $catName;
         $ret['name'] = $this->getVar('link_name');
         $ret['url'] = '';
         if ('https://' !== $this->getVar('link_url') ) {
@@ -243,7 +241,7 @@ class Link extends \XoopsObject
      * The new inserted $Id
      * @return int
      */
-    public function getNewInsertedIdLink()
+    public function getNewInsertedIdLink(): int
     {
         return $GLOBALS['xoopsDB']->getInsertId();
     }

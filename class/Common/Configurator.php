@@ -25,7 +25,7 @@ namespace XoopsModules\Wglinks\Common;
  */
 class Configurator
 {
-    public $name;
+    public string $name;
     public array $paths           = [];
     public array $uploadFolders   = [];
     public array $copyBlankFiles  = [];
@@ -35,7 +35,7 @@ class Configurator
     public array $oldFolders      = [];
     public array $renameTables    = [];
     public array $moduleStats     = [];
-    public $modCopyright;
+    public string $modCopyright;
 
     /**
      * Configurator constructor.

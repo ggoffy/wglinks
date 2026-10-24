@@ -32,9 +32,9 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('clone.php'));
         require_once $GLOBALS['xoops']->path('class/xoopsformloader.php');
         $form  = new \XoopsThemeForm(\sprintf(\_AM_WGLINKS_CLONE_TITLE, $helper->getModule()->getVar('name', 'E')), 'clone', 'clone.php', 'post', true);
-        $clone = new \XoopsFormText(\_AM_WGLINKS_CLONE_NAME, 'clone', 20, 20, '');
-        $clone->setDescription(\_AM_WGLINKS_CLONE_NAME_DSC);
-        $form->addElement($clone, true);
+        $cloneText = new \XoopsFormText(\_AM_WGLINKS_CLONE_NAME, 'clone', 20, 20, '');
+        $cloneText->setDescription(\_AM_WGLINKS_CLONE_NAME_DSC);
+        $form->addElement($cloneText, true);
         $form->addElement(new \XoopsFormHidden('op', 'submit'));
         $form->addElement(new \XoopsFormButton('', '', \_SUBMIT, 'submit'));
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
@@ -157,10 +157,8 @@ function createLogo($dirname): bool
         'imagealphablending',
         'imagesavealpha',
     ];
-    foreach ($requiredFunctions as $func) {
-        if (!\function_exists($func)) {
-            return false;
-        }
+    if (array_any($requiredFunctions, fn($func) => !\function_exists($func))) {
+        return false;
     }
     //            unset($func);
 
