@@ -52,7 +52,7 @@ foreach (\array_keys($folder) as $i) {
     $adminObject->addConfigBoxLine($folder[$i], 'folder');
     $adminObject->addConfigBoxLine([$folder[$i], '777'], 'chmod');
 }
-
+$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('index.php'));
 //------------- Test Data ----------------------------
 if ($helper->getConfig('displaySampleButton')) {
     \xoops_loadLanguage('admin/modulesadmin', 'system');
@@ -64,6 +64,6 @@ if ($helper->getConfig('displaySampleButton')) {
     $adminObject->displayButton('left', '');
 }
 //------------- End Test Data ----------------------------
-$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('index.php'));
+
 $GLOBALS['xoopsTpl']->assign('index', $adminObject->displayIndex());
 include __DIR__ . '/footer.php';
