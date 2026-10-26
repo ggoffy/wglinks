@@ -21,7 +21,7 @@
 use Xmf\Request;
 use XoopsModules\Wglinks\Common\Resizer;
 
-include __DIR__ . '/header.php';
+include_once __DIR__ . '/header.php';
 // It recovered the value of argument op in URL$
 $op = Request::getString('op', 'list');
 // Request link_id
@@ -293,14 +293,14 @@ switch($op) {
             $linksObj->setVar('link_state', Request::getInt('link_state'));
             // Insert Data
             if($linkHandler->insert($linksObj)) {
-                \redirect_header('link.php?op=list&amp;start=' . $start . '&amp;limit=' . $limit, 2, \_AM_WGLINKS_FORM_OK);
+                \redirect_header('link.php?op=list&start=' . $start . '&limit=' . $limit, 2, \_AM_WGLINKS_FORM_OK);
             }
             // Get Form
             $GLOBALS['xoopsTpl']->assign('error', $linksObj->getHtmlErrors());
         }
         break;
 }
-include __DIR__ . '/footer.php';
+include_once __DIR__ . '/footer.php';
 
 /** function to check url validity
  *

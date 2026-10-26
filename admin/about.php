@@ -17,8 +17,8 @@
  * @package        wglinks
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  */
-include __DIR__ . '/header.php';
+include_once __DIR__ . '/header.php';
 $templateMain = 'wglinks_admin_about.tpl';
 $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('about.php'));
 $GLOBALS['xoopsTpl']->assign('about', $adminObject->renderAbout(false));
-include __DIR__ . '/footer.php';
+include_once __DIR__ . '/footer.php';

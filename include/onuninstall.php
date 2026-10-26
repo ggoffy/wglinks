@@ -8,6 +8,8 @@
  * @link            https://xoops.org XOOPS
  */
 
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+
 use XoopsModules\Wglinks;
 
 /**

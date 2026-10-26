@@ -20,7 +20,7 @@
 
 use Xmf\Request;
 
-include __DIR__ . '/header.php';
+include_once __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'wglinks_index.tpl';
 include_once \XOOPS_ROOT_PATH .'/header.php';
 
@@ -96,4 +96,4 @@ wglinksMetaDescription(\_MD_WGLINKS_INDEX_DESC);
 $GLOBALS['xoopsTpl']->assign('xoops_mpageurl', \WGLINKS_URL.'/index.php');
 $GLOBALS['xoopsTpl']->assign('xoops_icons32_url', XOOPS_ICONS32_URL);
 $GLOBALS['xoopsTpl']->assign('wglinks_upload_url', \WGLINKS_UPLOAD_URL);
-include __DIR__ . '/footer.php';
+include_once __DIR__ . '/footer.php';

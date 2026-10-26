@@ -20,7 +20,7 @@
 
 use XoopsModules\Wglinks\Common;
 
-include __DIR__ . '/header.php';
+include_once __DIR__ . '/header.php';
 // Count elements
 $countCategories = $categoryHandler->getCount();
 $countLinks = $linkHandler->getCount();
@@ -66,4 +66,4 @@ if ($helper->getConfig('displaySampleButton')) {
 //------------- End Test Data ----------------------------
 
 $GLOBALS['xoopsTpl']->assign('index', $adminObject->displayIndex());
-include __DIR__ . '/footer.php';
+include_once __DIR__ . '/footer.php';

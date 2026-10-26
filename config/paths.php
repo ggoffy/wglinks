@@ -1,5 +1,10 @@
 <?php
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
+/**
+ * @copyright       (c) 2000-2026 XOOPS Project (https://xoops.org)
+ * @license             GNU GPL 2 (https://www.gnu.org/licenses/gpl-2.0.html)
+ */
 function getPaths(): object
 {
     $moduleDirName      = \basename(\dirname(__DIR__));

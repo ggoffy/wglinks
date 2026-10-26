@@ -12,6 +12,8 @@ namespace XoopsModules\Wglinks\Common;
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
 
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+
 /**
  * Image resizer class for xoops
  *
@@ -90,7 +92,9 @@ class Resizer
             // Copy and resize old image into new image.
             \imagecopyresampled($tmpimg, $img, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
 
-            \unlink($this->endFile);
+            if (\is_file($this->endFile)) {
+                \unlink($this->endFile);
+            }
             //compressing the file
             switch ($this->imageMimetype) {
                 case 'image/png':
@@ -261,7 +265,9 @@ class Resizer
         // Rotate
         $tmpimg = \imagerotate($original, $this->degrees, 0);
 
-        \unlink($this->endFile);
+        if (\is_file($this->endFile)) {
+            \unlink($this->endFile);
+        }
         //compressing the file
         switch ($this->imageMimetype) {
             case 'image/png':

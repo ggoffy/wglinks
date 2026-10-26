@@ -22,6 +22,8 @@ namespace XoopsModules\Wglinks\Common;
  * @link      https://xoops.org
  */
 
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+
 class MigrateHelper
 {
 

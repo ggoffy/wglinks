@@ -20,7 +20,7 @@
 
 use Xmf\Request;
 
-include __DIR__ . '/header.php';
+include_once __DIR__ . '/header.php';
 // It recovered the value of argument op in URL$
 $op = Request::getString('op', 'list');
 // Request cat_id
@@ -135,4 +135,4 @@ switch($op) {
         }
         break;
 }
-include __DIR__ . '/footer.php';
+include_once __DIR__ . '/footer.php';

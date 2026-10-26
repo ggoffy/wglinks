@@ -18,6 +18,8 @@
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  */
 
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+
 if (!\defined('WGLINKS_MODULE_PATH')) {
     if (!\defined('XOOPS_ICONS32_PATH')) {
         \define('XOOPS_ICONS32_PATH', \XOOPS_ROOT_PATH . '/Frameworks/moduleclasses/icons/32');

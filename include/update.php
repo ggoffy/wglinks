@@ -18,6 +18,8 @@
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  */
 
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+
 use XoopsModules\Wglinks;
 use XoopsModules\Wglinks\Common\ {
     Configurator,

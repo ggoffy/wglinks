@@ -22,6 +22,8 @@ namespace XoopsModules\Wglinks\Common;
  * @author       Mamba <mambax7@gmail.com>
  */
 
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+
 use XoopsModules\Wglinks\Helper;
 
 /**

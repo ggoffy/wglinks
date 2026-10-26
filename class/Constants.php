@@ -24,6 +24,8 @@ namespace XoopsModules\Wglinks;
  * @author       Goffy - Wedega.com - Email:webmaster@wedega.com - Website:https://xoops.wedega.com
  */
 
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+
 /**
  * Interface  Constants
  */

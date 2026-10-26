@@ -20,6 +20,8 @@ namespace XoopsModules\Wglinks\Common;
  * @since       1.05
  */
 
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+
 /**
  * Class Configurator
  */

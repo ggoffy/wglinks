@@ -25,6 +25,8 @@ namespace XoopsModules\Wglinks;
  * @since        File available since version 1.54
  */
 
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+
 /**
  * Class Utility
  */

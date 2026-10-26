@@ -12,6 +12,8 @@ namespace XoopsModules\Wglinks\Common;
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+
 /**
  * @copyright   XOOPS Project (https://xoops.org)
  * @license     https://www.fsf.org/copyleft/gpl.html GNU public license
