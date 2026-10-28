@@ -52,7 +52,7 @@ foreach (\array_keys($folder) as $i) {
     $adminObject->addConfigBoxLine($folder[$i], 'folder');
     $adminObject->addConfigBoxLine([$folder[$i], '777'], 'chmod');
 }
-$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('index.php'));
+$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->renderNavigation('index.php'));
 //------------- Test Data ----------------------------
 if ($helper->getConfig('displaySampleButton')) {
     \xoops_loadLanguage('admin/modulesadmin', 'system');
@@ -61,9 +61,9 @@ if ($helper->getConfig('displaySampleButton')) {
     $adminObject->addItemButton(\constant('_CO_WGLINKS_ADD_SAMPLEDATA'), '__DIR__ . /../../testdata/index.php?op=load');
     $adminObject->addItemButton(\constant('_CO_WGLINKS_SAVE_SAMPLEDATA'), '__DIR__ . /../../testdata/index.php?op=save');
     //    $adminObject->addItemButton(\constant('_CO_WGLINKS_EXPORT_SCHEMA'), '__DIR__ . /../../testdata/index.php?op=exportschema', 'add');
-    $adminObject->displayButton('left', '');
+    $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton('left', ''));
 }
 //------------- End Test Data ----------------------------
 
-$GLOBALS['xoopsTpl']->assign('index', $adminObject->displayIndex());
+$GLOBALS['xoopsTpl']->assign('index', $adminObject->renderIndex());
 include_once __DIR__ . '/footer.php';

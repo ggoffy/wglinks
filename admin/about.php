@@ -19,6 +19,6 @@
  */
 include_once __DIR__ . '/header.php';
 $templateMain = 'wglinks_admin_about.tpl';
-$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('about.php'));
+$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->renderNavigation('about.php'));
 $GLOBALS['xoopsTpl']->assign('about', $adminObject->renderAbout(false));
 include_once __DIR__ . '/footer.php';

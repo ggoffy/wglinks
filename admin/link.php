@@ -38,8 +38,8 @@ switch($op) {
         $GLOBALS['xoTheme']->addScript(\WGLINKS_URL . '/assets/js/sortable-links.js');
         $GLOBALS['xoTheme']->addStylesheet( \WGLINKS_URL . '/assets/css/admin/style.css', null );
         $templateMain = 'wglinks_admin_link.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('link.php'));
-        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->renderNavigation('link.php'));
+        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton('left'));
         $linksCount = $linkHandler->getCountLinks();
         $linksAll = $linkHandler->getAllLinks();
         $GLOBALS['xoopsTpl']->assign('links_count', $linksCount);
@@ -113,9 +113,9 @@ switch($op) {
         break;
     case 'new':
         $templateMain = 'wglinks_admin_link.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('link.php'));
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->renderNavigation('link.php'));
         $adminObject->addItemButton(\_AM_WGLINKS_LINKS_LIST, 'link.php', 'list');
-        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
+        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton('left'));
         // Get Form
         $linksObj = $linkHandler->create();
         $form = $linksObj->getFormLinks();
@@ -236,10 +236,10 @@ switch($op) {
         break;
     case 'edit':
         $templateMain = 'wglinks_admin_link.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('link.php'));
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->renderNavigation('link.php'));
         $adminObject->addItemButton(\_AM_WGLINKS_ADD_LINK, 'link.php?op=new');
         $adminObject->addItemButton(\_AM_WGLINKS_LINKS_LIST, 'link.php', 'list');
-        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
+        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton('left'));
         // Get Form
         $linksObj = $linkHandler->get($linkId);
         $form = $linksObj->getFormLinks();

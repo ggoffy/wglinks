@@ -33,9 +33,9 @@ switch($op) {
         $GLOBALS['xoTheme']->addScript(\WGLINKS_URL . '/assets/js/sortable-categories.js');
         $GLOBALS['xoTheme']->addStylesheet( \WGLINKS_URL . '/assets/css/admin/style.css', null );
         $templateMain = 'wglinks_admin_category.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('category.php'));
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->renderNavigation('category.php'));
         $adminObject->addItemButton(\_AM_WGLINKS_ADD_CAT, 'category.php?op=new');
-        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
+        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton('left'));
         $categoriesCount = $categoryHandler->getCountCategories();
         $categoriesAll = $categoryHandler->getAllCategories();
         $GLOBALS['xoopsTpl']->assign('categories_count', $categoriesCount);
@@ -54,9 +54,9 @@ switch($op) {
         break;
     case 'new':
         $templateMain = 'wglinks_admin_category.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('category.php'));
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->renderNavigation('category.php'));
         $adminObject->addItemButton(\_AM_WGLINKS_CATS_LIST, 'category.php', 'list');
-        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
+        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton('left'));
         // Get Form
         $categoriesObj = $categoryHandler->create();
         $form = $categoriesObj->getFormCategories();
@@ -101,10 +101,10 @@ switch($op) {
         break;
     case 'edit':
         $templateMain = 'wglinks_admin_category.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('category.php'));
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->renderNavigation('category.php'));
         $adminObject->addItemButton(\_AM_WGLINKS_ADD_CAT, 'category.php?op=new');
         $adminObject->addItemButton(\_AM_WGLINKS_CATS_LIST, 'category.php', 'list');
-        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
+        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton('left'));
         // Get Form
         $categoriesObj = $categoryHandler->get($catId);
         $form = $categoriesObj->getFormCategories();
